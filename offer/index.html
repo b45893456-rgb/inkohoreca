@@ -303,6 +303,23 @@ em{font-style:italic;font-weight:600;color:rgb(var(--accent))}
 .closer blockquote{margin:0 0 var(--s4);font-size:var(--text-h4);line-height:1.35;
   letter-spacing:var(--h-track);font-weight:600}
 
+
+/* ---------- photo slots: real photo when present, drawing until then ---------- */
+.ph{position:relative;display:block}
+.ph>img{width:100%;height:auto;display:block;border-radius:var(--r-lg)}
+.ph>svg{display:none}
+.ph.no-photo>img{display:none}
+.ph.no-photo>svg{display:block}
+.shot .ph>img,.shot .ph>svg,.case .ph>img,.case .ph>svg{border-radius:0}
+.extra .ph>img,.extra .ph>svg{width:64px;height:64px;border-radius:var(--r);object-fit:cover}
+.brandbar-partners{margin-top:var(--s10);padding-top:var(--s8);
+  border-top:1px solid rgb(var(--text) / .12)}
+.partners{display:grid;grid-template-columns:repeat(2,1fr);gap:var(--s5);align-items:center}
+@media screen and (min-width:700px){.partners{grid-template-columns:repeat(4,1fr)}}
+.partner{text-align:center;font-weight:600;letter-spacing:.1em;text-transform:uppercase;
+  color:rgb(var(--text) / .45);font-size:var(--text-sm)}
+.partner img{max-height:34px;width:auto;margin-inline:auto;filter:grayscale(1);opacity:.6}
+
 /* ---------- footer ---------- */
 footer{background:rgb(var(--accent));color:rgb(var(--offwhite) / .8);padding-block:var(--s16);
   font-size:var(--text-sm)}
@@ -352,7 +369,7 @@ footer .disc{margin-top:var(--s5);padding-top:var(--s4);border-top:1px solid rgb
     </div>
 
     <div class="shot">
-      <svg viewBox="0 0 1000 720" role="img" aria-label="A menu cover and a check presenter in matching leather">
+      <span class="ph"><img src="assets/hero.jpg" alt="A menu cover and a check presenter in matching leather" loading="lazy" onerror="this.closest('.ph').classList.add('no-photo')"><svg viewBox="0 0 1000 720" role="img" aria-label="A menu cover and a check presenter in matching leather">
         <rect width="1000" height="720" fill="#F3F5F8"/>
         <rect y="470" width="1000" height="250" fill="#E7E4DD"/>
         <g transform="translate(120 90)">
@@ -374,7 +391,7 @@ footer .disc{margin-top:var(--s5);padding-top:var(--s4);border-top:1px solid rgb
             <path d="M92 78 h160M98 96 h136M104 114 h108"/>
           </g>
         </g>
-      </svg>
+      </svg></span>
       <div class="seals">
         <span class="seal">Handcrafted<br>in the EU</span>
         <span class="seal">QA on<br>every piece</span>
@@ -382,6 +399,21 @@ footer .disc{margin-top:var(--s5);padding-top:var(--s4);border-top:1px solid rgb
       </div>
       <p class="fine">*Stock lines ship next business day when ordered before 1 PM PST / CET.</p>
     </div>
+  </div>
+</section>
+
+
+<section class="sec" style="padding-block:var(--s10)">
+  <div class="wrap">
+    <p class="center sm muted" style="letter-spacing:.1em;text-transform:uppercase;font-weight:700">
+      Supplying venues of</p>
+    <div class="partners" style="margin-top:var(--s5)">
+      <span class="partner"><img src="assets/logos/marriott.svg" alt="Marriott" onerror="this.replaceWith(document.createTextNode('Marriott'))"></span>
+      <span class="partner"><img src="assets/logos/hilton.svg" alt="Hilton" onerror="this.replaceWith(document.createTextNode('Hilton'))"></span>
+      <span class="partner"><img src="assets/logos/hyatt.svg" alt="Hyatt" onerror="this.replaceWith(document.createTextNode('Hyatt'))"></span>
+      <span class="partner"><img src="assets/logos/radisson.svg" alt="Radisson" onerror="this.replaceWith(document.createTextNode('Radisson'))"></span>
+    </div>
+    <!-- TODO before launch: real SVG logos + written permission to display these marks -->
   </div>
 </section>
 
@@ -418,7 +450,7 @@ footer .disc{margin-top:var(--s5);padding-top:var(--s4);border-top:1px solid rgb
 <section class="sec">
   <div class="wrap split">
     <div class="shot">
-      <svg viewBox="0 0 800 800" role="img" aria-label="A matching set of accessories">
+      <span class="ph"><img src="assets/set.jpg" alt="A matching set of accessories" loading="lazy" onerror="this.closest('.ph').classList.add('no-photo')"><svg viewBox="0 0 800 800" role="img" aria-label="A matching set of accessories">
         <rect width="800" height="800" fill="#E7E4DD"/>
         <rect x="90" y="120" width="290" height="380" rx="8" fill="#0E3E74"/>
         <rect x="90" y="120" width="26" height="380" fill="#032A56"/>
@@ -429,7 +461,7 @@ footer .disc{margin-top:var(--s5);padding-top:var(--s4);border-top:1px solid rgb
           <g transform="translate(570 310)"><circle r="11" fill="none" stroke="#FFFBF7"/><path d="M-19 17h38M-13 24h26"/></g>
           <g transform="translate(400 620)"><circle r="11" fill="none" stroke="#FFFBF7"/><path d="M-19 17h38M-13 24h26"/></g>
         </g>
-      </svg>
+      </svg></span>
     </div>
     <div>
       <h2>Your venue's new <em>front-of-house set</em>.</h2>
@@ -487,7 +519,7 @@ footer .disc{margin-top:var(--s5);padding-top:var(--s4);border-top:1px solid rgb
       <a class="btn" href="#offer">See what a set would cost</a>
     </div>
     <div class="shot">
-      <svg viewBox="0 0 800 640" role="img" aria-label="A worn cover beside a branded one">
+      <span class="ph"><img src="assets/compare.jpg" alt="A worn cover beside a branded one" loading="lazy" onerror="this.closest('.ph').classList.add('no-photo')"><svg viewBox="0 0 800 640" role="img" aria-label="A worn cover beside a branded one">
         <rect width="800" height="640" fill="#F3F5F8"/>
         <g transform="translate(70 110)">
           <path d="M0 0h280v420H0z" fill="#FFFFFF" stroke="#333" stroke-opacity=".12" stroke-width="2"/>
@@ -503,7 +535,7 @@ footer .disc{margin-top:var(--s5);padding-top:var(--s4);border-top:1px solid rgb
           </g>
           <text x="140" y="470" text-anchor="middle" font-family="Jost" font-size="26" fill="#0E3E74">Bought once, branded</text>
         </g>
-      </svg>
+      </svg></span>
     </div>
   </div>
 </section>
@@ -548,7 +580,7 @@ footer .disc{margin-top:var(--s5);padding-top:var(--s4);border-top:1px solid rgb
       <p class="up">Up to</p>
       <p class="big">25% OFF</p>
       <p class="plus">+ free logo mockup on your first order*</p>
-      <svg viewBox="0 0 700 420" role="img" aria-label="The branded set">
+      <span class="ph"><img src="assets/deal.jpg" alt="The branded set" loading="lazy" onerror="this.closest('.ph').classList.add('no-photo')"><svg viewBox="0 0 700 420" role="img" aria-label="The branded set">
         <rect width="700" height="420" fill="none"/>
         <rect x="60" y="60" width="210" height="300" rx="8" fill="#0E3E74"/>
         <rect x="60" y="60" width="20" height="300" fill="#032A56"/>
@@ -558,7 +590,7 @@ footer .disc{margin-top:var(--s5);padding-top:var(--s4);border-top:1px solid rgb
           <g transform="translate(165 220)"><circle r="10" stroke="#FFFBF7"/><path d="M-17 16h34M-12 22h24"/></g>
           <g transform="translate(400 245)"><circle r="10" stroke="#FFFBF7"/><path d="M-17 16h34M-12 22h24"/></g>
         </g>
-      </svg>
+      </svg></span>
       <p class="fineprint">*Mockup is free and unlimited before approval. Volume discount applies to
         the order total and is confirmed with the quote.</p>
     </div>
@@ -684,19 +716,19 @@ footer .disc{margin-top:var(--s5);padding-top:var(--s4);border-top:1px solid rgb
 
     <p class="field-label">Add the rest of the set</p>
     <div class="extras">
-      <div class="extra"><svg viewBox="0 0 64 64"><rect width="64" height="64" rx="4" fill="#F3F5F8"/><rect x="16" y="10" width="32" height="44" rx="3" fill="#032A56"/><g transform="translate(32 34)" opacity=".6"><circle r="5" fill="none" stroke="#FFFBF7" stroke-width="1.4"/><path d="M-9 8h18M-6 12h12" stroke="#FFFBF7" stroke-width="1.4" stroke-linecap="round"/></g></svg>
+      <div class="extra"><span class="ph"><img src="assets/extra-menu-covers.jpg" alt="" loading="lazy" onerror="this.closest('.ph').classList.add('no-photo')"><svg viewBox="0 0 64 64"><rect width="64" height="64" rx="4" fill="#F3F5F8"/><rect x="16" y="10" width="32" height="44" rx="3" fill="#032A56"/><g transform="translate(32 34)" opacity=".6"><circle r="5" fill="none" stroke="#FFFBF7" stroke-width="1.4"/><path d="M-9 8h18M-6 12h12" stroke="#FFFBF7" stroke-width="1.4" stroke-linecap="round"/></g></svg></span>
         <div><p class="n">Menu covers</p>
           <p class="d">Same leather, same logo. From $18.44.</p>
           <button class="add" type="button">+ Add</button></div></div>
-      <div class="extra"><svg viewBox="0 0 64 64"><rect width="64" height="64" rx="4" fill="#F3F5F8"/><rect x="16" y="10" width="32" height="44" rx="3" fill="#213455"/><g transform="translate(32 34)" opacity=".6"><circle r="5" fill="none" stroke="#FFFBF7" stroke-width="1.4"/><path d="M-9 8h18M-6 12h12" stroke="#FFFBF7" stroke-width="1.4" stroke-linecap="round"/></g></svg>
+      <div class="extra"><span class="ph"><img src="assets/extra-folders.jpg" alt="" loading="lazy" onerror="this.closest('.ph').classList.add('no-photo')"><svg viewBox="0 0 64 64"><rect width="64" height="64" rx="4" fill="#F3F5F8"/><rect x="16" y="10" width="32" height="44" rx="3" fill="#213455"/><g transform="translate(32 34)" opacity=".6"><circle r="5" fill="none" stroke="#FFFBF7" stroke-width="1.4"/><path d="M-9 8h18M-6 12h12" stroke="#FFFBF7" stroke-width="1.4" stroke-linecap="round"/></g></svg></span>
         <div><p class="n">Folders &amp; compendiums</p>
           <p class="d">Guest directories and welcome packs.</p>
           <button class="add" type="button">+ Add</button></div></div>
-      <div class="extra"><svg viewBox="0 0 64 64"><rect width="64" height="64" rx="4" fill="#F3F5F8"/><rect x="16" y="10" width="32" height="44" rx="3" fill="#0E3E74"/><g transform="translate(32 34)" opacity=".6"><circle r="5" fill="none" stroke="#FFFBF7" stroke-width="1.4"/><path d="M-9 8h18M-6 12h12" stroke="#FFFBF7" stroke-width="1.4" stroke-linecap="round"/></g></svg>
+      <div class="extra"><span class="ph"><img src="assets/extra-desk.jpg" alt="" loading="lazy" onerror="this.closest('.ph').classList.add('no-photo')"><svg viewBox="0 0 64 64"><rect width="64" height="64" rx="4" fill="#F3F5F8"/><rect x="16" y="10" width="32" height="44" rx="3" fill="#0E3E74"/><g transform="translate(32 34)" opacity=".6"><circle r="5" fill="none" stroke="#FFFBF7" stroke-width="1.4"/><path d="M-9 8h18M-6 12h12" stroke="#FFFBF7" stroke-width="1.4" stroke-linecap="round"/></g></svg></span>
         <div><p class="n">Leather desk accessories</p>
           <p class="d">Trays, coasters, key and room tags.</p>
           <button class="add" type="button">+ Add</button></div></div>
-      <div class="extra"><svg viewBox="0 0 64 64"><rect width="64" height="64" rx="4" fill="#F3F5F8"/><rect x="16" y="10" width="32" height="44" rx="3" fill="#032A56"/><g transform="translate(32 34)" opacity=".6"><circle r="5" fill="none" stroke="#FFFBF7" stroke-width="1.4"/><path d="M-9 8h18M-6 12h12" stroke="#FFFBF7" stroke-width="1.4" stroke-linecap="round"/></g></svg>
+      <div class="extra"><span class="ph"><img src="assets/extra-inserts.jpg" alt="" loading="lazy" onerror="this.closest('.ph').classList.add('no-photo')"><svg viewBox="0 0 64 64"><rect width="64" height="64" rx="4" fill="#F3F5F8"/><rect x="16" y="10" width="32" height="44" rx="3" fill="#032A56"/><g transform="translate(32 34)" opacity=".6"><circle r="5" fill="none" stroke="#FFFBF7" stroke-width="1.4"/><path d="M-9 8h18M-6 12h12" stroke="#FFFBF7" stroke-width="1.4" stroke-linecap="round"/></g></svg></span>
         <div><p class="n">Extra inserts</p>
           <p class="d">Spare sheets so menus change without new covers.</p>
           <button class="add" type="button">+ Add</button></div></div>
@@ -803,11 +835,11 @@ footer .disc{margin-top:var(--s5);padding-top:var(--s4);border-top:1px solid rgb
       </div>
     </div>
     <div class="cases">
-      <div class="case"><svg viewBox="0 0 300 380" role="img" aria-label="Project 1"><rect width="300" height="380" fill="#0E3E74"/><rect x="60" y="70" width="180" height="230" rx="6" fill="#FFFBF7" fill-opacity=".12"/><g transform="translate(150 185)" opacity=".55"><circle r="14" fill="none" stroke="#FFFBF7" stroke-width="2.6"/><path d="M-24 22h48M-16 30h32" stroke="#FFFBF7" stroke-width="2.6" stroke-linecap="round"/></g></svg><span class="cap"><b>Boutique hotel</b>120 pcs · blind deboss</span></div>
-      <div class="case"><svg viewBox="0 0 300 380" role="img" aria-label="Project 2"><rect width="300" height="380" fill="#032A56"/><rect x="60" y="70" width="180" height="230" rx="6" fill="#FFFBF7" fill-opacity=".12"/><g transform="translate(150 185)" opacity=".55"><circle r="14" fill="none" stroke="#FFFBF7" stroke-width="2.6"/><path d="M-24 22h48M-16 30h32" stroke="#FFFBF7" stroke-width="2.6" stroke-linecap="round"/></g></svg><span class="cap"><b>Fine dining</b>60 pcs · gold foil</span></div>
-      <div class="case"><svg viewBox="0 0 300 380" role="img" aria-label="Project 3"><rect width="300" height="380" fill="#213455"/><rect x="60" y="70" width="180" height="230" rx="6" fill="#FFFBF7" fill-opacity=".12"/><g transform="translate(150 185)" opacity=".55"><circle r="14" fill="none" stroke="#FFFBF7" stroke-width="2.6"/><path d="M-24 22h48M-16 30h32" stroke="#FFFBF7" stroke-width="2.6" stroke-linecap="round"/></g></svg><span class="cap"><b>Hotel group</b>400 pcs · metal plate</span></div>
-      <div class="case"><svg viewBox="0 0 300 380" role="img" aria-label="Project 4"><rect width="300" height="380" fill="#0E3E74"/><rect x="60" y="70" width="180" height="230" rx="6" fill="#FFFBF7" fill-opacity=".12"/><g transform="translate(150 185)" opacity=".55"><circle r="14" fill="none" stroke="#FFFBF7" stroke-width="2.6"/><path d="M-24 22h48M-16 30h32" stroke="#FFFBF7" stroke-width="2.6" stroke-linecap="round"/></g></svg><span class="cap"><b>Cocktail bar</b>40 pcs · engraved</span></div>
-      <div class="case"><svg viewBox="0 0 300 380" role="img" aria-label="Project 5"><rect width="300" height="380" fill="#032A56"/><rect x="60" y="70" width="180" height="230" rx="6" fill="#FFFBF7" fill-opacity=".12"/><g transform="translate(150 185)" opacity=".55"><circle r="14" fill="none" stroke="#FFFBF7" stroke-width="2.6"/><path d="M-24 22h48M-16 30h32" stroke="#FFFBF7" stroke-width="2.6" stroke-linecap="round"/></g></svg><span class="cap"><b>Café chain</b>240 pcs · deboss</span></div>
+      <div class="case"><span class="ph"><img src="assets/extra-menu-covers.jpg" alt="Project 1" loading="lazy" onerror="this.closest('.ph').classList.add('no-photo')"><svg viewBox="0 0 300 380" role="img" aria-label="Project 1"><rect width="300" height="380" fill="#0E3E74"/><rect x="60" y="70" width="180" height="230" rx="6" fill="#FFFBF7" fill-opacity=".12"/><g transform="translate(150 185)" opacity=".55"><circle r="14" fill="none" stroke="#FFFBF7" stroke-width="2.6"/><path d="M-24 22h48M-16 30h32" stroke="#FFFBF7" stroke-width="2.6" stroke-linecap="round"/></g></svg></span><span class="cap"><b>Boutique hotel</b>120 pcs · blind deboss</span></div>
+      <div class="case"><span class="ph"><img src="assets/extra-folders.jpg" alt="Project 2" loading="lazy" onerror="this.closest('.ph').classList.add('no-photo')"><svg viewBox="0 0 300 380" role="img" aria-label="Project 2"><rect width="300" height="380" fill="#032A56"/><rect x="60" y="70" width="180" height="230" rx="6" fill="#FFFBF7" fill-opacity=".12"/><g transform="translate(150 185)" opacity=".55"><circle r="14" fill="none" stroke="#FFFBF7" stroke-width="2.6"/><path d="M-24 22h48M-16 30h32" stroke="#FFFBF7" stroke-width="2.6" stroke-linecap="round"/></g></svg></span><span class="cap"><b>Fine dining</b>60 pcs · gold foil</span></div>
+      <div class="case"><span class="ph"><img src="assets/extra-desk.jpg" alt="Project 3" loading="lazy" onerror="this.closest('.ph').classList.add('no-photo')"><svg viewBox="0 0 300 380" role="img" aria-label="Project 3"><rect width="300" height="380" fill="#213455"/><rect x="60" y="70" width="180" height="230" rx="6" fill="#FFFBF7" fill-opacity=".12"/><g transform="translate(150 185)" opacity=".55"><circle r="14" fill="none" stroke="#FFFBF7" stroke-width="2.6"/><path d="M-24 22h48M-16 30h32" stroke="#FFFBF7" stroke-width="2.6" stroke-linecap="round"/></g></svg></span><span class="cap"><b>Hotel group</b>400 pcs · metal plate</span></div>
+      <div class="case"><span class="ph"><img src="assets/extra-inserts.jpg" alt="Project 4" loading="lazy" onerror="this.closest('.ph').classList.add('no-photo')"><svg viewBox="0 0 300 380" role="img" aria-label="Project 4"><rect width="300" height="380" fill="#0E3E74"/><rect x="60" y="70" width="180" height="230" rx="6" fill="#FFFBF7" fill-opacity=".12"/><g transform="translate(150 185)" opacity=".55"><circle r="14" fill="none" stroke="#FFFBF7" stroke-width="2.6"/><path d="M-24 22h48M-16 30h32" stroke="#FFFBF7" stroke-width="2.6" stroke-linecap="round"/></g></svg></span><span class="cap"><b>Cocktail bar</b>40 pcs · engraved</span></div>
+      <div class="case"><span class="ph"><img src="assets/case-1.jpg" alt="Project 5" loading="lazy" onerror="this.closest('.ph').classList.add('no-photo')"><svg viewBox="0 0 300 380" role="img" aria-label="Project 5"><rect width="300" height="380" fill="#032A56"/><rect x="60" y="70" width="180" height="230" rx="6" fill="#FFFBF7" fill-opacity=".12"/><g transform="translate(150 185)" opacity=".55"><circle r="14" fill="none" stroke="#FFFBF7" stroke-width="2.6"/><path d="M-24 22h48M-16 30h32" stroke="#FFFBF7" stroke-width="2.6" stroke-linecap="round"/></g></svg></span><span class="cap"><b>Café chain</b>240 pcs · deboss</span></div>
     </div>
   </div>
 </section>
@@ -874,7 +906,7 @@ footer .disc{margin-top:var(--s5);padding-top:var(--s4);border-top:1px solid rgb
         <a href="https://inkohoreca.com/blogs/blog/check-presenters-bill-folders">Read the full piece</a></p>
     </div>
     <div class="shot">
-      <svg viewBox="0 0 700 560" role="img" aria-label="A finished check presenter">
+      <span class="ph"><img src="assets/case-2.jpg" alt="A finished check presenter" loading="lazy" onerror="this.closest('.ph').classList.add('no-photo')"><svg viewBox="0 0 700 560" role="img" aria-label="A finished check presenter">
         <rect width="700" height="560" fill="#E7E4DD"/>
         <rect x="140" y="90" width="420" height="380" rx="8" fill="#0E3E74"/>
         <rect x="176" y="126" width="348" height="308" rx="4" fill="none" stroke="#FFFBF7" stroke-opacity=".22" stroke-width="3"/>
@@ -882,7 +914,7 @@ footer .disc{margin-top:var(--s5);padding-top:var(--s4);border-top:1px solid rgb
           <circle r="9" fill="none" stroke="#FFFBF7" stroke-width="2"/>
           <path d="M-16 14h32M-11 20h22" stroke="#FFFBF7" stroke-width="2" stroke-linecap="round"/>
         </g>
-      </svg>
+      </svg></span>
     </div>
   </div>
 </section>
