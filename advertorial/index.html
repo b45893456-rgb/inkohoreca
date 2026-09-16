@@ -1,14 +1,15 @@
 <!DOCTYPE html>
 <!--
-  Advertorial — Inko Horeca
-  Structure and UI follow the PetLab Co advertorial reference supplied in Untitled.fig.
+  Advertorial — Inko HoReCa
+  Structure follows the PetLab Co reference (Untitled.fig).
+  Colour, type, spacing, radii and components follow
+  "Inko HoReCa · Brand & UI Guideline v1.0" (14.09.2026).
 
-  THEMES: switch the value on <html data-theme="...">
-    data-theme="inko"    — Inko Horeca brand palette (default)
-    data-theme="petlab"  — the reference palette (navy + lime, rounded, Poppins)
-  The floating switcher bottom-left is a dev aid — delete #theme-switch before launch.
+  Tokens are named and stored exactly as in the Shopify theme: colours as three
+  RGB channels without rgb(), so transparency goes through rgb(var(--token) / .12).
+  No HEX literals and no magic px below — everything resolves to a token.
 -->
-<html lang="en" data-theme="inko">
+<html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -17,291 +18,487 @@
 <meta name="robots" content="noindex">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
 <style>
-/* ============================================================
-   THEME TOKENS
-   ============================================================ */
-:root[data-theme="inko"]{
-  --dark:#1B1613;          /* headings, dark sections */
-  --dark-2:#2C221B;
-  --body:#3D352F;
-  --muted:#8A7F76;
-  --line:#E4DBCF;
-  --line-soft:#F0EAE1;
-  --tint:#F8F4ED;          /* light section background */
-  --accent:#A8814A;        /* rules, numerals, small marks */
-  --accent-ink:#8A6838;
-  --cta:#1B1613;           /* button fill */
-  --cta-txt:#FFFFFF;
-  --cta-hover:#5A3F2B;
-  --mark:#FBEBC3;
-  --ok:#2F6B4F;
-  --ok-bg:#E9F1EC;
-  --star:#D89A2E;
-  --radius:5px;
-  --radius-lg:6px;
-  --font-h:"Fraunces",Georgia,serif;
-  --font-b:"Inter",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
-  --h-weight:600;
-  --h-track:-.015em;
-}
-:root[data-theme="petlab"]{
-  --dark:#1B2A5E;
-  --dark-2:#16234E;
-  --body:#3C4663;
-  --muted:#8790A8;
-  --line:#DCE3EF;
-  --line-soft:#EDF1F8;
-  --tint:#F1F6FB;
-  --accent:#7AC943;
-  --accent-ink:#2F7A15;
-  --cta:#7AC943;
-  --cta-txt:#10240B;
-  --cta-hover:#69B536;
-  --mark:#DDF3C8;
-  --ok:#2F7A15;
-  --ok-bg:#E9F6DE;
-  --star:#F5A623;
-  --radius:12px;
-  --radius-lg:18px;
-  --font-h:"Poppins",-apple-system,"Segoe UI",sans-serif;
-  --font-b:"Poppins",-apple-system,"Segoe UI",sans-serif;
-  --h-weight:700;
-  --h-track:-.02em;
-}
-:root{--col:680px}
+/* ==========================================================================
+   TOKENS — Brand & UI Guideline v1.0, §08
+   ========================================================================== */
+:root{
+  /* 8.2 colour — RGB channels, no rgb() wrapper */
+  --accent:14 62 116;                 /* #0E3E74 Brand Navy   */
+  --announcement-background:3 42 86;  /* #032A56 Deep Navy    */
+  --nav-background:33 52 85;          /* #213455 Navy 2       */
+  --text-primary:51 51 51;            /* #333333              */
+  --background-primary:255 255 255;   /* #FFFFFF              */
+  --sand:231 228 221;                 /* #E7E4DD section alt  */
+  --cloud:243 245 248;                /* #F3F5F8 card base    */
+  --ink:24 20 6;                      /* #181406              */
+  --off-white:255 251 247;            /* #FFFBF7 over media   */
+  --on-sale:217 148 26;               /* #D9941A Amber        */
+  --on-sale-badge-text:0 0 0;         /* #000000 §2.5 — never white on amber */
+  --success-background:226 232 238;   /* #E2E8EE              */
+  --warning-text:145 113 83;          /* #917153              */
+  --button-background-primary:var(--accent);
+  --button-text-primary:255 255 255;
+  --button-background-opacity:.85;
 
+  /* 8.3 typography — mobile values, desktop overridden at 700px */
+  --heading-font-family:"Jost",sans-serif;
+  --text-font-family:"Jost",sans-serif;
+  --heading-font-weight:600;
+  --text-font-weight:400;
+  --heading-letter-spacing:.04em;
+  --text-letter-spacing:0em;
+  --text-h0:3rem;      --lh-h0:1.0;
+  --text-h1:2.5rem;    --lh-h1:1.1;
+  --text-h2:2rem;      --lh-h2:1.1;
+  --text-h3:1.5rem;    --lh-h3:1.2;
+  --text-h4:1.375rem;  --lh-h4:1.3;
+  --text-h5:1.125rem;  --lh-h5:1.4;
+  --text-h6:1rem;      --lh-h6:1.4;
+  --text-lg:1.125rem;
+  --text-base:.875rem;
+  --text-sm:.75rem;
+  --text-xs:.6875rem;
+
+  /* 8.4 geometry */
+  --container-max-width:1440px;
+  --container-narrow-max-width:1050px;
+  --container-gutter:20px;
+  --grid-gutter:20px;
+  --section-outer-spacing-block:20px;
+  --section-inner-max-spacing-block:32px;
+  --section-stack-spacing-block:32px;
+  --input-height:2.625rem;
+  --input-padding-inline:1rem;
+  --input-gap:.5rem;
+  --rounded-sm:.125rem;
+  --rounded:.25rem;
+  --rounded-lg:.5rem;
+  --rounded-full:9999px;
+  --rounded-button:.25rem;
+  --rounded-input:.5rem;
+  --accordion-spacing:32px;
+
+  /* 05 spacing — 4px base unit */
+  --spacing-1:.25rem;  --spacing-1-5:.375rem; --spacing-2:.5rem;  --spacing-3:.75rem;
+  --spacing-4:1rem;    --spacing-5:1.25rem;   --spacing-6:1.5rem; --spacing-8:2rem;
+  --spacing-10:2.5rem; --spacing-12:3rem;     --spacing-14:3.5rem;--spacing-16:4rem;
+  --spacing-20:5rem;
+
+  /* sticky area — anchors must use this, never a fixed number (§7.5) */
+  --sticky-area-height:0px;
+}
+@media screen and (min-width:700px){
+  :root{
+    --text-h0:4rem; --text-h1:3rem; --text-h2:3rem; --text-h3:2rem;
+    --text-h4:1.625rem; --text-h5:1.25rem; --text-h6:1.125rem;
+    --text-lg:1.25rem; --text-base:1rem; --text-sm:.875rem; --text-xs:.75rem;
+    --container-gutter:32px; --grid-gutter:24px;
+    --section-outer-spacing-block:48px;
+  }
+}
+@media screen and (min-width:1000px){
+  :root{
+    --container-gutter:48px;
+    --section-outer-spacing-block:56px;
+    --section-inner-max-spacing-block:48px;
+  }
+}
+
+/* ==========================================================================
+   BASE
+   ========================================================================== */
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
 body{
-  margin:0;background:#fff;color:var(--body);
-  font-family:var(--font-b);font-size:19px;line-height:1.75;-webkit-font-smoothing:antialiased;
+  margin:0;
+  background:rgb(var(--background-primary));
+  color:rgb(var(--text-primary));
+  font-family:var(--text-font-family);
+  font-weight:var(--text-font-weight);
+  font-size:var(--text-base);
+  letter-spacing:var(--text-letter-spacing);
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
 }
 img{max-width:100%;display:block}
-.col{max-width:var(--col);margin:0 auto;padding:0 16px}
-.wide{max-width:1060px;margin:0 auto;padding:0 16px}
-h1,h2,h3{font-family:var(--font-h);font-weight:var(--h-weight);color:var(--dark);
-  line-height:1.15;letter-spacing:var(--h-track);margin:0}
-h1{font-size:clamp(2rem,5.6vw,3.1rem)}
-h2{font-size:clamp(1.5rem,3.6vw,2.05rem)}
-h3{font-size:1.14rem;line-height:1.35}
-p{margin:0 0 1.15em}
-a{color:var(--accent-ink)}
-strong{font-weight:600;color:var(--dark)}
-mark{background:var(--mark);color:inherit;padding:.06em .18em;border-radius:3px}
+h1,h2,h3,h4,h5,h6{
+  margin:0;
+  font-family:var(--heading-font-family);
+  font-weight:var(--heading-font-weight);
+  letter-spacing:var(--heading-letter-spacing);
+  text-transform:none;
+  color:rgb(var(--accent));
+}
+.h1{font-size:var(--text-h1);line-height:var(--lh-h1)}
+.h2{font-size:var(--text-h2);line-height:var(--lh-h2)}
+.h3{font-size:var(--text-h3);line-height:var(--lh-h3)}
+.h4{font-size:var(--text-h4);line-height:var(--lh-h4)}
+.h5{font-size:var(--text-h5);line-height:var(--lh-h5)}
+.h6{font-size:var(--text-h6);line-height:var(--lh-h6)}
+p{margin:0 0 var(--spacing-4)}
+a{color:rgb(var(--accent))}
+strong,.bold{font-weight:700}
+em{font-style:italic}
+:focus-visible{outline:2px solid rgb(var(--accent));outline-offset:2px}
+[id]{scroll-margin-top:calc(var(--sticky-area-height) + var(--spacing-4))}
 
-/* ============ top bars ============ */
-.ad-bar{background:var(--dark);color:#fff;font-size:.74rem;letter-spacing:.16em;
-  text-transform:uppercase;font-weight:700;text-align:center;padding:9px 16px}
-.ad-bar span{opacity:.6;font-weight:500;letter-spacing:.05em;text-transform:none}
-.pub-bar{border-bottom:1px solid var(--line-soft)}
-.pub-bar .wide{display:flex;align-items:center;justify-content:space-between;height:62px;gap:14px}
-.pub{font-family:var(--font-h);font-size:1.22rem;font-weight:700;letter-spacing:-.02em;
-  text-decoration:none;color:var(--dark)}
-.pub span{color:var(--accent-ink)}
-.pub-meta{font-size:.78rem;color:var(--muted);letter-spacing:.06em;text-transform:uppercase;font-weight:600}
+.container{max-width:var(--container-max-width);margin-inline:auto;padding-inline:var(--container-gutter)}
+.narrow{max-width:var(--container-narrow-max-width);margin-inline:auto;padding-inline:var(--container-gutter)}
+/* 3.4 — body copy stays at 60–75 characters inside the narrow container */
+.prose{max-width:68ch;margin-inline:auto}
+.section{padding-block:var(--section-outer-spacing-block)}
+.text-lg{font-size:var(--text-lg);line-height:1.6}
+.text-sm{font-size:var(--text-sm);line-height:1.6}
+.text-xs{font-size:var(--text-xs);line-height:1.7}
+.muted{color:rgb(var(--text-primary) / .66)}
+.rule{border:0;border-top:1px solid rgb(var(--text-primary) / .12);margin:0}
 
-/* ============ article head ============ */
-.article-head{padding:clamp(32px,5vw,54px) 0 0}
-.kicker{font-size:.76rem;letter-spacing:.14em;text-transform:uppercase;color:var(--accent-ink);
-  font-weight:700;margin:0 0 15px}
-.sub{font-size:1.15rem;color:var(--body);margin:20px 0 0}
-.byline{display:flex;align-items:center;gap:13px;flex-wrap:wrap;margin:28px 0 0;padding:17px 0;
-  border-top:1px solid var(--line-soft);border-bottom:1px solid var(--line-soft)}
-.avatar{width:44px;height:44px;border-radius:50%;flex:none;background:var(--tint);
-  border:1px solid var(--line);display:flex;align-items:center;justify-content:center;
-  font-family:var(--font-h);font-weight:700;color:var(--accent-ink);font-size:.95rem}
-.byline .who{font-size:.92rem;line-height:1.45;flex:1 1 200px}
-.byline .who b{font-weight:600;color:var(--dark)}
-.byline .when{color:var(--muted);font-size:.85rem}
-.rating{display:flex;align-items:center;gap:8px;font-size:.85rem;color:var(--muted)}
-.rating .stars{color:var(--star);letter-spacing:.06em;font-size:.95rem}
+/* ==========================================================================
+   GLOBAL ZONES (§7.5)
+   ========================================================================== */
+.announcement{
+  background:rgb(var(--announcement-background));
+  color:rgb(var(--background-primary));
+  font-size:var(--text-sm);
+  text-align:center;
+  padding-block:14px;
+  padding-inline:var(--container-gutter);
+}
+.announcement .sep{opacity:.72}
+.header{
+  background:rgb(var(--accent));
+  color:rgb(var(--background-primary));
+}
+.header .container{
+  display:flex;align-items:center;justify-content:space-between;
+  gap:var(--spacing-4);padding-block:var(--spacing-4);
+}
+.logo{display:flex;align-items:baseline;gap:.35em;text-decoration:none;color:inherit;min-width:100px}
+.logo .mark{font-family:var(--heading-font-family);font-weight:700;font-size:var(--text-h5);
+  letter-spacing:.06em}
+.logo .desc{font-size:var(--text-xs);letter-spacing:.1em;opacity:.78}
+.header .desk{font-size:var(--text-sm);opacity:.82}
 
-/* ============ media ============ */
-.figure{margin:28px 0 32px}
-.figure figcaption{font-size:.85rem;color:var(--muted);margin-top:10px;line-height:1.5}
-.slot{position:relative;width:100%;border-radius:var(--radius-lg);
-  background:repeating-linear-gradient(45deg,#EFF1F4 0 10px,#E8EBF0 10px 20px);
-  border:1px dashed var(--line);display:flex;align-items:center;justify-content:center;
-  text-align:center;padding:18px}
-:root[data-theme="inko"] .slot{background:repeating-linear-gradient(45deg,#F2ECE2 0 10px,#EDE6DA 10px 20px)}
-.slot span{font-size:.73rem;letter-spacing:.07em;text-transform:uppercase;color:var(--muted);
-  font-weight:600;max-width:30ch;line-height:1.6}
+/* ==========================================================================
+   ARTICLE HEAD
+   ========================================================================== */
+.article-head{padding-block:var(--spacing-10) 0}
+.kicker{
+  font-size:var(--text-xs);letter-spacing:.1em;text-transform:uppercase;
+  font-weight:700;color:rgb(var(--accent));margin:0 0 var(--spacing-3)
+}
+.sub{font-size:var(--text-lg);margin-top:var(--spacing-4)}
+.byline{
+  display:flex;align-items:center;flex-wrap:wrap;gap:var(--spacing-3);
+  margin-top:var(--spacing-6);padding-block:var(--spacing-4);
+  border-top:1px solid rgb(var(--text-primary) / .12);
+  border-bottom:1px solid rgb(var(--text-primary) / .12);
+}
+.avatar{
+  width:44px;height:44px;flex:none;border-radius:var(--rounded-full);
+  background:rgb(var(--cloud));border:1px solid rgb(var(--text-primary) / .12);
+  display:flex;align-items:center;justify-content:center;
+  font-family:var(--heading-font-family);font-weight:700;font-size:var(--text-sm);
+  color:rgb(var(--accent));letter-spacing:.04em;
+}
+.byline .who{flex:1 1 220px;font-size:var(--text-sm);line-height:1.5}
+.byline .who b{font-weight:600;color:rgb(var(--accent))}
+.byline .rating{display:flex;align-items:center;gap:var(--spacing-2);font-size:var(--text-sm)}
+.stars{color:rgb(var(--on-sale));letter-spacing:.08em}
 
-/* ============ body bits ============ */
-.lead{font-size:1.2rem;line-height:1.66}
-.lead:first-letter{float:left;font-family:var(--font-h);font-size:3.5rem;line-height:.86;
-  font-weight:700;margin:.07em .1em 0 0;color:var(--accent-ink)}
-.note{background:var(--tint);border-left:3px solid var(--accent);border-radius:0 var(--radius) var(--radius) 0;
-  padding:18px 20px;margin:30px 0;font-size:1rem;line-height:1.66}
+.figure{margin-block:var(--spacing-6) var(--spacing-8)}
+.figure figcaption{margin-top:var(--spacing-2);font-size:var(--text-sm);color:rgb(var(--text-primary) / .66)}
+.slot{
+  width:100%;background:rgb(var(--cloud));
+  border:1px dashed rgb(var(--text-primary) / .12);border-radius:var(--rounded);
+  display:flex;align-items:center;justify-content:center;text-align:center;
+  padding:var(--spacing-4);
+}
+.slot span{
+  font-size:var(--text-xs);letter-spacing:.06em;text-transform:uppercase;font-weight:600;
+  color:rgb(var(--text-primary) / .66);max-width:34ch;line-height:1.7;
+}
+
+/* ==========================================================================
+   BODY COMPONENTS
+   ========================================================================== */
+.lead{font-size:var(--text-lg);line-height:1.6}
+.lead:first-letter{
+  float:left;font-family:var(--heading-font-family);font-weight:600;
+  font-size:3.5em;line-height:.82;margin:.06em .12em 0 0;color:rgb(var(--accent));
+}
+.note{
+  background:rgb(var(--cloud));
+  border-left:2px solid rgb(var(--accent));
+  border-radius:0 var(--rounded) var(--rounded) 0;
+  padding:var(--spacing-4) var(--spacing-5);
+  margin-block:var(--spacing-8);
+}
 .note p:last-child{margin-bottom:0}
-.pull{font-family:var(--font-h);font-size:clamp(1.28rem,3vw,1.58rem);line-height:1.36;
-  color:var(--dark);margin:34px 0;padding:0 0 0 22px;border-left:3px solid var(--accent)}
-.stat{background:var(--dark);color:#fff;padding:24px 26px;margin:32px 0;border-radius:var(--radius-lg)}
-.stat .n{font-family:var(--font-h);font-size:clamp(2.2rem,6vw,3rem);font-weight:700;
-  line-height:1;letter-spacing:-.02em;color:#fff}
-.stat .t{font-size:1rem;color:rgba(255,255,255,.82);line-height:1.5;margin-top:6px}
-.stat .src{font-size:.77rem;color:rgba(255,255,255,.55);margin-top:9px}
+.pull{
+  font-family:var(--heading-font-family);font-weight:600;
+  letter-spacing:var(--heading-letter-spacing);
+  font-size:var(--text-h4);line-height:var(--lh-h4);color:rgb(var(--accent));
+  margin-block:var(--spacing-8);padding-left:var(--spacing-5);
+  border-left:2px solid rgb(var(--accent));
+}
+.stat{
+  background:rgb(var(--accent));color:rgb(var(--background-primary));
+  padding:var(--spacing-6);border-radius:var(--rounded);margin-block:var(--spacing-8);
+}
+.stat .n{
+  font-family:var(--heading-font-family);font-weight:600;
+  letter-spacing:var(--heading-letter-spacing);
+  font-size:var(--text-h2);line-height:var(--lh-h2);color:rgb(var(--background-primary));
+}
+.stat .t{margin-top:var(--spacing-2);font-size:var(--text-base);color:rgb(var(--off-white) / .9)}
+.stat .src{margin-top:var(--spacing-3);font-size:var(--text-xs);color:rgb(var(--off-white) / .64)}
 
-/* ============ trust icons ============ */
-.trust-strip{background:var(--tint);border-top:1px solid var(--line-soft);
-  border-bottom:1px solid var(--line-soft);padding:22px 0;margin:30px 0}
-.trust-items{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
-@media(min-width:760px){.trust-items{grid-template-columns:repeat(4,1fr)}}
-.ti{display:flex;align-items:flex-start;gap:10px;font-size:.88rem;line-height:1.4;color:var(--body)}
-.ti svg{width:22px;height:22px;flex:none;stroke:var(--accent-ink);fill:none;stroke-width:1.7;margin-top:1px}
-.ti b{display:block;color:var(--dark);font-weight:600}
+/* trust strip */
+.strip{
+  background:rgb(var(--sand));
+  padding-block:var(--spacing-6);margin-block:var(--spacing-8);
+}
+.strip-items{display:grid;grid-template-columns:repeat(2,1fr);gap:var(--grid-gutter)}
+@media screen and (min-width:900px){.strip-items{grid-template-columns:repeat(4,1fr)}}
+.ti{display:flex;gap:var(--spacing-2);align-items:flex-start;font-size:var(--text-sm);line-height:1.5}
+.ti svg{width:22px;height:22px;flex:none;stroke:rgb(var(--accent));fill:none;stroke-width:1.6}
+.ti b{display:block;font-weight:600;color:rgb(var(--accent))}
 
-/* ============ reasons ============ */
-.reason{padding:clamp(32px,4.5vw,48px) 0;border-top:1px solid var(--line-soft)}
-.reason-num{display:flex;align-items:center;gap:13px;margin-bottom:14px}
-.reason-num i{font-family:var(--font-h);font-style:normal;font-weight:700;font-size:1rem;
-  width:38px;height:38px;flex:none;border-radius:50%;background:var(--dark);color:#fff;
-  display:flex;align-items:center;justify-content:center}
-:root[data-theme="petlab"] .reason-num i{background:var(--accent);color:#10240B}
-.reason-num em{font-style:normal;font-size:.74rem;letter-spacing:.14em;text-transform:uppercase;
-  color:var(--muted);font-weight:700}
-.reason h2{margin-bottom:16px}
+/* ==========================================================================
+   REASONS
+   ========================================================================== */
+.reason{padding-block:var(--spacing-10);border-top:1px solid rgb(var(--text-primary) / .12)}
+.reason-num{display:flex;align-items:center;gap:var(--spacing-3);margin-bottom:var(--spacing-3)}
+.reason-num i{
+  font-style:normal;font-family:var(--heading-font-family);font-weight:600;
+  font-size:var(--text-h6);width:40px;height:40px;flex:none;
+  border-radius:var(--rounded-full);background:rgb(var(--accent));
+  color:rgb(var(--background-primary));display:flex;align-items:center;justify-content:center;
+}
+.reason-num em{
+  font-style:normal;font-size:var(--text-xs);letter-spacing:.1em;text-transform:uppercase;
+  font-weight:700;color:rgb(var(--text-primary) / .66);
+}
+.reason h2{margin-bottom:var(--spacing-4)}
 
-/* ============ buttons ============ */
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;
-  font-family:var(--font-b);font-size:1.02rem;font-weight:600;padding:17px 34px;
-  border-radius:var(--radius);border:1px solid transparent;text-decoration:none;cursor:pointer;
-  transition:background .18s,transform .12s}
-.btn-primary{background:var(--cta);color:var(--cta-txt)}
-.btn-primary:hover{background:var(--cta-hover)}
-.btn-primary:active{transform:translateY(1px)}
-.btn-block{width:100%}
-.btn-sm{padding:12px 22px;font-size:.93rem}
-.btn-lg{padding:19px 38px;font-size:1.08rem}
+/* ==========================================================================
+   BUTTONS (§7.1) — flat, radius 4px, hover only on fine pointers
+   ========================================================================== */
+.button{
+  display:inline-flex;align-items:center;justify-content:center;gap:var(--spacing-1-5);
+  font-family:var(--text-font-family);font-size:var(--text-xs);font-weight:700;
+  line-height:1.7;padding:12px 24px;border:0;border-radius:var(--rounded-button);
+  background:rgb(var(--button-background-primary));color:rgb(var(--button-text-primary));
+  text-decoration:none;cursor:pointer;
+}
+.button--lg{font-size:var(--text-base);padding:13px 24px}
+.button--xl{font-size:var(--text-base);padding:16px 32px}
+.button--block{width:100%}
+.button--outline{
+  background:transparent;color:rgb(var(--accent));
+  box-shadow:inset 0 0 0 2px rgb(var(--accent));
+}
+.button[disabled],.button[aria-disabled="true"]{opacity:.4;cursor:not-allowed}
+@media screen and (pointer:fine){
+  .button:hover{opacity:var(--button-background-opacity)}
+}
 
-.midcta{text-align:center;padding:clamp(28px,4vw,42px) 0;border-top:1px solid var(--line-soft);
-  border-bottom:1px solid var(--line-soft);margin:clamp(32px,4vw,46px) 0}
-.midcta p{font-size:1.02rem;max-width:48ch;margin:0 auto 20px}
+.midcta{
+  text-align:center;padding-block:var(--spacing-8);margin-block:var(--spacing-8);
+  border-top:1px solid rgb(var(--text-primary) / .12);
+  border-bottom:1px solid rgb(var(--text-primary) / .12);
+}
+.midcta p{max-width:52ch;margin-inline:auto;margin-bottom:var(--spacing-5)}
 
-/* ============ social proof ============ */
-.proof{background:var(--tint);border-top:1px solid var(--line);border-bottom:1px solid var(--line);
-  padding:clamp(44px,6vw,70px) 0;margin:clamp(38px,5vw,58px) 0}
-.proof h2{text-align:center;margin-bottom:8px}
-.sub-c{text-align:center;font-size:1rem;margin:0 auto 32px;max-width:52ch}
-.reviews{display:grid;gap:18px}
-@media(min-width:780px){.reviews{grid-template-columns:repeat(3,1fr)}}
-.review{background:#fff;border:1px solid var(--line);border-radius:var(--radius-lg);padding:22px}
-.stars{color:var(--star);letter-spacing:.1em;font-size:.95rem;margin-bottom:10px}
-.review p{font-size:.97rem;line-height:1.62;margin-bottom:16px}
-.review .sig{font-size:.88rem;font-weight:600;color:var(--dark)}
-.review .loc{font-size:.83rem;color:var(--muted)}
-.verified{font-size:.7rem;color:var(--ok);background:var(--ok-bg);padding:3px 8px;border-radius:99px;
-  font-weight:700;letter-spacing:.05em;text-transform:uppercase;margin-left:6px}
-.trust{margin-top:36px;padding-top:28px;border-top:1px solid var(--line)}
-.trust .lbl{text-align:center;font-size:.75rem;letter-spacing:.14em;text-transform:uppercase;
-  color:var(--muted);font-weight:700;margin-bottom:20px}
-.trust-row{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;align-items:center}
-@media(min-width:680px){.trust-row{grid-template-columns:repeat(4,1fr)}}
-.brandmark{text-align:center;font-family:var(--font-h);font-size:clamp(.95rem,2vw,1.26rem);
-  font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:#9A9089;filter:grayscale(1)}
+/* ==========================================================================
+   SOCIAL PROOF
+   ========================================================================== */
+.proof{background:rgb(var(--sand));padding-block:var(--spacing-12);margin-block:var(--spacing-10)}
+.proof h2{text-align:center}
+.proof .sub-c{text-align:center;max-width:56ch;margin:var(--spacing-2) auto var(--spacing-8)}
+.reviews{display:grid;gap:var(--grid-gutter)}
+@media screen and (min-width:900px){.reviews{grid-template-columns:repeat(3,1fr)}}
+.review{
+  background:rgb(var(--background-primary));
+  border:1px solid rgb(var(--text-primary) / .12);
+  border-radius:var(--rounded);padding:var(--spacing-5);
+}
+.review p{margin-bottom:var(--spacing-4)}
+.review .sig{font-weight:600;color:rgb(var(--accent));font-size:var(--text-sm)}
+.review .loc{font-size:var(--text-sm);color:rgb(var(--text-primary) / .66)}
+.badge-ok{
+  display:inline-block;font-size:var(--text-xs);font-weight:700;letter-spacing:.06em;
+  text-transform:uppercase;color:rgb(var(--accent));background:rgb(var(--success-background));
+  padding:2px 8px;border-radius:var(--rounded);margin-left:var(--spacing-2);
+}
+.brands{margin-top:var(--spacing-10);padding-top:var(--spacing-8);
+  border-top:1px solid rgb(var(--text-primary) / .12)}
+.brands .lbl{text-align:center;font-size:var(--text-xs);letter-spacing:.1em;text-transform:uppercase;
+  font-weight:700;color:rgb(var(--text-primary) / .66);margin-bottom:var(--spacing-5)}
+.brand-row{display:grid;grid-template-columns:repeat(2,1fr);gap:var(--grid-gutter);align-items:center}
+@media screen and (min-width:700px){.brand-row{grid-template-columns:repeat(4,1fr)}}
+.brandmark{
+  text-align:center;font-family:var(--heading-font-family);font-weight:600;
+  font-size:var(--text-h6);letter-spacing:.1em;text-transform:uppercase;
+  color:rgb(var(--text-primary) / .5);
+}
 
-/* ============ star offer ============ */
-.offer{padding:clamp(44px,6vw,74px) 0}
-.offer-box{border:2px solid var(--dark);border-radius:var(--radius-lg);background:#fff;overflow:hidden}
-:root[data-theme="petlab"] .offer-box{border-color:var(--accent)}
-.offer-flag{background:var(--dark);color:#fff;text-align:center;font-size:.75rem;letter-spacing:.16em;
-  text-transform:uppercase;font-weight:700;padding:11px 16px}
-:root[data-theme="petlab"] .offer-flag{background:var(--accent);color:#10240B}
-.offer-in{padding:clamp(24px,4vw,40px)}
-.offer-in h2{margin-bottom:12px}
-.bundles{display:grid;gap:12px;margin:26px 0 22px}
-@media(min-width:620px){.bundles{grid-template-columns:repeat(4,1fr)}}
-.bundle{position:relative;border:1px solid var(--line);border-radius:var(--radius);
-  padding:20px 12px 18px;text-align:center;background:#fff}
-.bundle.best{border-color:var(--accent);box-shadow:0 0 0 2px var(--accent)}
-.bundle .flag{position:absolute;top:-10px;left:50%;transform:translateX(-50%);white-space:nowrap;
-  background:var(--accent);color:#fff;font-size:.62rem;font-weight:700;letter-spacing:.1em;
-  text-transform:uppercase;padding:4px 10px;border-radius:99px}
-:root[data-theme="petlab"] .bundle .flag{color:#10240B}
-.bundle .q{font-size:.72rem;letter-spacing:.11em;text-transform:uppercase;color:var(--muted);font-weight:700}
-.bundle .u{font-family:var(--font-h);font-size:1.6rem;font-weight:700;margin:7px 0 1px;
-  letter-spacing:-.02em;color:var(--dark)}
-.bundle .p{font-size:.77rem;color:var(--muted)}
-.bundle .s{display:inline-block;margin-top:9px;font-size:.68rem;font-weight:700;letter-spacing:.07em;
-  text-transform:uppercase;color:var(--ok);background:var(--ok-bg);padding:4px 9px;border-radius:99px}
-.bundle .s.none{color:var(--muted);background:var(--line-soft)}
-.incl{display:grid;gap:9px;margin:0 0 26px;padding:0;list-style:none}
-@media(min-width:620px){.incl{grid-template-columns:repeat(2,1fr)}}
-.incl li{position:relative;padding-left:27px;font-size:.95rem}
-.incl li svg{position:absolute;left:0;top:.35em;width:17px;height:17px;stroke:var(--ok);
-  fill:none;stroke-width:2.2}
-.guarantee{display:flex;gap:15px;align-items:flex-start;background:var(--tint);
-  border:1px solid var(--line);border-radius:var(--radius);padding:18px 20px;margin-top:22px;
-  font-size:.95rem;line-height:1.6}
-.guarantee .seal{width:56px;height:56px;flex:none;border-radius:50%;border:2px solid var(--accent);
-  display:flex;align-items:center;justify-content:center;text-align:center;font-family:var(--font-h);
-  font-size:.64rem;font-weight:700;color:var(--accent-ink);line-height:1.15}
-.offer-foot{text-align:center;font-size:.89rem;color:var(--muted);margin:16px 0 0}
+/* ==========================================================================
+   STAR OFFER
+   ========================================================================== */
+.offer{padding-block:var(--spacing-12)}
+.offer-box{
+  border:2px solid rgb(var(--accent));border-radius:var(--rounded);
+  background:rgb(var(--background-primary));overflow:hidden;
+}
+.offer-flag{
+  background:rgb(var(--accent));color:rgb(var(--background-primary));
+  text-align:center;font-size:var(--text-sm);font-weight:600;
+  letter-spacing:var(--heading-letter-spacing);padding:var(--spacing-3) var(--spacing-4);
+}
+.offer-in{padding:var(--spacing-6)}
+@media screen and (min-width:700px){.offer-in{padding:var(--spacing-10)}}
+.bundles{display:grid;gap:var(--spacing-3);margin-block:var(--spacing-8) var(--spacing-5)}
+@media screen and (min-width:700px){.bundles{grid-template-columns:repeat(4,1fr)}}
+.bundle{
+  position:relative;text-align:center;padding:var(--spacing-5) var(--spacing-3);
+  border:1px solid rgb(var(--text-primary) / .12);border-radius:var(--rounded);
+}
+.bundle--best{border:2px solid rgb(var(--accent))}
+.bundle .flag{
+  position:absolute;top:calc(-1 * var(--spacing-3));left:50%;transform:translateX(-50%);
+  white-space:nowrap;background:rgb(var(--on-sale));color:rgb(var(--on-sale-badge-text));
+  font-size:var(--text-xs);font-weight:700;letter-spacing:.06em;text-transform:uppercase;
+  padding:2px 8px;border-radius:var(--rounded);
+}
+.bundle .q{font-size:var(--text-xs);letter-spacing:.1em;text-transform:uppercase;font-weight:700;
+  color:rgb(var(--text-primary) / .66)}
+.bundle .u{
+  font-family:var(--heading-font-family);font-weight:600;letter-spacing:var(--heading-letter-spacing);
+  font-size:var(--text-h4);line-height:var(--lh-h4);color:rgb(var(--accent));margin-top:var(--spacing-1)
+}
+.bundle .p{font-size:var(--text-xs);color:rgb(var(--text-primary) / .66)}
+.bundle .s{display:inline-block;margin-top:var(--spacing-2);font-size:var(--text-xs);font-weight:700;
+  letter-spacing:.06em;text-transform:uppercase;color:rgb(var(--accent));
+  background:rgb(var(--success-background));padding:2px 8px;border-radius:var(--rounded)}
+.bundle .s--none{color:rgb(var(--text-primary) / .66);background:rgb(var(--cloud))}
+.incl{list-style:none;margin:0 0 var(--spacing-8);padding:0;display:grid;gap:var(--spacing-2)}
+@media screen and (min-width:700px){.incl{grid-template-columns:repeat(2,1fr)}}
+.incl li{position:relative;padding-left:var(--spacing-6)}
+.incl svg{position:absolute;left:0;top:.28em;width:16px;height:16px;
+  stroke:rgb(var(--accent));fill:none;stroke-width:2.2}
+.guarantee{
+  display:flex;gap:var(--spacing-4);align-items:flex-start;margin-top:var(--spacing-6);
+  background:rgb(var(--cloud));border:1px solid rgb(var(--text-primary) / .12);
+  border-radius:var(--rounded);padding:var(--spacing-4) var(--spacing-5);
+}
+.guarantee .seal{
+  width:56px;height:56px;flex:none;border-radius:var(--rounded-full);
+  border:2px solid rgb(var(--accent));display:flex;align-items:center;justify-content:center;
+  text-align:center;font-family:var(--heading-font-family);font-weight:600;
+  font-size:var(--text-xs);line-height:1.2;color:rgb(var(--accent));
+}
+.offer-foot{text-align:center;font-size:var(--text-sm);margin-top:var(--spacing-4);
+  color:rgb(var(--text-primary) / .66)}
 
-/* ============ faq ============ */
-.faq{background:var(--tint);border-top:1px solid var(--line);padding:clamp(42px,6vw,66px) 0}
-.faq h2{text-align:center;margin-bottom:28px}
-details{border-bottom:1px solid var(--line)}
-details:first-of-type{border-top:1px solid var(--line)}
-summary{cursor:pointer;list-style:none;padding:19px 42px 19px 0;position:relative;
-  font-weight:600;font-size:1.01rem;color:var(--dark)}
+/* ==========================================================================
+   FAQ
+   ========================================================================== */
+.faq{background:rgb(var(--cloud));padding-block:var(--spacing-12)}
+.faq h2{text-align:center;margin-bottom:var(--spacing-8)}
+details{border-bottom:1px solid rgb(var(--text-primary) / .12)}
+details:first-of-type{border-top:1px solid rgb(var(--text-primary) / .12)}
+summary{
+  cursor:pointer;list-style:none;position:relative;
+  padding:var(--spacing-5) var(--spacing-10) var(--spacing-5) 0;
+  font-weight:600;color:rgb(var(--accent));font-size:var(--text-h6);line-height:var(--lh-h6);
+}
 summary::-webkit-details-marker{display:none}
-summary::after{content:"+";position:absolute;right:8px;top:50%;transform:translateY(-50%);
-  font-family:var(--font-h);font-size:1.45rem;color:var(--accent-ink);line-height:1}
+summary::after{
+  content:"+";position:absolute;right:var(--spacing-2);top:50%;transform:translateY(-50%);
+  font-family:var(--heading-font-family);font-size:var(--text-h5);line-height:1;color:rgb(var(--accent));
+}
 details[open] summary::after{content:"–"}
-details p{padding:0 42px 20px 0;margin:0;font-size:.97rem;line-height:1.66}
+details p{margin:0;padding:0 var(--spacing-10) var(--spacing-5) 0}
 
-/* ============ sticky ============ */
-.sticky{position:fixed;left:0;right:0;bottom:0;z-index:60;background:var(--dark);
-  color:#fff;padding:11px 16px;transform:translateY(105%);transition:transform .28s ease}
-.sticky.on{transform:translateY(0)}
-.sticky .in{max-width:1060px;margin:0 auto;display:flex;align-items:center;gap:14px;
-  justify-content:space-between}
-.sticky .txt{font-size:.9rem;line-height:1.35;color:rgba(255,255,255,.75)}
-.sticky .txt b{color:#fff;display:block;font-weight:600}
-@media(max-width:560px){.sticky .txt{display:none}.sticky .btn{width:100%}}
+/* ==========================================================================
+   STICKY CTA
+   ========================================================================== */
+.sticky{
+  position:fixed;inset-inline:0;bottom:0;z-index:60;
+  background:rgb(var(--accent));color:rgb(var(--background-primary));
+  padding:var(--spacing-3) var(--container-gutter);
+  transform:translateY(105%);transition:transform .25s ease;
+}
+.sticky.is-on{transform:translateY(0)}
+.sticky .in{
+  max-width:var(--container-max-width);margin-inline:auto;
+  display:flex;align-items:center;justify-content:space-between;gap:var(--spacing-4);
+}
+.sticky .txt{font-size:var(--text-sm);line-height:1.4;color:rgb(var(--off-white) / .82)}
+.sticky .txt b{display:block;font-weight:600;color:rgb(var(--background-primary))}
+.sticky .button{background:rgb(var(--background-primary));color:rgb(var(--accent))}
+@media screen and (max-width:699px){
+  .sticky .txt{display:none}
+  .sticky .button{width:100%}
+}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .sticky{transition:none}
+}
 
-/* ============ footer ============ */
-.site-foot{background:var(--dark);color:rgba(255,255,255,.62);padding:34px 0 70px;
-  font-size:.85rem;line-height:1.7}
-.site-foot a{color:rgba(255,255,255,.8)}
-.site-foot .disc{border-top:1px solid rgba(255,255,255,.14);margin-top:18px;padding-top:16px;
-  font-size:.78rem;color:rgba(255,255,255,.45)}
-.sources{font-size:.81rem}
+/* ==========================================================================
+   FOOTER (§7.5 — 64px block padding)
+   ========================================================================== */
+.footer{
+  background:rgb(var(--accent));color:rgb(var(--background-primary));
+  padding-block:var(--spacing-16);
+}
+.footer a{color:rgb(var(--off-white) / .86)}
+.footer .sources{font-size:var(--text-sm);color:rgb(var(--off-white) / .78)}
+.footer .disc{
+  margin-top:var(--spacing-5);padding-top:var(--spacing-4);
+  border-top:1px solid rgb(var(--off-white) / .2);
+  font-size:var(--text-xs);color:rgb(var(--off-white) / .6);
+}
 
-/* ============ dev helpers ============ */
-.demo{display:inline-block;font-size:.62rem;letter-spacing:.09em;text-transform:uppercase;
-  font-weight:700;color:#8A5A00;background:#FCEFD5;border:1px solid #F0DCB0;padding:2px 7px;
-  border-radius:99px;vertical-align:middle;margin-left:7px}
-#theme-switch{position:fixed;left:14px;bottom:76px;z-index:70;display:flex;gap:4px;
-  background:#fff;border:1px solid var(--line);border-radius:99px;padding:4px;
-  box-shadow:0 4px 18px rgba(0,0,0,.14);font-size:.74rem;font-weight:600}
-#theme-switch button{border:0;background:transparent;border-radius:99px;padding:6px 12px;
-  cursor:pointer;font:inherit;color:var(--muted)}
-#theme-switch button[aria-pressed="true"]{background:var(--dark);color:#fff}
-@media print{.demo,.sticky,#theme-switch{display:none}}
+/* dev-only marker, removed at launch */
+.demo{
+  display:inline-block;font-size:var(--text-xs);font-weight:700;letter-spacing:.06em;
+  text-transform:uppercase;color:rgb(var(--on-sale-badge-text));background:rgb(var(--on-sale));
+  padding:2px 8px;border-radius:var(--rounded);margin-left:var(--spacing-2);
+}
+@media print{.demo,.sticky{display:none}}
 </style>
 </head>
 <body>
 
-<div class="ad-bar">Advertorial <span>— paid content by Inko Horeca</span></div>
-
-<div class="pub-bar">
-  <div class="wide">
-    <a class="pub" href="https://inkohoreca.com/">Inko<span>Horeca</span></a>
-    <div class="pub-meta">Hospitality desk</div>
-  </div>
+<!-- announcement bar §7.5 -->
+<div class="announcement">
+  Advertorial <span class="sep">— paid content by Inko HoReCa</span>
 </div>
+
+<!-- header §7.5 -->
+<header class="header">
+  <div class="container">
+    <a class="logo" href="https://inkohoreca.com/">
+      <span class="mark">INKO HoReCa</span>
+      <span class="desc">Horeca Accessories</span>
+    </a>
+    <span class="desk">Hospitality desk</span>
+  </div>
+</header>
 
 <article>
 
-  <!-- ============ HEAD ============ -->
+  <!-- ===================== ARTICLE HEAD ===================== -->
   <header class="article-head">
-    <div class="col">
+    <div class="narrow prose">
       <p class="kicker">Front of house</p>
-      <h1>Guests judge your menu in five seconds — and walk out holding your logo</h1>
+      <h1 class="h1">Guests judge your menu in five seconds — and walk out holding your logo</h1>
       <p class="sub">
         Two objects bracket every service: the first thing a guest picks up and the last thing
         they hand back. Six reasons operators stopped buying replacements and outfitted the
@@ -309,101 +506,100 @@ details p{padding:0 42px 20px 0;margin:0;font-size:.97rem;line-height:1.66}
       </p>
 
       <div class="byline">
-        <div class="avatar">IH</div>
-        <div class="who">
+        <span class="avatar">IH</span>
+        <span class="who">
           <b>By [Author name]</b><span class="demo">real author</span><br>
-          <span class="when">Hospitality desk · 8 min read · Updated September 2026</span>
-        </div>
-        <div class="rating">
+          Hospitality desk · 8 min read · Updated September 2026
+        </span>
+        <span class="rating">
           <span class="stars">★★★★★</span>
           <span>4.8 from 2,300+ venues<span class="demo">real number</span></span>
-        </div>
+        </span>
       </div>
 
       <figure class="figure">
         <div class="slot" style="aspect-ratio:16/9">
-          <span>Hero photo: a set table — menu cover and check presenter in the same leather, logo catching the light</span>
+          <span>Hero photo — set table, menu cover and check presenter in the same leather, logo catching the light</span>
         </div>
         <figcaption>The two objects every guest touches, in the same material and the same logo.</figcaption>
       </figure>
     </div>
   </header>
 
-  <!-- ============ INTRO ============ -->
-  <div class="col">
+  <!-- ===================== INTRO ===================== -->
+  <div class="narrow prose">
     <p class="lead">
       There is a moment in every service that no operator schedules and nobody trains for.
-      A guest sits down, reaches for the menu, and forms an opinion about the kitchen before
-      a single plate leaves it.
+      A guest sits down, reaches for the menu, and forms an opinion about the kitchen before a
+      single plate leaves it.
     </p>
     <p>
-      Research on menu design puts that window at <strong>three to five seconds</strong> — the
-      time a guest spends taking in the layout before reading a word of it. The conclusion
-      they draw is not about the typography. It is about you.
-      <mark>When guests perceive the menu as thoughtful and polished, they assume the same care
-      went into the food and the service.</mark> When the corner is peeling, they assume that too.
+      Research on menu design puts that window at <strong>three to five seconds</strong> — the time
+      a guest spends taking in the layout before reading a word of it. The conclusion they draw is
+      not about the typography. It is about you. When guests perceive the menu as thoughtful and
+      polished, they assume the same care went into the food and the service. When the corner is
+      peeling, they assume that too.
     </p>
   </div>
 
   <!-- trust strip -->
-  <div class="trust-strip">
-    <div class="wide trust-items">
-      <div class="ti">
+  <div class="strip">
+    <div class="container strip-items">
+      <span class="ti">
         <svg viewBox="0 0 24 24"><path d="M12 3l2.6 5.3 5.9.9-4.2 4.1 1 5.8-5.3-2.8-5.3 2.8 1-5.8L3.5 9.2l5.9-.9z"/></svg>
         <span><b>100% handcrafted</b>QA on every piece</span>
-      </div>
-      <div class="ti">
+      </span>
+      <span class="ti">
         <svg viewBox="0 0 24 24"><path d="M4 7h16v10H4z"/><path d="M8 7V5h8v2"/><path d="M9 12h6"/></svg>
         <span><b>Your logo included</b>Deboss, engrave or foil</span>
-      </div>
-      <div class="ti">
+      </span>
+      <span class="ti">
         <svg viewBox="0 0 24 24"><path d="M3 13h13V6H3zM16 9h3.5l1.5 3v4h-5z"/><circle cx="7" cy="17" r="2"/><circle cx="18" cy="17" r="2"/></svg>
         <span><b>US &amp; EU warehouses</b>1–4 days on stock lines</span>
-      </div>
-      <div class="ti">
+      </span>
+      <span class="ti">
         <svg viewBox="0 0 24 24"><path d="M20 7v10l-8 4-8-4V7l8-4z"/><path d="M8.5 12l2.5 2.5 5-5"/></svg>
         <span><b>Sample first</b>See it before the run</span>
-      </div>
+      </span>
     </div>
   </div>
 
-  <div class="col">
+  <div class="narrow prose">
     <p>
       Most venues know this. What surprises them is the second half: the last object a guest
-      handles is the check presenter, and by then the meal is already being filed away in
-      memory. Behavioural research calls it the peak-end rule — people judge an experience
-      largely by how it ends.
+      handles is the check presenter, and by then the meal is already being filed away in memory.
+      Behavioural research calls it the peak-end rule — people judge an experience largely by how
+      it ends.
     </p>
     <div class="note">
       <p>
-        This article is published by <a href="https://inkohoreca.com/">Inko Horeca</a>, which makes
-        custom menu covers, check presenters, folders and leather desk accessories for hotels
-        and restaurants. The industry research cited below is linked at the foot of the page.
+        This article is published by <a href="https://inkohoreca.com/">Inko HoReCa</a>, which makes
+        custom menu covers, check presenters, folders and leather desk accessories for hotels and
+        restaurants. The industry research cited below is linked at the foot of the page.
       </p>
     </div>
     <p>
-      So you have a first impression you did not design and a last impression you did not
-      design either — both of them leather, both carrying, or failing to carry, your name.
-      Here are six reasons operators stop buying replacements and start treating these as
-      brand assets.
+      So you have a first impression you did not design and a last impression you did not design
+      either — both of them leather, both carrying, or failing to carry, your name. Here are six
+      reasons operators stop buying replacements and start treating these as brand assets.
     </p>
   </div>
 
-  <!-- ============ REASONS ============ -->
+  <!-- ===================== REASONS ===================== -->
   <section class="reason" id="r1">
-    <div class="col">
-      <div class="reason-num"><i>1</i><em>Reason one</em></div>
-      <h2>The menu is the first thing a guest touches — and it beats your host stand to it</h2>
+    <div class="narrow prose">
+      <p class="reason-num"><i>1</i><em>Reason one</em></p>
+      <h2 class="h3">The menu is the first thing a guest touches — and it beats your host stand to it</h2>
       <p>
-        Before a server speaks, before a plate arrives, the menu is already doing the talking.
-        In most rooms it is the first physical object a guest interacts with — sometimes before
-        anyone greets them, always before the food.
+        Before a server speaks, before a plate arrives, the menu is already doing the talking. In
+        most rooms it is the first physical object a guest interacts with — sometimes before anyone
+        greets them, always before the food.
       </p>
       <div class="stat">
-        <div class="n">3–5 seconds</div>
-        <div class="t">is all a guest spends forming an overall impression of a menu before they
-          start reading it.</div>
-        <div class="src">Source: restaurant menu design research — linked at the foot of this page</div>
+        <span class="n">3–5 seconds</span>
+        <p class="t">is all a guest spends forming an overall impression of a menu before they start
+          reading it.</p>
+        <p class="src">Source: restaurant menu design research — linked at the foot of this page</p>
       </div>
       <p>
         You cannot lengthen those seconds. You can only decide what is in the guest's hands when
@@ -414,25 +610,24 @@ details p{padding:0 42px 20px 0;margin:0;font-size:.97rem;line-height:1.66}
   </section>
 
   <section class="reason" id="r2">
-    <div class="col">
-      <div class="reason-num"><i>2</i><em>Reason two</em></div>
-      <h2>The check presenter is the last thing they touch — and endings are what people remember</h2>
+    <div class="narrow prose">
+      <p class="reason-num"><i>2</i><em>Reason two</em></p>
+      <h2 class="h3">The check presenter is the last thing they touch — and endings are what people remember</h2>
       <p>
-        The peak-end rule is one of the better-replicated findings in behavioural psychology:
-        people judge an experience by its most intense moment and by how it ended. In a
-        restaurant, the ending is not the dessert. It is the bill.
+        The peak-end rule is one of the better-replicated findings in behavioural psychology: people
+        judge an experience by its most intense moment and by how it ended. In a restaurant, the
+        ending is not the dessert. It is the bill.
       </p>
       <figure class="figure">
         <div class="slot" style="aspect-ratio:3/2">
-          <span>Photo: check presenter on the table at the end of service, logo visible</span>
+          <span>Photo — check presenter on the table at the end of service, logo visible</span>
         </div>
-        <figcaption>The final object of the visit — and the one that carries your logo closest to
-          the moment the tip is decided.</figcaption>
+        <figcaption>The final object of the visit, and the one closest to the moment the tip is decided.</figcaption>
       </figure>
       <p>
-        A presenter that protects the bill from spills, closes cleanly and carries your mark ends
-        the meal with the same intention it opened with. A cracked vinyl folder ends the meal
-        too — just not the way you would choose.
+        A presenter that protects the bill from spills, closes cleanly and carries your mark ends the
+        meal with the same intention it opened with. A cracked vinyl folder ends the meal too — just
+        not the way you would choose.
       </p>
       <p class="pull">
         The first thing they pick up and the last thing they hand back are the two objects nobody
@@ -442,9 +637,9 @@ details p{padding:0 42px 20px 0;margin:0;font-size:.97rem;line-height:1.66}
   </section>
 
   <section class="reason" id="r3">
-    <div class="col">
-      <div class="reason-num"><i>3</i><em>Reason three</em></div>
-      <h2>Cheap covers are not cheaper — they are a subscription you did not sign up for</h2>
+    <div class="narrow prose">
+      <p class="reason-num"><i>3</i><em>Reason three</em></p>
+      <h2 class="h3">Cheap covers are not cheaper — they are a subscription you did not sign up for</h2>
       <p>
         This is the reason operators tend to find on their own, usually while approving the same
         purchase order for the third time in a year. Depending on the material and the volume of
@@ -458,9 +653,9 @@ details p{padding:0 42px 20px 0;margin:0;font-size:.97rem;line-height:1.66}
       </p>
       <div class="note">
         <p>
-          <strong>Worth doing on the back of an envelope:</strong> take what you spent on
-          replacements over the last two years and compare it with a single branded run. Most
-          operators are surprised by which number is bigger. If you want the second number,
+          <strong>Worth doing on the back of an envelope:</strong> take what you spent on replacements
+          over the last two years and compare it with a single branded run. Most operators are
+          surprised by which number is bigger. If you want the second number,
           <a href="#offer">ask for a quote</a> — it takes one form.
         </p>
       </div>
@@ -468,63 +663,61 @@ details p{padding:0 42px 20px 0;margin:0;font-size:.97rem;line-height:1.66}
   </section>
 
   <section class="reason" id="r4">
-    <div class="col">
-      <div class="reason-num"><i>4</i><em>Reason four</em></div>
-      <h2>A logo is what turns supplies into brand assets</h2>
+    <div class="narrow prose">
+      <p class="reason-num"><i>4</i><em>Reason four</em></p>
+      <h2 class="h3">A logo is what turns supplies into brand assets</h2>
       <p>
-        There is a real difference between a branded object and a printed one. Printing sits on
-        top of a material and wears off it. Debossing, engraving and foil stamping <em>are</em>
-        the material — the logo is pressed into leather or cut into wood, and two years of
-        service does not rub it away.
+        There is a real difference between a branded object and a printed one. Printing sits on top
+        of a material and wears off it. Debossing, engraving and foil stamping <em>are</em> the
+        material — the logo is pressed into leather or cut into wood, and two years of service does
+        not rub it away.
       </p>
       <p>
         Which treatment suits you is a question about the surface, not about taste: a blind deboss
-        reads as restrained on soft leather, foil carries in low light, engraving is the honest
-        choice on walnut, and a metal plate survives a bar top. Whichever you pick, the object
-        stops being stock and starts being yours.
+        reads as restrained on soft leather, foil carries in low light, engraving is the honest choice
+        on walnut, and a metal plate survives a bar top. Whichever you pick, the object stops being
+        stock and starts being yours.
       </p>
       <figure class="figure">
         <div class="slot" style="aspect-ratio:3/2">
-          <span>Photo grid: one logo as blind deboss, gold foil, engraving on wood, brass plate</span>
+          <span>Photo grid — one logo as blind deboss, gold foil, engraving on wood, metal plate</span>
         </div>
         <figcaption>One logo, four treatments. The material decides which one reads best.</figcaption>
       </figure>
     </div>
   </section>
 
-  <!-- mid CTA -->
-  <div class="col">
+  <div class="narrow prose">
     <div class="midcta">
-      <p>Not ready to commit to a run? A single branded piece, produced first, tells you more than
-         any sample book.</p>
-      <a class="btn btn-primary" href="#offer">See what a set would cost</a>
+      <p>Not ready to commit to a run? A single branded piece, produced first, tells you more than any
+         sample book.</p>
+      <a class="button button--lg" href="#offer">See what a set would cost</a>
     </div>
   </div>
 
-  <section class="reason" id="r5" style="border-top:0">
-    <div class="col">
-      <div class="reason-num"><i>5</i><em>Reason five</em></div>
-      <h2>What reads as expensive is not the leather — it is the repetition</h2>
+  <section class="reason" id="r5" style="border-top:0;padding-top:0">
+    <div class="narrow prose">
+      <p class="reason-num"><i>5</i><em>Reason five</em></p>
+      <h2 class="h3">What reads as expensive is not the leather — it is the repetition</h2>
       <p>
         Walk into a room that feels finished and look at what is actually happening. The menu, the
-        check presenter, the guest compendium upstairs and the tray on the reception desk are in
-        the same material, the same colour and the same logo treatment. Nothing is louder than
-        anything else. That consistency is what the eye reads as investment.
+        check presenter, the guest compendium upstairs and the tray on the reception desk are in the
+        same material, the same colour and the same logo treatment. Nothing is louder than anything
+        else. That consistency is what the eye reads as investment.
       </p>
       <p>
-        It is also the part that is almost impossible to retrofit. Buy the covers this spring from
-        one supplier and the presenters next autumn from another, and no amount of quality in
-        either will produce the effect — two good browns that do not match look worse than one
-        honest black.
+        It is also the part that is almost impossible to retrofit. Buy the covers this spring from one
+        supplier and the presenters next autumn from another, and no amount of quality in either will
+        produce the effect — two good browns that do not match look worse than one honest black.
       </p>
       <p class="pull">Ordering the set together is not an upsell. It is the only way the result works.</p>
     </div>
   </section>
 
   <section class="reason" id="r6">
-    <div class="col">
-      <div class="reason-num"><i>6</i><em>Reason six</em></div>
-      <h2>At volume, doing it properly stops being the expensive option</h2>
+    <div class="narrow prose">
+      <p class="reason-num"><i>6</i><em>Reason six</em></p>
+      <h2 class="h3">At volume, doing it properly stops being the expensive option</h2>
       <p>
         The objection is never the idea. It is the assumption that custom means slow and dear. In
         practice the unit price falls as the run grows, the logo setup is charged once per order
@@ -532,93 +725,93 @@ details p{padding:0 42px 20px 0;margin:0;font-size:.97rem;line-height:1.66}
         than crossing an ocean.
       </p>
       <p>
-        A venue ordering fifty presenters pays meaningfully less per piece than one ordering a
-        sample — and a group ordering for four properties less again. The economics run the
-        opposite way to the replacement cycle in Reason three:
-        <mark>the more of the room you do at once, the less each piece costs.</mark>
+        A venue ordering fifty presenters pays meaningfully less per piece than one ordering a sample
+        — and a group ordering for four properties less again. The economics run the opposite way to
+        the replacement cycle in Reason three: the more of the room you do at once, the less each
+        piece costs.
       </p>
     </div>
   </section>
 
-  <!-- ============ SOCIAL PROOF ============ -->
+  <!-- ===================== SOCIAL PROOF ===================== -->
   <section class="proof">
-    <div class="wide">
-      <h2>What venues say<span class="demo">replace with real reviews</span></h2>
-      <p class="sub-c">Feedback is signed by venue and city rather than by name — in this trade the
-        room is the reference.</p>
+    <div class="container">
+      <h2 class="h3">What venues say<span class="demo">replace with real reviews</span></h2>
+      <p class="sub-c">Feedback is signed by venue and city rather than by name — in this trade the room
+        is the reference.</p>
 
       <div class="reviews">
         <div class="review">
-          <div class="stars">★★★★★</div>
-          <p>“The deboss came out exactly like the mockup. Two years on the floor and the covers
-             still close properly — we used to replace ours twice a year.”</p>
-          <div class="sig">The Grand Room <span class="verified">Verified</span></div>
-          <div class="loc">Vienna, AT</div>
+          <p class="stars">★★★★★</p>
+          <p>“The deboss came out exactly like the mockup. Two years on the floor and the covers still
+             close properly — we used to replace ours twice a year.”</p>
+          <p class="sig">The Grand Room <span class="badge-ok">Verified</span></p>
+          <p class="loc">Vienna, AT</p>
         </div>
         <div class="review">
-          <div class="stars">★★★★★</div>
+          <p class="stars">★★★★★</p>
           <p>“We ordered presenters first and came back three weeks later for the desk set, purely
              because the leather matched what was already on the tables.”</p>
-          <div class="sig">Harbour House Hotel <span class="verified">Verified</span></div>
-          <div class="loc">Boston, US</div>
+          <p class="sig">Harbour House Hotel <span class="badge-ok">Verified</span></p>
+          <p class="loc">Boston, US</p>
         </div>
         <div class="review">
-          <div class="stars">★★★★☆</div>
-          <p>“Staged delivery across four openings was the thing nobody else would agree to.
-             Production took a week longer than we hoped; the result was worth it.”</p>
-          <div class="sig">Nordbar Group <span class="verified">Verified</span></div>
-          <div class="loc">Copenhagen, DK</div>
+          <p class="stars">★★★★☆</p>
+          <p>“Staged delivery across four openings was the thing nobody else would agree to. Production
+             took a week longer than we hoped; the result was worth it.”</p>
+          <p class="sig">Nordbar Group <span class="badge-ok">Verified</span></p>
+          <p class="loc">Copenhagen, DK</p>
         </div>
       </div>
 
-      <div class="trust">
+      <div class="brands">
         <p class="lbl">Supplying venues of<span class="demo">real SVG logos + permission</span></p>
-        <div class="trust-row">
-          <div class="brandmark">Marriott</div>
-          <div class="brandmark">Hilton</div>
-          <div class="brandmark">Hyatt</div>
-          <div class="brandmark">Radisson</div>
+        <div class="brand-row">
+          <span class="brandmark">Marriott</span>
+          <span class="brandmark">Hilton</span>
+          <span class="brandmark">Hyatt</span>
+          <span class="brandmark">Radisson</span>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ============ STAR OFFER ============ -->
+  <!-- ===================== STAR OFFER ===================== -->
   <section class="offer" id="offer">
-    <div class="wide">
+    <div class="narrow">
       <div class="offer-box">
-        <div class="offer-flag">Outfit your venue — quote and logo mockup in one business day</div>
+        <p class="offer-flag">Outfit your venue — quote and logo mockup in one business day</p>
         <div class="offer-in">
-          <h2>One set, your logo, priced by volume</h2>
+          <h2 class="h3">One set, your logo, priced by volume</h2>
           <p>
-            Menu covers, check presenters, folders and leather desk accessories in the same
-            material and the same logo treatment. No cart and no payment on this page — tell us
-            the venue and the volume, and we come back with a price per piece and a mockup of
-            your logo on the material you chose.
+            Menu covers, check presenters, folders and leather desk accessories in the same material
+            and the same logo treatment. No cart and no payment on this page — tell us the venue and
+            the volume, and we come back with a price per piece and a mockup of your logo on the
+            material you chose.
           </p>
 
           <div class="bundles">
             <div class="bundle">
-              <div class="q">1 piece</div><div class="u">$14.52</div><div class="p">per piece</div>
-              <span class="s none">Sample</span>
+              <p class="q">1 piece</p><p class="u">$14.52</p><p class="p">per piece</p>
+              <span class="s s--none">Sample</span>
             </div>
             <div class="bundle">
-              <div class="q">10 pieces</div><div class="u">$13.79</div><div class="p">per piece</div>
+              <p class="q">10 pieces</p><p class="u">$13.79</p><p class="p">per piece</p>
               <span class="s">Save 5%</span>
             </div>
             <div class="bundle">
-              <div class="q">25 pieces</div><div class="u">$13.07</div><div class="p">per piece</div>
+              <p class="q">25 pieces</p><p class="u">$13.07</p><p class="p">per piece</p>
               <span class="s">Save 10%</span>
             </div>
-            <div class="bundle best">
+            <div class="bundle bundle--best">
               <span class="flag">Most venues</span>
-              <div class="q">50 pieces</div><div class="u">$12.34</div><div class="p">per piece</div>
+              <p class="q">50 pieces</p><p class="u">$12.34</p><p class="p">per piece</p>
               <span class="s">Save 15%</span>
             </div>
           </div>
-          <p style="font-size:.87rem;color:var(--muted);margin:-6px 0 24px">
-            Example shown for the Black Walnut hardcover check presenter (R211). Check presenters
-            start at $5.25, menu covers at $21.53.<span class="demo">verify against the live price component</span>
+          <p class="text-sm muted">
+            Example shown for the Black Walnut hardcover check presenter (R211). Check presenters start
+            at $5.25, menu covers at $21.53.<span class="demo">verify against the live price component</span>
           </p>
 
           <ul class="incl">
@@ -630,34 +823,35 @@ details p{padding:0 42px 20px 0;margin:0;font-size:.97rem;line-height:1.66}
             <li><svg viewBox="0 0 24 24"><path d="M4 12.5l5 5L20 6.5"/></svg>100% handcrafted, quality-checked piece by piece</li>
           </ul>
 
-          <a class="btn btn-primary btn-lg btn-block" href="https://inkohoreca.com/#quote">Get my quote</a>
+          <a class="button button--xl button--block" href="https://inkohoreca.com/#quote">Get my quote</a>
 
           <div class="guarantee">
-            <div class="seal">SAMPLE<br>FIRST</div>
-            <div>
-              <strong>See it before you commit.</strong> We produce a single branded piece first, so
-              you can put it on a real table and check the emboss, the colour and the weight in
-              your own light before the full run goes ahead.<span class="demo">confirm sample &amp; returns policy</span>
-            </div>
+            <span class="seal">Sample<br>first</span>
+            <p style="margin:0">
+              <strong>See it before you commit.</strong> We produce a single branded piece first, so you
+              can put it on a real table and check the emboss, the colour and the weight in your own
+              light before the full run goes ahead.<span class="demo">confirm sample &amp; returns policy</span>
+            </p>
           </div>
 
           <p class="offer-foot">
-            Prefer to browse first? <a href="https://inkohoreca.com/collections/all">See the full catalogue</a>.
+            Prefer to browse first?
+            <a href="https://inkohoreca.com/collections/all">See the full catalogue</a>.
           </p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ============ FAQ ============ -->
+  <!-- ===================== FAQ ===================== -->
   <section class="faq">
-    <div class="col">
-      <h2>Before you ask</h2>
+    <div class="narrow prose">
+      <h2 class="h3">Before you ask</h2>
       <details open>
         <summary>How does the logo actually go on?</summary>
-        <p>Blind debossing, engraving, foil stamping or a metal plate, depending on the material.
-           Send the file in any usual format and we show your logo on the chosen material before
-           anything is produced. Setup is $20 per order, charged once.</p>
+        <p>Blind debossing, engraving, foil stamping or a metal plate, depending on the material. Send
+           the file in any usual format and we show your logo on the chosen material before anything is
+           produced. Setup is $20 per order, charged once.</p>
       </details>
       <details>
         <summary>What is the minimum order?</summary>
@@ -666,19 +860,19 @@ details p{padding:0 42px 20px 0;margin:0;font-size:.97rem;line-height:1.66}
       </details>
       <details>
         <summary>How long does it take?</summary>
-        <p>Stock items arrive in 1–4 business days, and anything ordered before 1 PM (PST in the US,
-           CET in the EU) ships the next day. A branded run takes longer and the quote states the
-           exact date rather than a range.</p>
+        <p>Stock items arrive in 1–4 business days, and anything ordered before 1 PM (PST in the US, CET
+           in the EU) ships the next day. A branded run takes longer and the quote states the exact date
+           rather than a range.</p>
       </details>
       <details>
         <summary>Can you match what we already have?</summary>
-        <p>Usually, yes — send a photo or a piece and we match the colour and construction so the
-           new order sits beside the old one instead of replacing the whole room at once.</p>
+        <p>Usually, yes — send a photo or a piece and we match the colour and construction so the new
+           order sits beside the old one instead of replacing the whole room at once.</p>
       </details>
       <details>
         <summary>We are a group with several properties. Can the sets differ?</summary>
-        <p>Same construction, a different plate or deboss per property is the usual arrangement,
-           with delivery staged to match your openings.</p>
+        <p>Same construction, a different plate or deboss per property is the usual arrangement, with
+           delivery staged to match your openings.</p>
       </details>
     </div>
   </section>
@@ -687,66 +881,55 @@ details p{padding:0 42px 20px 0;margin:0;font-size:.97rem;line-height:1.66}
 
 <div class="sticky" id="sticky">
   <div class="in">
-    <div class="txt"><b>Outfit your venue in your own brand</b>Quote and logo mockup in one business day</div>
-    <a class="btn btn-primary btn-sm" href="#offer">Get my quote</a>
+    <p class="txt" style="margin:0"><b>Outfit your venue in your own brand</b>Quote and logo mockup in one business day</p>
+    <a class="button" href="#offer">Get my quote</a>
   </div>
 </div>
 
-<footer class="site-foot">
-  <div class="wide">
-    <p style="margin-bottom:12px">© 2026 Inko Horeca — custom menu covers, check presenters and
-      leather accessories for hotels, restaurants and cafés.</p>
+<footer class="footer">
+  <div class="container">
+    <p>© 2026 Inko HoReCa — custom menu covers, check presenters and leather accessories for hotels,
+       restaurants and cafés.</p>
     <p class="sources">
       Sources referenced in this article:
       <a href="https://pos.toasttab.com/blog/on-the-line/8-tips-for-effective-menu-design">Toast — menu design tips</a> ·
       <a href="https://www.terraslate.com/blogs/news/cost-comparison-menu-printing-options">TerraSlate — menu printing cost comparison</a> ·
-      <a href="https://inkohoreca.com/blogs/blog/check-presenters-bill-folders">Inko Horeca — check presenters and the final impression</a> ·
-      <a href="https://inkohoreca.com/blogs/blog/restaurant-menu-design">Inko Horeca — restaurant menu design guide</a>
+      <a href="https://inkohoreca.com/blogs/blog/check-presenters-bill-folders">Inko HoReCa — check presenters and the final impression</a> ·
+      <a href="https://inkohoreca.com/blogs/blog/restaurant-menu-design">Inko HoReCa — restaurant menu design guide</a>
     </p>
     <p class="disc">
-      Advertorial. This page is paid content produced by Inko Horeca. Testimonials reflect the
-      experience of individual venues and are not a guarantee of any particular result. Prices,
-      lead times and discounts shown are indicative and are confirmed in writing with your
-      quote.<span class="demo">legal review before launch</span>
+      Advertorial. This page is paid content produced by Inko HoReCa. Testimonials reflect the
+      experience of individual venues and are not a guarantee of any particular result. Prices, lead
+      times and discounts shown are indicative and are confirmed in writing with your quote.<span class="demo">legal review before launch</span>
     </p>
   </div>
 </footer>
 
-<!-- DEV ONLY — delete before launch -->
-<div id="theme-switch" role="group" aria-label="Palette preview">
-  <button type="button" data-t="inko" aria-pressed="true">Inko</button>
-  <button type="button" data-t="petlab" aria-pressed="false">Reference</button>
-</div>
-
 <script>
-// Sticky CTA appears once the reader is past reason four, and hides over the offer itself.
 (function () {
   var bar = document.getElementById('sticky');
   var mark = document.getElementById('r4');
   var offer = document.getElementById('offer');
   if (!bar || !mark) return;
+
+  // §7.5 — anchors must offset by the live sticky-area height, not a fixed number.
+  function measure() {
+    var h = 0;
+    var ann = document.querySelector('.announcement');
+    var head = document.querySelector('.header');
+    if (ann) h += ann.offsetHeight;
+    if (head) h += head.offsetHeight;
+    document.documentElement.style.setProperty('--sticky-area-height', h + 'px');
+  }
   function update() {
     var passed = mark.getBoundingClientRect().top < 0;
     var atOffer = offer && offer.getBoundingClientRect().top < window.innerHeight * 0.9;
-    bar.classList.toggle('on', passed && !atOffer);
+    bar.classList.toggle('is-on', passed && !atOffer);
   }
   window.addEventListener('scroll', update, { passive: true });
-  window.addEventListener('resize', update);
+  window.addEventListener('resize', function () { measure(); update(); });
+  measure();
   update();
-})();
-
-// DEV ONLY — palette preview switcher.
-(function () {
-  var box = document.getElementById('theme-switch');
-  if (!box) return;
-  box.addEventListener('click', function (e) {
-    var b = e.target.closest('button');
-    if (!b) return;
-    document.documentElement.setAttribute('data-theme', b.dataset.t);
-    Array.prototype.forEach.call(box.querySelectorAll('button'), function (x) {
-      x.setAttribute('aria-pressed', String(x === b));
-    });
-  });
 })();
 </script>
 </body>
