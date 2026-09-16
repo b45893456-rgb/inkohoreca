@@ -1,943 +1,812 @@
 <!DOCTYPE html>
-<!--
-  Inko HoReCa — hybrid-stat offer page
-  Block structure copied from the PetLab Co reference supplied by the client.
-  Colour / type / spacing / radii from "Inko HoReCa · Brand & UI Guideline v1.0".
-  Accent role that the reference gives to green is played here by Brand Navy;
-  amber appears once, on the promo bar, per §2.6.
--->
 <html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>The branded HoReCa set — priced by volume | Inko HoReCa</title>
-<meta name="description" content="Menu covers, check presenters, folders and leather desk accessories in one material with your logo pressed in. Priced by volume, shipped from US & EU warehouses.">
-<meta name="robots" content="noindex">
+<title>Custom Menu Covers & Check Presenters for Hotels and Restaurants | Inko Horeca</title>
+<meta name="description" content="Outfit your venue with a matching set — menu covers, check presenters, folders and leather desk accessories, embossed with your own logo. Ships from US & EU warehouses. Get a quote.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
 <style>
 :root{
-  --accent:14 62 116; --announcement:3 42 86; --nav:33 52 85;
-  --text:51 51 51; --bg:255 255 255; --sand:231 228 221; --cloud:243 245 248;
-  --ink:24 20 6; --offwhite:255 251 247; --amber:217 148 26; --amber-text:0 0 0;
-  --success-bg:226 232 238;
-  --font:"Jost",sans-serif;
-  --h-track:.04em;
-  --text-h0:3rem; --text-h1:2.5rem; --text-h2:2rem; --text-h3:1.5rem;
-  --text-h4:1.375rem; --text-h5:1.125rem; --text-h6:1rem;
-  --text-lg:1.125rem; --text-base:.875rem; --text-sm:.75rem; --text-xs:.6875rem;
-  --gutter:20px; --grid-gutter:20px; --sec:40px;
-  --maxw:1280px; --narrow:1050px;
-  --r:.25rem; --r-lg:.5rem; --r-full:9999px;
-  --s1:.25rem; --s2:.5rem; --s3:.75rem; --s4:1rem; --s5:1.25rem; --s6:1.5rem;
-  --s8:2rem; --s10:2.5rem; --s12:3rem; --s14:3.5rem; --s16:4rem; --s20:5rem;
+  /* Brand & UI Guideline v1.0 — §02 palette, §08 tokens.
+     Names kept from the first draft; values are the real theme values. */
+  --ink:#0E3E74;        /* Brand Navy — headings, frame          */
+  --ink-soft:#333333;   /* Text Primary                          */
+  --muted:#6B6B6B;      /* Text Primary @ ~66%                   */
+  --line:rgba(51,51,51,.12);   /* --border-color                 */
+  --line-soft:rgba(51,51,51,.08);
+  --cream:#E7E4DD;      /* Sand — alternating section background */
+  --cloud:#F3F5F8;      /* Cloud — card base                     */
+  --paper:#FFFFFF;      /* --background-primary                  */
+  --walnut:#032A56;     /* Deep Navy — announcement / hover frame */
+  --brass:#D9941A;      /* Amber — one signal per screen only    */
+  --brass-dk:#0E3E74;   /* labels stay navy: amber on white fails contrast (2.56:1) */
+  --ok:#0E3E74;         /* --success-text on --success-background */
+  --ok-bg:#E2E8EE;      /* --success-background                  */
+  --radius:4px;         /* --rounded-button                      */
+  --radius-input:8px;   /* --rounded-input                       */
+  --maxw:1440px;        /* --container-max-width                 */
+  --gutter:20px;        /* --container-gutter 20 → 32 → 48        */
+  --serif:"Jost",sans-serif;
+  --sans:"Jost",sans-serif;
 }
-@media screen and (min-width:700px){:root{
-  --text-h0:4rem; --text-h1:3rem; --text-h2:3rem; --text-h3:2rem; --text-h4:1.625rem;
-  --text-h5:1.25rem; --text-h6:1.125rem; --text-lg:1.25rem; --text-base:1rem;
-  --text-sm:.875rem; --text-xs:.75rem; --gutter:32px; --grid-gutter:24px; --sec:64px;}}
-@media screen and (min-width:1000px){:root{--gutter:48px; --sec:80px;}}
-
 *{box-sizing:border-box}
 html,body{max-width:100%;overflow-x:hidden}
 html{scroll-behavior:smooth}
-body{margin:0;background:rgb(var(--bg));color:rgb(var(--text));font-family:var(--font);
-  font-size:var(--text-base);line-height:1.6;-webkit-font-smoothing:antialiased}
-img,svg{max-width:100%;display:block}
-h1,h2,h3,h4{margin:0;font-family:var(--font);font-weight:600;letter-spacing:var(--h-track);
-  color:rgb(var(--text));line-height:1.1}
-h1{font-size:var(--text-h1);overflow-wrap:break-word} h2{font-size:var(--text-h2)} h3{font-size:var(--text-h4)}
-p{margin:0 0 var(--s4)}
-a{color:rgb(var(--accent))}
-strong{font-weight:600;color:rgb(var(--text))}
-em{font-style:italic;font-weight:600;color:rgb(var(--accent))}
-:focus-visible{outline:2px solid rgb(var(--accent));outline-offset:2px}
-.wrap{max-width:var(--maxw);margin-inline:auto;padding-inline:var(--gutter)}
-.sec{padding-block:var(--sec)}
-.tint{background:rgb(var(--cloud))}
-.center{text-align:center}
-.lede{font-size:var(--text-lg);max-width:62ch}
-.center .lede{margin-inline:auto}
-.sm{font-size:var(--text-sm)} .xs{font-size:var(--text-xs)}
-.muted{color:rgb(var(--text) / .66)}
-
-/* ---------- 1. logo bar ---------- */
-.brandbar{padding-block:var(--s5);text-align:center}
-.brandbar .logo{display:inline-flex;align-items:baseline;gap:.4em;text-decoration:none;color:rgb(var(--accent))}
-.brandbar .mark{font-weight:700;font-size:var(--text-h5);letter-spacing:.06em}
-.brandbar .desc{font-size:var(--text-xs);letter-spacing:.12em;color:rgb(var(--text) / .55)}
-
-/* ---------- 2. promo bar ---------- */
-.promo{background:rgb(var(--announcement));color:#fff;text-align:center;
-  padding:var(--s3) var(--gutter);font-size:var(--text-sm)}
-.promo .pill{display:inline-block;background:rgb(var(--amber));color:rgb(var(--amber-text));
-  font-weight:700;border-radius:var(--r);padding:3px 10px;margin-right:var(--s2)}
-
-/* ---------- 3. hero ---------- */
-.hero{background:rgb(var(--cloud));padding-block:var(--sec)}
-.hero-grid{display:grid;gap:var(--s8);align-items:center}
-@media screen and (min-width:900px){.hero-grid{grid-template-columns:1fr 1fr;gap:var(--s12)}}
-.eyebrow{display:flex;align-items:center;gap:var(--s2);flex-wrap:wrap;
-  font-size:var(--text-sm);color:rgb(var(--text) / .7);margin-bottom:var(--s4)}
-.eyebrow .stars{color:rgb(var(--amber));letter-spacing:.08em}
-.hero h1{font-size:var(--text-h1);margin-bottom:var(--s4)}
-.hero .body{font-size:var(--text-lg);margin-bottom:var(--s6)}
-.hero-notes{display:grid;gap:var(--s3);margin-top:var(--s6)}
-@media screen and (min-width:560px){.hero-notes{grid-template-columns:repeat(2,minmax(0,1fr))}}
-.note-i{display:flex;gap:var(--s2);align-items:center;font-size:var(--text-sm);font-weight:500}
-.note-i svg{width:20px;height:20px;flex:none;stroke:rgb(var(--accent));fill:none;stroke-width:1.7}
-
-.shot{background:rgb(var(--bg));border-radius:var(--r-lg);overflow:hidden;
-  border:1px solid rgb(var(--text) / .12)}
-.seals{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--s2);padding:var(--s4);word-break:break-word;
-  border-top:1px solid rgb(var(--text) / .12)}
-.seal{text-align:center;font-size:var(--text-xs);line-height:1.3;font-weight:600;
-  color:rgb(var(--accent));border:1px solid rgb(var(--text) / .12);border-radius:var(--r);
-  padding:var(--s3) var(--s2)}
-.shot .fine{padding:0 var(--s4) var(--s4);font-size:var(--text-xs);color:rgb(var(--text) / .6);margin:0}
+body{
+  margin:0;background:var(--paper);color:var(--ink);
+  font-family:var(--sans);font-size:17px;line-height:1.65;
+  -webkit-font-smoothing:antialiased;
+}
+img{max-width:100%;display:block}
+a{color:inherit}
+@media screen and (min-width:700px){:root{--gutter:32px}}
+@media screen and (min-width:1000px){:root{--gutter:48px}}
+h1,h2,h3{font-family:var(--serif);font-weight:600;line-height:1.12;letter-spacing:.04em;margin:0;color:var(--ink)}
+h1{font-size:clamp(2.1rem,5.2vw,3.5rem);overflow-wrap:break-word}
+h2{font-size:clamp(1.7rem,3.6vw,2.5rem)}
+h3{font-size:1.18rem;line-height:1.3}
+p{margin:0 0 1em}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 var(--gutter)}
+section{padding:clamp(56px,7vw,92px) 0}
+.eyebrow{
+  font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--brass-dk);font-weight:600;margin:0 0 14px
+}
+.lede{font-size:1.08rem;color:var(--ink-soft);max-width:62ch}
+.section-head{max-width:70ch;margin-bottom:clamp(28px,3.5vw,44px)}
+.section-head p{color:var(--ink-soft);margin-top:12px;margin-bottom:0}
 
 /* ---------- buttons ---------- */
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:var(--s2);
-  font-family:var(--font);font-weight:700;font-size:var(--text-base);
-  padding:16px 32px;border:0;border-radius:var(--r);cursor:pointer;text-decoration:none;
-  background:rgb(var(--accent));color:#fff}
-@media screen and (pointer:fine){.btn:hover{opacity:.85}}
-.btn--block{width:100%}
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:8px;
+  font-family:var(--sans);font-size:1rem;font-weight:600;
+  padding:15px 28px;border-radius:var(--radius);border:1px solid transparent;
+  text-decoration:none;cursor:pointer;transition:background .18s,color .18s,border-color .18s;
+}
+.btn-primary{background:var(--ink);color:#fff}
+@media screen and (pointer:fine){.btn-primary:hover{opacity:.85}}
+.btn-ghost{background:transparent;color:var(--ink);border-color:var(--line)}
+@media screen and (pointer:fine){.btn-ghost:hover{opacity:.85}}
+.btn-lg{padding:17px 34px;font-size:1.05rem}
+.btn-block{width:100%}
 
-/* ---------- 4. expert / source quotes ---------- */
-.quotes{display:grid;gap:var(--s8)}
-@media screen and (min-width:900px){.quotes{grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--s12)}}
-.q{display:flex;gap:var(--s4);align-items:flex-start}
-.q .av{width:56px;height:56px;flex:none;border-radius:var(--r-full);background:rgb(var(--cloud));
-  border:1px solid rgb(var(--text) / .12);display:flex;align-items:center;justify-content:center;
-  color:rgb(var(--accent));font-weight:700;font-size:var(--text-sm)}
-.q blockquote{margin:0 0 var(--s3);font-size:var(--text-lg);line-height:1.5}
-.q .who{font-weight:600;display:flex;align-items:center;gap:var(--s1)}
-.q .who svg{width:16px;height:16px;fill:rgb(var(--accent))}
-.q .cred{font-size:var(--text-sm);color:rgb(var(--text) / .66)}
+/* ---------- header ---------- */
+.site-head{
+  position:sticky;top:0;z-index:50;background:rgba(255,255,255,.94);
+  border-bottom:1px solid var(--line-soft)
+}
+.site-head .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;height:66px}
+.logo{font-family:var(--serif);font-size:1.28rem;font-weight:700;letter-spacing:.04em;text-decoration:none}
+.logo span{color:var(--brass-dk)}
+.head-actions{display:flex;align-items:center;gap:10px}
+.head-actions .btn{padding:10px 18px;font-size:.93rem}
+.head-link{display:none;font-size:.93rem;font-weight:500;color:var(--ink-soft);text-decoration:none}
+.head-link:hover{color:var(--ink)}
+@media(min-width:760px){.head-link{display:inline}}
 
-/* ---------- 5. benefits ---------- */
-.split{display:grid;gap:var(--s8);align-items:center}
-@media screen and (min-width:900px){.split{grid-template-columns:1fr 1fr;gap:var(--s12)}}
-.bene{display:grid;gap:var(--s8);margin-top:var(--s8)}
-@media screen and (min-width:560px){.bene{grid-template-columns:repeat(2,minmax(0,1fr))}}
-.bene .b{text-align:center}
-.bene .ic{width:64px;height:64px;margin:0 auto var(--s4);border-radius:var(--r-full);
-  background:rgb(var(--cloud));display:flex;align-items:center;justify-content:center}
-.bene .ic svg{width:28px;height:28px;stroke:rgb(var(--accent));fill:none;stroke-width:1.6}
-.bene h3{font-size:var(--text-h6);margin-bottom:var(--s2)}
-.bene p{font-size:var(--text-sm);margin:0}
+/* ---------- 1. hero ---------- */
+.hero{background:var(--cream);border-bottom:1px solid var(--line);padding-top:clamp(44px,5vw,72px)}
+.hero-grid{display:grid;gap:clamp(32px,4vw,56px);align-items:center}
+@media(min-width:900px){.hero-grid{grid-template-columns:1.05fr .95fr}}
+.hero h1 em{font-style:italic;color:var(--walnut)}
+.hero .lede{margin-top:18px;font-size:1.13rem}
+.hero-cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px}
+.hero-trust{
+  display:flex;flex-wrap:wrap;gap:8px 18px;margin-top:26px;padding-top:22px;
+  border-top:1px solid var(--line);font-size:.9rem;color:var(--muted)
+}
+.hero-trust b{color:var(--ink-soft);font-weight:600}
 
-/* ---------- 6/7. stats ---------- */
-.stats2{display:grid;gap:var(--s8);margin-block:var(--s8)}
-@media screen and (min-width:560px){.stats2{grid-template-columns:repeat(2,minmax(0,1fr))}}
-.stats4{display:grid;gap:var(--s8);margin-block:var(--s10)}
-@media screen and (min-width:560px){.stats4{grid-template-columns:repeat(2,minmax(0,1fr))}}
-@media screen and (min-width:1000px){.stats4{grid-template-columns:repeat(4,minmax(0,1fr))}}
-.st .n{font-size:var(--text-h0);font-weight:600;letter-spacing:var(--h-track);line-height:1;
-  color:rgb(var(--text));margin-bottom:var(--s3)}
-.st p{font-size:var(--text-sm);margin:0}
+/* customization visual */
+.custom-card{position:relative;background:var(--paper);border:1px solid var(--line);padding:14px}
+.custom-card .slot{aspect-ratio:4/3.2}
+.custom-opts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-top:14px}
+.opt{border:1px solid var(--line-soft);padding:10px;text-align:center}
+.opt .k{font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.opt .v{font-size:.9rem;font-weight:600;margin-top:4px}
+.swatches{display:flex;gap:5px;justify-content:center;margin-top:6px}
+.sw{width:15px;height:15px;border-radius:50%;border:1px solid rgba(0,0,0,.12)}
 
-/* ---------- 8. quality ---------- */
-.checks{list-style:none;padding:0;margin:var(--s8) 0 0;display:grid;gap:var(--s3);justify-content:center}
-.checks li{display:flex;gap:var(--s2);align-items:center;font-weight:600}
-.checks svg{width:20px;height:20px;flex:none;fill:rgb(var(--accent))}
+/* image placeholder */
+.slot{
+  position:relative;width:100%;background:
+    var(--cloud);
+  border:1px dashed var(--line);display:flex;align-items:center;justify-content:center;
+  text-align:center;padding:16px
+}
+.slot span{
+  font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);
+  font-weight:600;max-width:26ch
+}
 
-/* ---------- 9. offer ---------- */
-.offer-grid{display:grid;gap:var(--s8)}
-@media screen and (min-width:900px){.offer-grid{grid-template-columns:1fr 1fr;gap:var(--s10);align-items:start}}
-.deal{background:rgb(var(--sand));border-radius:var(--r-lg);padding:var(--s8) var(--s6);text-align:center}
-.deal .up{font-size:var(--text-h5);font-weight:500}
-.deal .big{font-size:var(--text-h0);font-weight:700;line-height:1;color:rgb(var(--accent));
-  letter-spacing:var(--h-track);margin:var(--s1) 0 var(--s3)}
-.deal .plus{font-weight:600;margin-bottom:var(--s5)}
-.deal .fineprint{font-size:var(--text-xs);color:rgb(var(--text) / .6);margin:var(--s5) 0 0}
-.trust-line{display:flex;align-items:center;gap:var(--s2);flex-wrap:wrap;
-  font-size:var(--text-sm);margin-bottom:var(--s4)}
-.trust-line .stars{color:rgb(var(--amber))}
-.bullets{list-style:none;padding:0;margin:0 0 var(--s6);display:grid;gap:var(--s3)}
-.bullets li{display:flex;gap:var(--s3);align-items:flex-start;font-size:var(--text-sm)}
-.bullets svg{width:20px;height:20px;flex:none;stroke:rgb(var(--accent));fill:none;stroke-width:1.7;margin-top:2px}
-.picker{border:1px solid rgb(var(--text) / .12);border-radius:var(--r-lg);padding:var(--s5)}
-.picker h3{font-size:var(--text-h6);margin-bottom:var(--s4)}
-.expert-strip{display:flex;gap:var(--s3);align-items:center;background:rgb(var(--cloud));
-  border-radius:var(--r);padding:var(--s3) var(--s4);margin-bottom:var(--s5);font-size:var(--text-sm)}
-.expert-strip .av{width:40px;height:40px;flex:none;border-radius:var(--r-full);background:rgb(var(--bg));
-  border:1px solid rgb(var(--text) / .12);display:flex;align-items:center;justify-content:center;
-  font-weight:700;color:rgb(var(--accent));font-size:var(--text-xs)}
-.field-label{font-size:var(--text-sm);font-weight:600;margin-bottom:var(--s2)}
-.opts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--s2);margin-bottom:var(--s5)}
-.opt{min-width:0}
-.opt{border:1px solid rgb(var(--text) / .12);border-radius:var(--r);padding:12px 10px;
-  text-align:center;font-size:var(--text-sm);font-weight:500;cursor:pointer;background:rgb(var(--bg))}
-.opt.is-on{border:2px solid rgb(var(--accent));color:rgb(var(--accent));font-weight:600}
-.toggle{display:grid;grid-template-columns:1fr 1fr;gap:var(--s1);background:rgb(var(--cloud));
-  border-radius:var(--r);padding:4px;margin-bottom:var(--s4)}
-.toggle button{border:0;background:transparent;border-radius:var(--r);padding:10px;
-  font:inherit;font-size:var(--text-sm);font-weight:600;cursor:pointer;color:rgb(var(--text) / .7)}
-.toggle button.is-on{background:rgb(var(--bg));color:rgb(var(--accent));
-  box-shadow:inset 0 0 0 1px rgb(var(--accent))}
-.plan{border:2px solid rgb(var(--accent));border-radius:var(--r-lg);padding:var(--s5)}
-.plan-top{display:flex;justify-content:space-between;gap:var(--s4);align-items:flex-start;margin-bottom:var(--s4)}
-.plan .name{font-weight:700;font-size:var(--text-h6);display:flex;align-items:center;gap:var(--s2)}
-.plan .save{font-size:var(--text-xs);font-weight:700;text-transform:uppercase;letter-spacing:.06em;
-  color:rgb(var(--accent));background:rgb(var(--success-bg));padding:2px 8px;border-radius:var(--r)}
-.plan .per{font-size:var(--text-sm);color:rgb(var(--text) / .66)}
-.plan .price{text-align:right;font-weight:700;font-size:var(--text-h4);color:rgb(var(--accent));
-  letter-spacing:var(--h-track)}
-.plan .price s{display:block;font-weight:400;font-size:var(--text-sm);color:rgb(var(--text) / .55)}
-.plan ul{list-style:none;padding:0;margin:0 0 var(--s5);display:grid;gap:var(--s2);font-size:var(--text-sm)}
-.plan ul li{display:flex;gap:var(--s2);align-items:flex-start}
-.plan ul svg{width:16px;height:16px;flex:none;stroke:rgb(var(--accent));fill:none;stroke-width:2.4;margin-top:4px}
+/* ---------- 2. logos ---------- */
+.logos{padding:clamp(30px,4vw,44px) 0;border-bottom:1px solid var(--line-soft)}
+.logos-label{
+  text-align:center;font-size:.76rem;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--muted);font-weight:600;margin-bottom:22px
+}
+.logos-row{
+  display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:22px 28px;align-items:center
+}
+@media(min-width:680px){.logos-row{grid-template-columns:repeat(4,minmax(0,1fr))}}
+.brandmark{
+  text-align:center;font-family:var(--serif);font-size:clamp(1rem,2.1vw,1.35rem);
+  font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:rgba(51,51,51,.5);
+  padding:10px 4px;filter:grayscale(1)
+}
+
+/* ---------- 3. categories ---------- */
+.cat-grid{display:grid;gap:22px}
+@media(min-width:640px){.cat-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(min-width:1000px){.cat-grid{grid-template-columns:repeat(4,minmax(0,1fr))}}
+.cat{border:1px solid var(--line);background:var(--paper);display:flex;flex-direction:column}
+.cat .slot{aspect-ratio:4/3;border:0;border-bottom:1px solid var(--line)}
+.cat-body{padding:20px;display:flex;flex-direction:column;flex:1}
+.cat h3{margin-bottom:8px}
+.cat p{font-size:.95rem;color:var(--ink-soft);margin-bottom:14px}
+.cat .custom-note{
+  font-size:.83rem;color:var(--walnut);background:var(--cream);
+  padding:9px 11px;border-left:2px solid var(--brass);margin-bottom:16px
+}
+.cat-foot{margin-top:auto;display:flex;align-items:baseline;justify-content:space-between;gap:10px}
+.price-from{font-size:.92rem;color:var(--muted)}
+.price-from b{font-family:var(--serif);font-size:1.22rem;color:var(--ink);font-weight:600}
+.cat-link{font-size:.9rem;font-weight:600;text-decoration:none;border-bottom:1px solid var(--brass);padding-bottom:1px}
+
+/* ---------- 4. pricing ---------- */
+.pricing{background:var(--cream);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.tiers{display:grid;gap:14px;min-width:0}
+@media(min-width:560px){.tiers{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(min-width:940px){.tiers{grid-template-columns:repeat(4,minmax(0,1fr))}}
+.tier{
+  position:relative;background:var(--paper);border:1px solid var(--line);
+  padding:26px 20px;text-align:center
+}
+.tier.best{border:2px solid var(--ink)}
+.tier .qty{font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-weight:600}
+.tier .unit{font-family:var(--serif);font-size:2.15rem;font-weight:600;margin:10px 0 2px;letter-spacing:.04em}
+.tier .per{font-size:.84rem;color:var(--muted)}
+.save{
+  display:inline-block;margin-top:14px;font-size:.76rem;font-weight:700;letter-spacing:.08em;
+  text-transform:uppercase;color:var(--ok);background:var(--ok-bg);padding:5px 11px;border-radius:2px
+}
+.save.none{color:var(--muted);background:var(--line-soft)}
+.price-notes{
+  margin-top:26px;display:grid;gap:10px;font-size:.93rem;color:var(--ink-soft)
+}
+@media(min-width:800px){.price-notes{grid-template-columns:repeat(3,minmax(0,1fr))}}
+.price-notes div{background:var(--paper);border:1px solid var(--line-soft);padding:13px 15px}
+.price-notes b{color:var(--ink)}
+
+/* ---------- 5. cases ---------- */
+.case-grid{display:grid;gap:20px}
+@media(min-width:620px){.case-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(min-width:980px){.case-grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
+.case{border:1px solid var(--line);background:var(--paper)}
+.case .slot{aspect-ratio:3/2;border:0;border-bottom:1px solid var(--line)}
+.case-body{padding:18px 20px 22px}
+.case .tag{
+  font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--brass-dk);font-weight:600
+}
+.case h3{font-size:1.05rem;margin:8px 0 8px}
+.case p{font-size:.92rem;color:var(--ink-soft);margin:0}
+.case dl{display:flex;flex-wrap:wrap;gap:6px 16px;margin:14px 0 0;font-size:.85rem}
+.case dt{color:var(--muted)}
+.case dd{margin:0;font-weight:600}
+
+/* ---------- 6. logistics ---------- */
+.logistics{background:var(--ink);color:rgba(255,251,247,.92);border:0}
+.logistics h2{color:#fff}
+.logistics .section-head p{color:rgba(255,251,247,.82)}
+.log-grid{display:grid;gap:1px;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.14)}
+@media(min-width:680px){.log-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(min-width:1000px){.log-grid{grid-template-columns:repeat(4,minmax(0,1fr))}}
+.log{background:var(--ink);padding:26px 22px}
+.log .n{font-family:var(--serif);font-size:1.6rem;font-weight:600;color:#fff;letter-spacing:.04em}
+.log h3{font-size:.79rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,251,247,.72);
+  font-family:var(--sans);font-weight:700;margin-bottom:12px}
+.log p{font-size:.92rem;color:rgba(255,251,247,.82);margin:8px 0 0}
+
+/* ---------- 7. form ---------- */
+.quote{background:var(--cream);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.quote-grid{display:grid;gap:clamp(30px,4vw,54px)}
+@media(min-width:900px){.quote-grid{grid-template-columns:.85fr 1.15fr;align-items:start}}
+.quote-aside ul{list-style:none;padding:0;margin:22px 0 0}
+.quote-aside li{
+  position:relative;padding-left:26px;margin-bottom:13px;font-size:.96rem;color:var(--ink-soft)
+}
+.quote-aside li::before{
+  content:"";position:absolute;left:0;top:.55em;width:11px;height:2px;background:var(--brass)
+}
+form{background:var(--paper);border:1px solid var(--line);padding:clamp(22px,3vw,34px)}
+.field{margin-bottom:22px}
+.field:last-of-type{margin-bottom:26px}
+label{display:block;font-size:.88rem;font-weight:600;margin-bottom:8px}
+.hint{font-weight:400;color:var(--muted);font-size:.84rem}
+input[type=text],input[type=email],input[type=tel],input[type=number],select,textarea{
+  width:100%;font-family:var(--sans);font-size:1rem;color:var(--ink);
+  padding:10px 16px;min-height:42px;border:1px solid var(--line);border-radius:var(--radius-input);background:var(--paper)
+}
+input:focus,select:focus,textarea:focus{outline:2px solid var(--brass);outline-offset:-1px;border-color:var(--brass)}
+textarea{min-height:92px;resize:vertical}
+.checks{display:grid;gap:9px}
+@media(min-width:520px){.checks{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.check{
+  display:flex;align-items:flex-start;gap:10px;border:1px solid var(--line);
+  padding:12px 13px;cursor:pointer;font-size:.94rem;font-weight:500
+}
+.check:hover{border-color:var(--brass)}
+.check input{margin:2px 0 0;accent-color:var(--walnut);width:17px;height:17px;flex:none}
+.two{display:grid;gap:22px}
+@media(min-width:560px){.two{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.file-note{font-size:.86rem;color:var(--muted);margin:8px 0 0}
+.form-foot{font-size:.86rem;color:var(--muted);margin:14px 0 0;text-align:center}
+.thanks{display:none;text-align:center;padding:40px 10px}
+.thanks h3{font-size:1.5rem;margin-bottom:10px}
+.thanks p{color:var(--ink-soft);margin:0}
+form.sent .form-inner{display:none}
+form.sent .thanks{display:block}
+
+/* ---------- 8. testimonials ---------- */
+.quotes{display:grid;gap:20px}
+@media(min-width:760px){.quotes{grid-template-columns:repeat(3,minmax(0,1fr))}}
+.quote-card{border-top:2px solid var(--ink);padding-top:22px}
+.quote-card blockquote{
+  margin:0 0 18px;font-family:var(--serif);font-size:1.12rem;line-height:1.45;color:var(--ink)
+}
+.quote-card cite{font-style:normal;font-size:.88rem;font-weight:600;display:block}
+.quote-card .place{font-size:.85rem;color:var(--muted)}
+
+/* ---------- 9. faq ---------- */
+.faq{background:var(--cream);border-top:1px solid var(--line)}
+.faq-list{max-width:820px;margin:0 auto;border-top:1px solid var(--line)}
+details{border-bottom:1px solid var(--line)}
+summary{
+  cursor:pointer;list-style:none;padding:20px 40px 20px 0;position:relative;
+  font-weight:600;font-size:1.03rem
+}
+summary::-webkit-details-marker{display:none}
+summary::after{
+  content:"+";position:absolute;right:6px;top:50%;transform:translateY(-50%);
+  font-family:var(--serif);font-size:1.5rem;color:var(--brass);line-height:1
+}
+details[open] summary::after{content:"–"}
+details p{padding:0 40px 22px 0;margin:0;color:var(--ink-soft);font-size:.97rem}
+
+/* ---------- final strip + footer ---------- */
+.final{background:var(--ink);color:#fff;text-align:center}
+.final h2{color:#fff;margin-bottom:14px}
+.final p{color:rgba(255,251,247,.82);max-width:56ch;margin:0 auto 28px}
+.site-foot{background:var(--ink);color:rgba(255,255,255,.66);border-top:1px solid rgba(255,255,255,.12);padding:28px 0;font-size:.88rem}
+.site-foot .wrap{display:flex;flex-wrap:wrap;gap:10px 22px;justify-content:space-between;align-items:center}
+.site-foot a{color:rgba(255,251,247,.86);text-decoration:none}
+.site-foot a:hover{color:#fff}
 
 
-/* ---------- 10. plans + extras ---------- */
-.plans{display:grid;gap:var(--s3);margin-bottom:var(--s5)}
-.plan-row{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:var(--s3);align-items:center;
-  border:1px solid rgb(var(--text) / .12);border-radius:var(--r-lg);padding:var(--s4);cursor:pointer}
-.plan-row.is-on{border:2px solid rgb(var(--accent));background:rgb(var(--cloud))}
-.radio{width:20px;height:20px;border-radius:var(--r-full);border:2px solid rgb(var(--text) / .3);
-  display:flex;align-items:center;justify-content:center}
-.plan-row.is-on .radio{border-color:rgb(var(--accent))}
-.plan-row.is-on .radio::after{content:"";width:10px;height:10px;border-radius:var(--r-full);
-  background:rgb(var(--accent))}
-.plan-row .t{font-weight:700;display:flex;align-items:center;gap:var(--s2);flex-wrap:wrap}
-.plan-row .sub{font-size:var(--text-sm);color:rgb(var(--text) / .66)}
-.plan-row .pr{text-align:right;font-weight:700;color:rgb(var(--accent))}
-.plan-row .pr s{display:block;font-weight:400;font-size:var(--text-sm);color:rgb(var(--text) / .5)}
-.tag{font-size:var(--text-xs);font-weight:700;text-transform:uppercase;letter-spacing:.06em;
-  padding:2px 8px;border-radius:var(--r);color:rgb(var(--accent));background:rgb(var(--success-bg))}
-.tag--best{background:rgb(var(--amber));color:rgb(var(--amber-text))}
-.plan-in{grid-column:1 / -1;margin-top:var(--s3);display:grid;gap:var(--s2);font-size:var(--text-sm)}
-.plan-in li{display:flex;gap:var(--s2);align-items:flex-start;list-style:none}
-.plan-in svg{width:16px;height:16px;flex:none;stroke:rgb(var(--accent));fill:none;stroke-width:2.4;margin-top:4px}
-.plan-in ul{margin:0;padding:0;display:grid;gap:var(--s2)}
+.media-wrap{position:relative}
+.media-wrap img,.media-wrap>svg{width:100%;height:auto;display:block}
+.media-wrap>svg{display:none}
+.media-wrap.is-missing img{display:none}
+.media-wrap.is-missing>svg{display:block}
+.p-grid{display:grid;gap:22px;margin-top:26px}
+@media(min-width:640px){.p-grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
+.p-card{border:1px solid var(--line);background:var(--paper);display:flex;flex-direction:column}
+.p-card .media-wrap img,.p-card .slot{aspect-ratio:1/1;object-fit:cover;border:0;border-bottom:1px solid var(--line)}
+.p-body{padding:16px;display:flex;flex-direction:column;gap:6px;flex:1}
+.p-sku{font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;font-weight:700;color:var(--muted)}
+.p-name{font-family:var(--serif);font-weight:600;font-size:1.02rem;line-height:1.3;color:var(--ink)}
+.p-foot{margin-top:auto;display:flex;align-items:baseline;justify-content:space-between;gap:10px}
+.p-price{font-family:var(--serif);font-weight:600;color:var(--ink)}
+.p-price s{font-weight:400;font-size:.85rem;color:var(--muted);margin-right:.4em}
 
-.extras{display:grid;gap:var(--s3);margin-bottom:var(--s5)}
-@media screen and (min-width:560px){.extras{grid-template-columns:repeat(2,minmax(0,1fr))}}
-.extra{display:grid;grid-template-columns:64px 1fr;gap:var(--s3);align-items:center;
-  border:1px solid rgb(var(--text) / .12);border-radius:var(--r-lg);padding:var(--s3)}
-.extra svg{border-radius:var(--r)}
-.extra .n{font-weight:600;font-size:var(--text-sm)}
-.extra .d{font-size:var(--text-xs);color:rgb(var(--text) / .66);margin:2px 0 var(--s2)}
-.extra .add{border:1px solid rgb(var(--accent));background:transparent;color:rgb(var(--accent));
-  border-radius:var(--r);padding:6px 14px;font:inherit;font-size:var(--text-xs);font-weight:700;cursor:pointer}
-.auto-applied{display:flex;align-items:center;justify-content:center;gap:var(--s2);
-  background:rgb(var(--accent));color:#fff;border-radius:var(--r);padding:8px 14px;
-  font-size:var(--text-xs);font-weight:700;margin-bottom:var(--s4);width:fit-content;margin-inline:auto}
-.auto-applied svg{width:16px;height:16px;fill:#fff}
-.pay{display:flex;gap:var(--s2);justify-content:center;flex-wrap:wrap;margin-top:var(--s4)}
-.pay span{border:1px solid rgb(var(--text) / .12);border-radius:var(--r);padding:4px 10px;
-  font-size:var(--text-xs);font-weight:600;color:rgb(var(--text) / .6)}
-.secure{text-align:center;font-size:var(--text-xs);color:rgb(var(--text) / .6);margin-top:var(--s2)}
-
-/* ---------- 11. delivery strip ---------- */
-.delivery{display:flex;gap:var(--s3);align-items:flex-start;background:rgb(var(--cloud));
-  border-radius:var(--r-lg);padding:var(--s4) var(--s5);margin-top:var(--s5)}
-.delivery svg{width:26px;height:26px;flex:none;stroke:rgb(var(--accent));fill:none;stroke-width:1.6}
-.delivery b{display:block}
-.delivery p{margin:0;font-size:var(--text-sm)}
-
-/* ---------- 12. quality trio ---------- */
-.trio{display:grid;gap:var(--s6);margin-top:var(--s8)}
-@media screen and (min-width:700px){.trio{grid-template-columns:repeat(3,minmax(0,1fr))}}
-.trio .t{text-align:center}
-.trio .ic{width:76px;height:76px;margin:0 auto var(--s3);border-radius:var(--r-full);
-  background:rgb(var(--cloud));display:flex;align-items:center;justify-content:center}
-.trio .ic svg{width:32px;height:32px;stroke:rgb(var(--accent));fill:none;stroke-width:1.5}
-.trio h3{font-size:var(--text-h6)}
-
-/* ---------- 13. accordion ---------- */
-.acc{margin-top:var(--s8)}
-.acc details{border-bottom:1px solid rgb(var(--text) / .12)}
-.acc details:first-of-type{border-top:1px solid rgb(var(--text) / .12)}
-.acc summary{list-style:none;cursor:pointer;padding:var(--s5) var(--s10) var(--s5) 0;position:relative;
-  font-weight:600;display:flex;gap:var(--s3);align-items:center}
-.acc summary::-webkit-details-marker{display:none}
-.acc summary svg{width:20px;height:20px;flex:none;stroke:rgb(var(--accent));fill:none;stroke-width:1.7}
-.acc summary::after{content:"";position:absolute;right:8px;top:50%;width:10px;height:10px;
-  border-right:2px solid rgb(var(--text) / .5);border-bottom:2px solid rgb(var(--text) / .5);
-  transform:translateY(-70%) rotate(45deg)}
-.acc details[open] summary::after{transform:translateY(-30%) rotate(-135deg)}
-.acc details p{margin:0;padding:0 var(--s10) var(--s5) 0;font-size:var(--text-sm)}
-
-/* ---------- 14. reviews ---------- */
-.reviews-sec{background:rgb(var(--sand))}
-.rv-top{text-align:center;margin-bottom:var(--s10)}
-.rv-top .stars{color:rgb(var(--amber));font-size:var(--text-h6);letter-spacing:.1em}
-.rv-top .lbl{font-size:var(--text-sm);font-weight:600;margin:var(--s2) 0 var(--s5)}
-.rv-grid{display:grid;gap:var(--s8)}
-@media screen and (min-width:900px){.rv-grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
-.rv{text-align:center;font-size:var(--text-sm)}
-.rv p{margin-bottom:var(--s3)}
-.rv .sig{font-weight:700;font-size:var(--text-sm)}
-.cases{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--s3);margin-top:var(--s10)}
-@media screen and (min-width:700px){.cases{grid-template-columns:repeat(5,minmax(0,1fr))}}
-.case{border-radius:var(--r-lg);overflow:hidden;background:rgb(var(--accent));position:relative}
-.case .cap{position:absolute;left:0;right:0;bottom:0;padding:var(--s3);
-  background:linear-gradient(to top,rgb(var(--announcement) / .95),transparent);
-  color:#fff;font-size:var(--text-xs)}
-.case .cap b{display:block;font-weight:600}
-
-/* ---------- 15. comparison ---------- */
-.cmp-scroll{overflow-x:auto;-webkit-overflow-scrolling:touch;margin-top:var(--s8)}
-.cmp{width:100%;min-width:560px;border-collapse:collapse;font-size:var(--text-sm)}
-.cmp th,.cmp td{padding:var(--s4);text-align:center;vertical-align:middle}
-.cmp th:first-child,.cmp td:first-child{text-align:left;font-weight:600}
-.cmp thead th{font-weight:700}
-.cmp .us{background:rgb(var(--cloud));border-inline:2px solid rgb(var(--accent))}
-.cmp thead .us{background:rgb(var(--accent));color:#fff;border-radius:var(--r-lg) var(--r-lg) 0 0}
-.cmp tbody tr{border-top:1px solid rgb(var(--text) / .12)}
-.cmp tbody tr:last-child .us{border-bottom:2px solid rgb(var(--accent));
-  border-radius:0 0 var(--r-lg) var(--r-lg)}
-.yes,.no{display:block;width:20px;height:20px;margin:0 auto var(--s2)}
-.yes{fill:rgb(var(--accent))} .no{fill:rgb(var(--text) / .35)}
-
-/* ---------- 16. dark band ---------- */
-.band{background:rgb(var(--announcement));color:#fff;text-align:center;padding-block:var(--s16)}
-.band h2{color:#fff;max-width:20ch;margin:0 auto var(--s8)}
-.band .btn{background:#fff;color:rgb(var(--accent))}
-
-/* ---------- 17. closing quote ---------- */
-.closer{display:grid;gap:var(--s6);align-items:center}
-@media screen and (min-width:900px){.closer{grid-template-columns:1fr 1fr}}
-.closer .card{background:rgb(var(--cloud));border-radius:var(--r-lg);padding:var(--s8)}
-.closer blockquote{margin:0 0 var(--s4);font-size:var(--text-h4);line-height:1.35;
-  letter-spacing:var(--h-track);font-weight:600}
-
-
-/* ---------- photo slots: real photo when present, drawing until then ---------- */
-.ph{position:relative;display:block}
-.ph>img{width:100%;height:auto;display:block;border-radius:var(--r-lg)}
-.ph>svg{display:none}
-.ph.no-photo>img{display:none}
-.ph.no-photo>svg{display:block}
-.shot .ph>img,.shot .ph>svg,.case .ph>img,.case .ph>svg{border-radius:0}
-.extra .ph>img,.extra .ph>svg{width:64px;height:64px;border-radius:var(--r);object-fit:cover}
-.brandbar-partners{margin-top:var(--s10);padding-top:var(--s8);
-  border-top:1px solid rgb(var(--text) / .12)}
-.partners{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--s5);align-items:center}
-@media screen and (min-width:700px){.partners{grid-template-columns:repeat(4,minmax(0,1fr))}}
-.partner{text-align:center;font-weight:600;letter-spacing:.1em;text-transform:uppercase;
-  color:rgb(var(--text) / .45);font-size:var(--text-sm)}
-.partner img{max-height:44px;width:auto;margin-inline:auto;filter:grayscale(1);opacity:.62}
-.partners-sec{border-bottom:1px solid rgb(var(--text) / .12)}
-@media screen and (min-width:700px){.partners{gap:var(--s10)}}
-
-/* ---------- footer ---------- */
-footer{background:rgb(var(--accent));color:rgb(var(--offwhite) / .8);padding-block:var(--s16);
-  font-size:var(--text-sm)}
-footer a{color:rgb(var(--offwhite) / .9)}
-footer .disc{margin-top:var(--s5);padding-top:var(--s4);border-top:1px solid rgb(var(--offwhite) / .2);
-  font-size:var(--text-xs);color:rgb(var(--offwhite) / .6)}
+/* demo marker */
+.demo{
+  display:inline-block;font-size:.64rem;letter-spacing:.09em;text-transform:uppercase;
+  font-weight:700;color:#000;background:var(--brass);border:0;
+  padding:2px 7px;border-radius:2px;vertical-align:middle;margin-left:8px
+}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+@media print{.demo{display:none}}
 </style>
 </head>
 <body>
 
-<!-- 1 · logo bar -->
-<div class="brandbar">
-  <a class="logo" href="https://inkohoreca.com/">
-    <span class="mark">INKO HoReCa</span><span class="desc">Horeca Accessories</span>
-  </a>
-</div>
+<!-- ============ HEADER ============ -->
+<header class="site-head">
+  <div class="wrap">
+    <a class="logo" href="/">Inko<span>Horeca</span></a>
+    <div class="head-actions">
+      <a class="head-link" href="#categories">Catalogue</a>
+      <a class="head-link" href="#pricing">Pricing</a>
+      <a class="head-link" href="#faq">FAQ</a>
+      <a class="btn btn-primary" href="#quote">Get a quote</a>
+    </div>
+  </div>
+</header>
 
-<!-- 2 · promo bar -->
-<div class="promo">
-  <span class="pill">Up to 25% off</span> on larger orders — logo mockup before production, free
-</div>
+<main>
 
-<!-- 3 · hero -->
-<section class="hero">
+<!-- ============ 1. HERO ============ -->
+<section class="hero" id="top">
   <div class="wrap hero-grid">
     <div>
-      <p class="eyebrow">
-        <span class="stars">★★★★★</span>
-        <span>Supplying hotels, restaurants and groups worldwide</span>
+      <p class="eyebrow">For hotels, restaurants &amp; groups</p>
+      <h1>Outfit your venue with a matching set — <em>embossed with your own logo</em></h1>
+      <p class="lede">
+        Menu covers, check presenters, folders and leather desk accessories, made as one
+        set in your brand. Choose the material, the colour and the binding; we deboss,
+        engrave or foil-stamp your logo. The more you order, the lower the unit price.
       </p>
-      <h1>The <em>branded</em> front-of-house set — now priced <em>by volume</em></h1>
-      <p class="body">
-        Menu covers, check presenters, folders and leather desk accessories made in
-        <strong>one material with your logo pressed in</strong>, not printed on. Handcrafted,
-        quality-checked piece by piece and <strong>shipped from a US or EU warehouse</strong>.
-        The more of the room you do at once, the less each piece costs.
-      </p>
-      <a class="btn" href="#offer">Get my quote</a>
-      <div class="hero-notes">
-        <span class="note-i">
-          <svg viewBox="0 0 24 24"><path d="M12 3l2.6 5.3 5.9.9-4.2 4.1 1 5.8L12 16.3 6.7 19.1l1-5.8L3.5 9.2l5.9-.9z"/></svg>
-          100% handcrafted, QA on every piece</span>
-        <span class="note-i">
-          <svg viewBox="0 0 24 24"><path d="M4 7h16v10H4z"/><path d="M8 7V5h8v2"/><path d="M9 12h6"/></svg>
-          Deboss, engrave, foil or metal plate</span>
+      <div class="hero-cta">
+        <a class="btn btn-primary btn-lg" href="#quote">Get a quote</a>
+        <a class="btn btn-ghost btn-lg" href="#categories">See the catalogue</a>
+      </div>
+      <div class="hero-trust">
+        <span><b>100% handcrafted</b>, QA on every piece</span>
+        <span>Logo <b>embossing, engraving or foil</b></span>
+        <span>Ships from <b>US &amp; EU warehouses</b></span>
       </div>
     </div>
 
-    <div class="shot">
-      <span class="ph"><img src="assets/hero.jpg" alt="A menu cover and a check presenter in matching leather" loading="lazy" onerror="this.closest('.ph').classList.add('no-photo')"><svg viewBox="0 0 1000 720" role="img" aria-label="A menu cover and a check presenter in matching leather">
-        <rect width="1000" height="720" fill="#F3F5F8"/>
-        <rect y="470" width="1000" height="250" fill="#E7E4DD"/>
-        <g transform="translate(120 90)">
-          <path d="M0 400 L0 22 Q0 -6 28 2 L280 78 L280 470 Z" fill="#0E3E74"/>
-          <path d="M560 400 L560 22 Q560 -6 532 2 L280 78 L280 470 Z" fill="#032A56"/>
-          <path d="M280 78 L280 470" stroke="#FFFBF7" stroke-opacity=".28" stroke-width="4"/>
-          <g stroke="#FFFBF7" stroke-opacity=".22" stroke-width="6" stroke-linecap="round">
-            <path d="M64 170h150M64 212h120M64 254h140M344 180h150M344 222h110M344 264h140"/>
-          </g>
-          <g transform="translate(140 350)" opacity=".6">
-            <circle r="9" fill="none" stroke="#FFFBF7" stroke-width="2"/>
-            <path d="M-16 14h32M-11 20h22" stroke="#FFFBF7" stroke-width="2" stroke-linecap="round"/>
-          </g>
-        </g>
-        <g transform="translate(600 480)">
-          <path d="M0 50 L330 0 L430 110 L100 160 Z" fill="#0E3E74"/>
-          <path d="M54 70 L300 32 L358 94 L112 132 Z" fill="#FFFBF7" fill-opacity=".92"/>
-          <g stroke="#0E3E74" stroke-opacity=".32" stroke-width="5" stroke-linecap="round">
-            <path d="M92 78 h160M98 96 h136M104 114 h108"/>
-          </g>
-        </g>
-      </svg></span>
-      <div class="seals">
-        <span class="seal">Handcrafted<br>in the EU</span>
-        <span class="seal">QA on<br>every piece</span>
-        <span class="seal">US &amp; EU<br>warehouses</span>
-      </div>
-      <p class="fine">*Stock lines ship next business day when ordered before 1 PM PST / CET.</p>
-    </div>
-  </div>
-</section>
-
-
-<section class="sec partners-sec" style="padding-block:var(--s12)">
-  <div class="wrap">
-    <p class="center sm muted" style="letter-spacing:.1em;text-transform:uppercase;font-weight:700">
-      Supplying venues of</p>
-    <div class="partners" style="margin-top:var(--s5)">
-      <span class="partner"><img src="assets/logos/marriott.svg" alt="Marriott" onerror="this.replaceWith(document.createTextNode('Marriott'))"></span>
-      <span class="partner"><img src="assets/logos/hilton.svg" alt="Hilton" onerror="this.replaceWith(document.createTextNode('Hilton'))"></span>
-      <span class="partner"><img src="assets/logos/hyatt.svg" alt="Hyatt" onerror="this.replaceWith(document.createTextNode('Hyatt'))"></span>
-      <span class="partner"><img src="assets/logos/radisson.svg" alt="Radisson" onerror="this.replaceWith(document.createTextNode('Radisson'))"></span>
-    </div>
-  </div>
-</section>
-
-<!-- 4 · what the research says -->
-<section class="sec">
-  <div class="wrap quotes">
-    <div class="q">
-      <span class="av">01</span>
-      <div>
-        <blockquote>“Customers spend the first 3–5 seconds getting an overall impression of the
-          menu layout. When they perceive it as thoughtful and polished, they assume the same
-          level of care applies to your food and service.”</blockquote>
-        <p class="who">Restaurant menu design research
-          <svg viewBox="0 0 24 24"><path d="M12 2l2.4 1.8 3-.2.9 2.9 2.4 1.8-1.1 2.8 1.1 2.8-2.4 1.8-.9 2.9-3-.2L12 22l-2.4-1.8-3 .2-.9-2.9L3.3 15.7 4.4 12.9 3.3 10.1l2.4-1.8.9-2.9 3 .2z"/></svg>
-        </p>
-        <p class="cred"><a href="https://pos.toasttab.com/blog/on-the-line/8-tips-for-effective-menu-design">Toast — menu design guide</a></p>
-      </div>
-    </div>
-    <div class="q">
-      <span class="av">02</span>
-      <div>
-        <blockquote>“The check presenter is the final physical object a guest interacts with.
-          Done well, it closes the dining experience with the same intention it opened with.”</blockquote>
-        <p class="who">The peak-end rule, applied to service
-          <svg viewBox="0 0 24 24"><path d="M12 2l2.4 1.8 3-.2.9 2.9 2.4 1.8-1.1 2.8 1.1 2.8-2.4 1.8-.9 2.9-3-.2L12 22l-2.4-1.8-3 .2-.9-2.9L3.3 15.7 4.4 12.9 3.3 10.1l2.4-1.8.9-2.9 3 .2z"/></svg>
-        </p>
-        <p class="cred"><a href="https://inkohoreca.com/blogs/blog/check-presenters-bill-folders">Inko HoReCa — check presenters and the final impression</a></p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- 5 · the set -->
-<section class="sec">
-  <div class="wrap split">
-    <div class="shot">
-      <span class="ph"><img src="assets/set.jpg" alt="A matching set of accessories" loading="lazy" onerror="this.closest('.ph').classList.add('no-photo')"><svg viewBox="0 0 800 800" role="img" aria-label="A matching set of accessories">
-        <rect width="800" height="800" fill="#E7E4DD"/>
-        <rect x="90" y="120" width="290" height="380" rx="8" fill="#0E3E74"/>
-        <rect x="90" y="120" width="26" height="380" fill="#032A56"/>
-        <rect x="420" y="190" width="300" height="240" rx="8" fill="#032A56"/>
-        <rect x="150" y="560" width="500" height="120" rx="8" fill="#0E3E74"/>
-        <g opacity=".55" stroke="#FFFBF7" stroke-width="2.4" stroke-linecap="round">
-          <g transform="translate(235 330)"><circle r="11" fill="none" stroke="#FFFBF7"/><path d="M-19 17h38M-13 24h26"/></g>
-          <g transform="translate(570 310)"><circle r="11" fill="none" stroke="#FFFBF7"/><path d="M-19 17h38M-13 24h26"/></g>
-          <g transform="translate(400 620)"><circle r="11" fill="none" stroke="#FFFBF7"/><path d="M-19 17h38M-13 24h26"/></g>
-        </g>
-      </svg></span>
-    </div>
-    <div>
-      <h2>Your venue's new <em>front-of-house set</em>.</h2>
-      <p class="lede" style="margin-top:var(--s4)">One material, one colour, one logo treatment —
-        across every piece a guest touches.</p>
-      <div class="bene">
-        <div class="b">
-          <span class="ic"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span>
-          <h3>Judged in 3–5 seconds</h3>
-          <p>That is the whole window a guest spends forming an impression of the menu before
-             reading a word of it.</p>
+    <div class="custom-card">
+      <div class="media-wrap"><img src="assets/hero-set.jpg" alt="Check presenter with a debossed logo" loading="lazy" onerror="this.closest('.media-wrap').classList.add('is-missing')"><svg viewBox="0 0 900 720" role="img" aria-label="Check presenter with a debossed logo"><rect width="900" height="720" fill="#F3F5F8"/><rect y="446" width="900" height="274" fill="#E7E4DD"/><g transform="translate(99 93)"><path d="M0 374 L0 26 Q0 -6 28 3 L189 72 L189 446 Z" fill="#0E3E74"/><path d="M378 374 L378 26 Q378 -6 350 3 L189 72 L189 446 Z" fill="#032A56"/><g transform="translate(94 302) scale(1.5)"><g opacity=".55"><circle cx="0" cy="0" r="9" fill="none" stroke="#FFFBF7" stroke-width="2"/><path d="M-16 14h32M-11 20h22" stroke="#FFFBF7" stroke-width="2" stroke-linecap="round"/></g></g></g><g transform="translate(540 460)"><path d="M0 44 L234 0 L297 84 L63 128 Z" fill="#0E3E74"/><path d="M44 60 L211 24 L252 72 L79 108 Z" fill="#FFFBF7" fill-opacity=".92"/></g></svg></div>
+      <div class="custom-opts">
+        <div class="opt">
+          <div class="k">Material</div>
+          <div class="v">Leather · Wood</div>
         </div>
-        <div class="b">
-          <span class="ic"><svg viewBox="0 0 24 24"><path d="M4 6h16v12H4z"/><path d="M8 18v2h8v-2"/><path d="M8 10h8"/></svg></span>
-          <h3>The last thing they hold</h3>
-          <p>The check presenter closes the visit — the object closest to the moment the tip is
-             decided.</p>
-        </div>
-        <div class="b">
-          <span class="ic"><svg viewBox="0 0 24 24"><path d="M12 3l8 4.5v9L12 21l-8-4.5v-9z"/><path d="M8.5 12l2.5 2.5 5-5"/></svg></span>
-          <h3>Pressed in, not printed on</h3>
-          <p>Debossing, engraving, foil or a metal plate — the logo is the material, so service
-             does not rub it away.</p>
-        </div>
-        <div class="b">
-          <span class="ic"><svg viewBox="0 0 24 24"><path d="M3 13h13V6H3z"/><path d="M16 9h3.5l1.5 3v4h-5z"/><circle cx="7" cy="17" r="2"/><circle cx="18" cy="17" r="2"/></svg></span>
-          <h3>Stocked on your continent</h3>
-          <p>US and EU warehouses; stock lines arrive in 1–4 business days instead of crossing an
-             ocean.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- 6 · the cost of not doing it -->
-<section class="sec tint">
-  <div class="wrap split">
-    <div>
-      <h2>Replacing cheap covers <em>costs more</em> than doing it once</h2>
-      <p class="lede" style="margin-top:var(--s4)">A busy room can go through several covers a
-        month, and even decent ones start failing along the seams inside a year.</p>
-      <div class="stats2">
-        <div class="st">
-          <p class="n">2–3×</p>
-          <p>A year is how often venues re-order off-the-shelf covers — a recurring cost, not an
-             overhead saving.</p>
-        </div>
-        <div class="st">
-          <p class="n">$20</p>
-          <p>Is what the logo setup costs — once per order, not per piece, however large the run
-             gets.</p>
-        </div>
-      </div>
-      <a class="btn" href="#offer">See what a set would cost</a>
-    </div>
-    <div class="shot">
-      <span class="ph"><img src="assets/compare.jpg" alt="A worn cover beside a branded one" loading="lazy" onerror="this.closest('.ph').classList.add('no-photo')"><svg viewBox="0 0 800 640" role="img" aria-label="A worn cover beside a branded one">
-        <rect width="800" height="640" fill="#F3F5F8"/>
-        <g transform="translate(70 110)">
-          <path d="M0 0h280v420H0z" fill="#FFFFFF" stroke="#333" stroke-opacity=".12" stroke-width="2"/>
-          <path d="M280 0l-40 40 40 40M0 300l50 40-50 40" fill="#F3F5F8" stroke="#333" stroke-opacity=".12" stroke-width="2"/>
-          <path d="M40 120h200M40 170h160M40 220h180" stroke="#333" stroke-opacity=".18" stroke-width="6" stroke-linecap="round"/>
-          <text x="140" y="470" text-anchor="middle" font-family="Jost" font-size="26" fill="#333" fill-opacity=".5">Replaced every few months</text>
-        </g>
-        <g transform="translate(450 110)">
-          <rect width="280" height="420" rx="8" fill="#0E3E74"/>
-          <g transform="translate(140 210)" opacity=".6">
-            <circle r="13" fill="none" stroke="#FFFBF7" stroke-width="2.6"/>
-            <path d="M-22 20h44M-15 28h30" stroke="#FFFBF7" stroke-width="2.6" stroke-linecap="round"/>
-          </g>
-          <text x="140" y="470" text-anchor="middle" font-family="Jost" font-size="26" fill="#0E3E74">Bought once, branded</text>
-        </g>
-      </svg></span>
-    </div>
-  </div>
-</section>
-
-<!-- 7 · volume stats -->
-<section class="sec">
-  <div class="wrap center">
-    <h2>Priced <em>by volume</em>, not by catalogue</h2>
-    <p class="lede">The unit price falls as the run grows, and order value earns a second discount
-      on top. Both apply to the same order.</p>
-    <div class="stats4">
-      <div class="st"><p class="n">5%</p><p>Off the unit price from 10 pieces.</p></div>
-      <div class="st"><p class="n">10%</p><p>Off from 25 pieces — the usual single-venue order.</p></div>
-      <div class="st"><p class="n">15%</p><p>Off from 50 pieces, where most venues land.</p></div>
-      <div class="st"><p class="n">25%</p><p>Off the total on orders over $1,800.</p></div>
-    </div>
-    <a class="btn" href="#offer">Get my quote</a>
-  </div>
-</section>
-
-<!-- 8 · quality -->
-<section class="sec tint">
-  <div class="wrap center">
-    <h2>Quality you can <em>check first</em></h2>
-    <p class="lede">Every piece is made to order and inspected before it ships:</p>
-    <ul class="checks">
-      <li><svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 100 20 10 10 0 000-20zm-1 14l-4-4 1.4-1.4L11 13.2l5.6-5.6L18 9z"/></svg>100% handcrafted</li>
-      <li><svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 100 20 10 10 0 000-20zm-1 14l-4-4 1.4-1.4L11 13.2l5.6-5.6L18 9z"/></svg>Quality-checked piece by piece</li>
-      <li><svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 100 20 10 10 0 000-20zm-1 14l-4-4 1.4-1.4L11 13.2l5.6-5.6L18 9z"/></svg>Logo mockup approved before production</li>
-      <li><svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 100 20 10 10 0 000-20zm-1 14l-4-4 1.4-1.4L11 13.2l5.6-5.6L18 9z"/></svg>A sample piece before the full run</li>
-    </ul>
-    <p class="xs muted" style="margin-top:var(--s8)">*Production lead time for branded runs is
-      confirmed in writing with your quote.</p>
-  </div>
-</section>
-
-<!-- 9 · offer -->
-<section class="sec" id="offer">
-  <div class="wrap offer-grid">
-
-    <div class="deal">
-      <p class="up">Up to</p>
-      <p class="big">25% OFF</p>
-      <p class="plus">+ free logo mockup on your first order*</p>
-      <span class="ph"><img src="assets/deal.jpg" alt="The branded set" loading="lazy" onerror="this.closest('.ph').classList.add('no-photo')"><svg viewBox="0 0 700 420" role="img" aria-label="The branded set">
-        <rect width="700" height="420" fill="none"/>
-        <rect x="60" y="60" width="210" height="300" rx="8" fill="#0E3E74"/>
-        <rect x="60" y="60" width="20" height="300" fill="#032A56"/>
-        <rect x="300" y="110" width="200" height="250" rx="8" fill="#032A56"/>
-        <rect x="520" y="180" width="130" height="180" rx="8" fill="#0E3E74"/>
-        <g opacity=".6" stroke="#FFFBF7" stroke-width="2.2" stroke-linecap="round" fill="none">
-          <g transform="translate(165 220)"><circle r="10" stroke="#FFFBF7"/><path d="M-17 16h34M-12 22h24"/></g>
-          <g transform="translate(400 245)"><circle r="10" stroke="#FFFBF7"/><path d="M-17 16h34M-12 22h24"/></g>
-        </g>
-      </svg></span>
-      <p class="fineprint">*Mockup is free and unlimited before approval. Volume discount applies to
-        the order total and is confirmed with the quote.</p>
-    </div>
-
-    <div>
-      <h2>The <em>branded</em> HoReCa set</h2>
-      <p class="trust-line">
-        <span class="stars">★★★★★</span>
-        <strong>Supplying hotels, restaurants and groups</strong>
-        <span class="muted">— from single rooms to four-property groups</span>
-      </p>
-      <p>
-        Menu covers, check presenters, folders and leather desk accessories, made in the same
-        material and the same logo treatment. No cart and no payment on this page — you tell us
-        the venue and the volume, we come back with a price per piece and a mockup.
-      </p>
-      <ul class="bullets">
-        <li><svg viewBox="0 0 24 24"><path d="M4 12.5l5 5L20 6.5"/></svg>
-          Genuine leather, faux leather, wood, hardcover, fabric or acrylic — 20 Capri colours.</li>
-        <li><svg viewBox="0 0 24 24"><path d="M4 12.5l5 5L20 6.5"/></svg>
-          Logo debossed, engraved, foil-stamped or on a metal plate. Setup $20 per order.</li>
-        <li><svg viewBox="0 0 24 24"><path d="M4 12.5l5 5L20 6.5"/></svg>
-          Stock lines in 1–4 business days; order before 1 PM PST / CET and they ship next day.</li>
-        <li><svg viewBox="0 0 24 24"><path d="M4 12.5l5 5L20 6.5"/></svg>
-          A single branded sample before the full run, so you check it on a real table.</li>
-      </ul>
-
-      <div class="picker">
-        <h3>Choose your set</h3>
-
-        <div class="expert-strip">
-          <span class="av">IH</span>
-          <span>“Order the categories together — matching leather across the room is what reads as
-            investment.” — Inko HoReCa production desk</span>
-        </div>
-
-        <p class="field-label">Categories</p>
-        <div class="opts">
-          <span class="opt is-on">Check presenters</span>
-          <span class="opt">Menu covers</span>
-          <span class="opt">Folders</span>
-          <span class="opt">Desk accessories</span>
-        </div>
-
-        <p class="field-label">Quantity</p>
-        <div class="toggle">
-          <button type="button" class="is-on">Volume order</button>
-          <button type="button">Single sample</button>
-        </div>
-
-        <div class="opts" style="grid-template-columns:repeat(4,minmax(0,1fr))">
-          <span class="opt">1</span>
-          <span class="opt">10</span>
-          <span class="opt">25</span>
-          <span class="opt is-on">50</span>
-        </div>
-
-        <div class="plan">
-          <div class="plan-top">
-            <div>
-              <p class="name">50 pieces <span class="save">Save 15%</span></p>
-              <p class="per">Black Walnut check presenter R211 · $12.34 per piece</p>
-            </div>
-            <p class="price">$617<s>$726</s></p>
+        <div class="opt">
+          <div class="k">Colour</div>
+          <div class="v">20 Capri colours</div>
+          <div class="swatches">
+            <i class="sw" style="background:#1B1613" title="Black"></i>
+            <i class="sw" style="background:#5A3F2B" title="Tobacco"></i>
+            <i class="sw" style="background:#8C2F39" title="Bordeaux"></i>
+            <i class="sw" style="background:#2F4A3C" title="Green"></i>
+            <i class="sw" style="background:#C9BFAE" title="Cappuccino"></i>
           </div>
-          <ul>
-            <li><svg viewBox="0 0 24 24"><path d="M4 12.5l5 5L20 6.5"/></svg>15% off the unit price at 50 pieces</li>
-            <li><svg viewBox="0 0 24 24"><path d="M4 12.5l5 5L20 6.5"/></svg>Order over $500 earns a further 10% off the total</li>
-            <li><svg viewBox="0 0 24 24"><path d="M4 12.5l5 5L20 6.5"/></svg>Logo mockup and one sample piece included</li>
-            <li><svg viewBox="0 0 24 24"><path d="M4 12.5l5 5L20 6.5"/></svg>Ships from the warehouse on your continent</li>
-          </ul>
-          <a class="btn btn--block" href="https://inkohoreca.com/#quote">Get my quote</a>
+        </div>
+        <div class="opt">
+          <div class="k">Your logo</div>
+          <div class="v">Deboss · Foil</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 2. BRAND LOGOS ============ -->
+<section class="logos">
+  <div class="wrap">
+    <p class="logos-label">Supplying venues of<!-- TODO before launch: replace with real SVG logos --></p>
+    <div class="logos-row">
+      <div class="brandmark"><img src="assets/logos/marriott.svg" alt="Marriott" style="max-height:30px;width:auto;margin:0 auto;opacity:.6" onerror="this.replaceWith(document.createTextNode('Marriott'))"></div>
+      <div class="brandmark"><img src="assets/logos/hilton.svg" alt="Hilton" style="max-height:30px;width:auto;margin:0 auto;opacity:.6" onerror="this.replaceWith(document.createTextNode('Hilton'))"></div>
+      <div class="brandmark"><img src="assets/logos/hyatt.svg" alt="Hyatt" style="max-height:30px;width:auto;margin:0 auto;opacity:.6" onerror="this.replaceWith(document.createTextNode('Hyatt'))"></div>
+      <div class="brandmark"><img src="assets/logos/radisson.svg" alt="Radisson" style="max-height:30px;width:auto;margin:0 auto;opacity:.6" onerror="this.replaceWith(document.createTextNode('Radisson'))"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 3. CATEGORIES ============ -->
+<section id="categories">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="eyebrow">What we make</p>
+      <h2>Four categories, one brand language</h2>
+      <p>Order one category or the full set — the material, colour and logo treatment
+         stay identical across every piece.</p>
+    </div>
+
+    <div class="cat-grid">
+      <article class="cat">
+        <div class="media-wrap"><img src="assets/cat-check-presenters.jpg" alt="Check presenters" loading="lazy" onerror="this.closest('.media-wrap').classList.add('is-missing')"><svg viewBox="0 0 400 400" role="img" aria-label="Product illustration"><rect width="400" height="400" fill="#F3F5F8"/><rect x="96" y="70" width="208" height="270" rx="6" fill="#0E3E74"/><rect x="96" y="70" width="22" height="270" fill="#032A56"/><g transform="translate(200 210) scale(1.15)"><g opacity=".55"><circle cx="0" cy="0" r="9" fill="none" stroke="#FFFBF7" stroke-width="2"/><path d="M-16 14h32M-11 20h22" stroke="#FFFBF7" stroke-width="2" stroke-linecap="round"/></g></g></svg></div>
+        <div class="cat-body">
+          <h3>Check presenters</h3>
+          <p>Wood, genuine leather or faux leather, with a card pocket, pen loop or clip.</p>
+          <div class="custom-note">Customisation: logo debossed on the cover, or a brass plate.</div>
+          <div class="cat-foot">
+            <span class="price-from">from <b>$5.25</b></span>
+            <a class="cat-link" href="#quote">Get a quote</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="cat">
+        <div class="media-wrap"><img src="assets/cat-menu-covers.jpg" alt="Menu covers" loading="lazy" onerror="this.closest('.media-wrap').classList.add('is-missing')"><svg viewBox="0 0 400 400" role="img" aria-label="Product illustration"><rect width="400" height="400" fill="#F3F5F8"/><rect x="92" y="66" width="216" height="278" rx="6" fill="#032A56"/><rect x="112" y="86" width="176" height="238" rx="4" fill="none" stroke="#FFFBF7" stroke-opacity=".22" stroke-width="3"/><g transform="translate(200 210) scale(1.15)"><g opacity=".55"><circle cx="0" cy="0" r="9" fill="none" stroke="#FFFBF7" stroke-width="2"/><path d="M-16 14h32M-11 20h22" stroke="#FFFBF7" stroke-width="2" stroke-linecap="round"/></g></g></svg></div>
+        <div class="cat-body">
+          <h3>Menu covers</h3>
+          <p>Leather, hardcover, fabric or acrylic — food, drinks and wine formats.</p>
+          <div class="custom-note">Customisation: logo on the cover, your choice of binding and insert count.</div>
+          <div class="cat-foot">
+            <span class="price-from">from <b>$21.53</b></span>
+            <a class="cat-link" href="#quote">Get a quote</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="cat">
+        <div class="media-wrap"><img src="assets/cat-folders.jpg" alt="Folders" loading="lazy" onerror="this.closest('.media-wrap').classList.add('is-missing')"><svg viewBox="0 0 400 400" role="img" aria-label="Product illustration"><rect width="400" height="400" fill="#F3F5F8"/><rect x="86" y="74" width="228" height="262" rx="8" fill="#0E3E74"/><path d="M290 74v262" stroke="#E7E4DD" stroke-width="8"/><g transform="translate(200 210) scale(1.15)"><g opacity=".55"><circle cx="0" cy="0" r="9" fill="none" stroke="#FFFBF7" stroke-width="2"/><path d="M-16 14h32M-11 20h22" stroke="#FFFBF7" stroke-width="2" stroke-linecap="round"/></g></g></svg></div>
+        <div class="cat-body">
+          <h3>Folders</h3>
+          <p>Guest compendiums, welcome packs, in-room directories and conference folders.</p>
+          <div class="custom-note">Customisation: logo plus room number or section tabs.</div>
+          <div class="cat-foot">
+            <span class="price-from">priced per project<!-- TODO before launch: add price --></span>
+            <a class="cat-link" href="#quote">Get a quote</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="cat">
+        <div class="media-wrap"><img src="assets/cat-desk.jpg" alt="Leather desk accessories" loading="lazy" onerror="this.closest('.media-wrap').classList.add('is-missing')"><svg viewBox="0 0 400 400" role="img" aria-label="Product illustration"><rect width="400" height="400" fill="#F3F5F8"/><rect x="70" y="150" width="260" height="150" rx="8" fill="#0E3E74"/><circle cx="200" cy="120" r="26" fill="#032A56"/><rect x="120" y="310" width="160" height="34" rx="6" fill="#032A56"/><g transform="translate(200 225) scale(1.15)"><g opacity=".55"><circle cx="0" cy="0" r="9" fill="none" stroke="#FFFBF7" stroke-width="2"/><path d="M-16 14h32M-11 20h22" stroke="#FFFBF7" stroke-width="2" stroke-linecap="round"/></g></g></svg></div>
+        <div class="cat-body">
+          <h3>Leather desk accessories</h3>
+          <p>Trays, coasters, key tags, room-number tags and reception desk sets.</p>
+          <div class="custom-note">Customisation: matching leather and logo across the whole desk set.</div>
+          <div class="cat-foot">
+            <span class="price-from">priced per project<!-- TODO before launch: add price --></span>
+            <a class="cat-link" href="#quote">Get a quote</a>
+          </div>
+        </div>
+      </article>
+    </div>
+    <p class="eyebrow" style="margin-top:44px">Best sellers</p>
+    <div class="p-grid">
+      <article class="p-card">
+        <div class="media-wrap"><img src="assets/p-r211.jpg" alt="Black Walnut Hardcover Check Presenter (R211)" loading="lazy" onerror="this.closest('.media-wrap').classList.add('is-missing')"><svg viewBox="0 0 400 400" role="img" aria-label="Product illustration"><rect width="400" height="400" fill="#F3F5F8"/><rect x="96" y="70" width="208" height="270" rx="6" fill="#0E3E74"/><rect x="96" y="70" width="22" height="270" fill="#032A56"/><g transform="translate(200 210) scale(1.15)"><g opacity=".55"><circle cx="0" cy="0" r="9" fill="none" stroke="#FFFBF7" stroke-width="2"/><path d="M-16 14h32M-11 20h22" stroke="#FFFBF7" stroke-width="2" stroke-linecap="round"/></g></g></svg></div>
+        <div class="p-body">
+          <p class="p-sku">R211</p>
+          <p class="p-name">Black Walnut Hardcover Check Presenter</p>
+          <p class="p-foot"><span class="p-price">from $14.52</span>
+            <a class="cat-link" href="https://inkohoreca.com/products/wooden-hardcover-bill-holder-r211">View</a></p>
+        </div>
+      </article>
+      <article class="p-card">
+        <div class="media-wrap"><img src="assets/p-lm02a6.jpg" alt="Capri Leather Wine List Cover (LM02A6)" loading="lazy" onerror="this.closest('.media-wrap').classList.add('is-missing')"><svg viewBox="0 0 400 400" role="img" aria-label="Product illustration"><rect width="400" height="400" fill="#F3F5F8"/><rect x="126" y="56" width="148" height="296" rx="6" fill="#0E3E74"/><circle cx="150" cy="110" r="7" fill="#E7E4DD"/><circle cx="150" cy="204" r="7" fill="#E7E4DD"/><circle cx="150" cy="298" r="7" fill="#E7E4DD"/><g transform="translate(200 210) scale(1.15)"><g opacity=".55"><circle cx="0" cy="0" r="9" fill="none" stroke="#FFFBF7" stroke-width="2"/><path d="M-16 14h32M-11 20h22" stroke="#FFFBF7" stroke-width="2" stroke-linecap="round"/></g></g></svg></div>
+        <div class="p-body">
+          <p class="p-sku">LM02A6</p>
+          <p class="p-name">Capri Leather Wine List Cover</p>
+          <p class="p-foot"><span class="p-price">from $18.44</span>
+            <a class="cat-link" href="https://inkohoreca.com/products/leather-menu-cover-capri-lm02a6">View</a></p>
+        </div>
+      </article>
+      <article class="p-card">
+        <div class="media-wrap"><img src="assets/p-lm12a2.jpg" alt="Leather Menu Hardcover, US Letter (LM12A2)" loading="lazy" onerror="this.closest('.media-wrap').classList.add('is-missing')"><svg viewBox="0 0 400 400" role="img" aria-label="Product illustration"><rect width="400" height="400" fill="#F3F5F8"/><rect x="86" y="74" width="228" height="262" rx="8" fill="#0E3E74"/><path d="M290 74v262" stroke="#E7E4DD" stroke-width="8"/><g transform="translate(200 210) scale(1.15)"><g opacity=".55"><circle cx="0" cy="0" r="9" fill="none" stroke="#FFFBF7" stroke-width="2"/><path d="M-16 14h32M-11 20h22" stroke="#FFFBF7" stroke-width="2" stroke-linecap="round"/></g></g></svg></div>
+        <div class="p-body">
+          <p class="p-sku">LM12A2</p>
+          <p class="p-name">Leather Menu Hardcover, US Letter</p>
+          <p class="p-foot"><span class="p-price"><s>$45.00</s> from $39.70</span>
+            <a class="cat-link" href="https://inkohoreca.com/products/leather-menu-hardcover-suitable-for-us-letter">View</a></p>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 4. PRICE BY QUANTITY ============ -->
+<section class="pricing" id="pricing">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="eyebrow">Pricing</p>
+      <h2>The price per piece drops with the quantity</h2>
+      <p>Example: the Black Walnut hardcover check presenter (R211), listed at $14.52 a piece.<!-- TODO before launch: tier prices calculated from the listed price — swap for the live component --></p>
+    </div>
+
+    <div class="tiers">
+      <div class="tier">
+        <div class="qty">1 piece</div>
+        <div class="unit">$14.52</div>
+        <div class="per">per piece</div>
+        <span class="save none">Sample order</span>
+      </div>
+      <div class="tier">
+        <div class="qty">10 pieces</div>
+        <div class="unit">$13.79</div>
+        <div class="per">per piece</div>
+        <span class="save">Save 5%</span>
+      </div>
+      <div class="tier">
+        <div class="qty">25 pieces</div>
+        <div class="unit">$13.07</div>
+        <div class="per">per piece</div>
+        <span class="save">Save 10%</span>
+      </div>
+      <div class="tier best">
+        <div class="qty">50 pieces</div>
+        <div class="unit">$12.34</div>
+        <div class="per">per piece</div>
+        <span class="save">Save 15%</span>
+      </div>
+    </div>
+
+    <div class="price-notes">
+      <div><b>Logo setup +$20</b> per order, not per piece.</div>
+      <div><b>Order over $500 / $1,000 / $1,800</b> — an extra 10% / 15% / 25% off the total.</div>
+      <div><b>More than 50 pieces?</b> Send the volume and we quote it individually.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 5. CASES ============ -->
+<section id="work">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="eyebrow">Selected work</p>
+      <h2>Sets we have produced<!-- TODO before launch: replace with real projects + photos --></h2>
+      <p>Each project started the same way this one will — a quote request, a mockup of
+         your logo on the material, then production.</p>
+    </div>
+
+    <div class="case-grid">
+      <article class="case">
+        <div class="media-wrap"><img src="assets/case-1.jpg" alt="Case photo 1" loading="lazy" onerror="this.closest('.media-wrap').classList.add('is-missing')"><svg viewBox="0 0 600 400" role="img" aria-label="Project 1"><rect width="600" height="400" fill="#0E3E74"/><rect x="170" y="70" width="260" height="260" rx="8" fill="#FFFBF7" fill-opacity=".12"/><g transform="translate(300 200) scale(1.6)"><g opacity=".55"><circle cx="0" cy="0" r="9" fill="none" stroke="#FFFBF7" stroke-width="2"/><path d="M-16 14h32M-11 20h22" stroke="#FFFBF7" stroke-width="2" stroke-linecap="round"/></g></g></svg></div>
+        <div class="case-body">
+          <p class="tag">Boutique hotel</p>
+          <h3>Guest compendiums and key tags in one leather</h3>
+          <p>Room directories, key tags and reception trays produced as a single set.</p>
+          <dl><dt>Volume</dt><dd>120 pcs</dd><dt>Logo</dt><dd>Blind deboss</dd></dl>
+        </div>
+      </article>
+      <article class="case">
+        <div class="media-wrap"><img src="assets/case-2.jpg" alt="Case photo 2" loading="lazy" onerror="this.closest('.media-wrap').classList.add('is-missing')"><svg viewBox="0 0 600 400" role="img" aria-label="Project 2"><rect width="600" height="400" fill="#032A56"/><rect x="170" y="70" width="260" height="260" rx="8" fill="#FFFBF7" fill-opacity=".12"/><g transform="translate(300 200) scale(1.6)"><g opacity=".55"><circle cx="0" cy="0" r="9" fill="none" stroke="#FFFBF7" stroke-width="2"/><path d="M-16 14h32M-11 20h22" stroke="#FFFBF7" stroke-width="2" stroke-linecap="round"/></g></g></svg></div>
+        <div class="case-body">
+          <p class="tag">Fine dining</p>
+          <h3>Menu covers and check presenters, matched</h3>
+          <p>Food and wine covers in the same leather as the presenters.</p>
+          <dl><dt>Volume</dt><dd>60 pcs</dd><dt>Logo</dt><dd>Gold foil</dd></dl>
+        </div>
+      </article>
+      <article class="case">
+        <div class="media-wrap"><img src="assets/case-3.jpg" alt="Case photo 3" loading="lazy" onerror="this.closest('.media-wrap').classList.add('is-missing')"><svg viewBox="0 0 600 400" role="img" aria-label="Project 3"><rect width="600" height="400" fill="#213455"/><rect x="170" y="70" width="260" height="260" rx="8" fill="#FFFBF7" fill-opacity=".12"/><g transform="translate(300 200) scale(1.6)"><g opacity=".55"><circle cx="0" cy="0" r="9" fill="none" stroke="#FFFBF7" stroke-width="2"/><path d="M-16 14h32M-11 20h22" stroke="#FFFBF7" stroke-width="2" stroke-linecap="round"/></g></g></svg></div>
+        <div class="case-body">
+          <p class="tag">Hotel group</p>
+          <h3>One set, four properties</h3>
+          <p>Same construction, a different logo plate per property.</p>
+          <dl><dt>Volume</dt><dd>400 pcs</dd><dt>Logo</dt><dd>Brass plate</dd></dl>
+        </div>
+      </article>
+      <article class="case">
+        <div class="media-wrap"><img src="assets/case-4.jpg" alt="Case photo 4" loading="lazy" onerror="this.closest('.media-wrap').classList.add('is-missing')"><svg viewBox="0 0 600 400" role="img" aria-label="Project 4"><rect width="600" height="400" fill="#0E3E74"/><rect x="170" y="70" width="260" height="260" rx="8" fill="#FFFBF7" fill-opacity=".12"/><g transform="translate(300 200) scale(1.6)"><g opacity=".55"><circle cx="0" cy="0" r="9" fill="none" stroke="#FFFBF7" stroke-width="2"/><path d="M-16 14h32M-11 20h22" stroke="#FFFBF7" stroke-width="2" stroke-linecap="round"/></g></g></svg></div>
+        <div class="case-body">
+          <p class="tag">Cocktail bar</p>
+          <h3>Drinks covers that survive a wet bar</h3>
+          <p>Wipe-clean faux leather, replaceable inserts.</p>
+          <dl><dt>Volume</dt><dd>40 pcs</dd><dt>Logo</dt><dd>Engraved</dd></dl>
+        </div>
+      </article>
+      <article class="case">
+        <div class="media-wrap"><img src="assets/case-5.jpg" alt="Case photo 5" loading="lazy" onerror="this.closest('.media-wrap').classList.add('is-missing')"><svg viewBox="0 0 600 400" role="img" aria-label="Project 5"><rect width="600" height="400" fill="#032A56"/><rect x="170" y="70" width="260" height="260" rx="8" fill="#FFFBF7" fill-opacity=".12"/><g transform="translate(300 200) scale(1.6)"><g opacity=".55"><circle cx="0" cy="0" r="9" fill="none" stroke="#FFFBF7" stroke-width="2"/><path d="M-16 14h32M-11 20h22" stroke="#FFFBF7" stroke-width="2" stroke-linecap="round"/></g></g></svg></div>
+        <div class="case-body">
+          <p class="tag">Resort</p>
+          <h3>Walnut presenters for the terrace restaurant</h3>
+          <p>Wood with a leather pocket, engraved logo.</p>
+          <dl><dt>Volume</dt><dd>90 pcs</dd><dt>Logo</dt><dd>Engraved</dd></dl>
+        </div>
+      </article>
+      <article class="case">
+        <div class="media-wrap"><img src="assets/case-6.jpg" alt="Case photo 6" loading="lazy" onerror="this.closest('.media-wrap').classList.add('is-missing')"><svg viewBox="0 0 600 400" role="img" aria-label="Project 6"><rect width="600" height="400" fill="#213455"/><rect x="170" y="70" width="260" height="260" rx="8" fill="#FFFBF7" fill-opacity=".12"/><g transform="translate(300 200) scale(1.6)"><g opacity=".55"><circle cx="0" cy="0" r="9" fill="none" stroke="#FFFBF7" stroke-width="2"/><path d="M-16 14h32M-11 20h22" stroke="#FFFBF7" stroke-width="2" stroke-linecap="round"/></g></g></svg></div>
+        <div class="case-body">
+          <p class="tag">Café chain</p>
+          <h3>Rollout across 12 locations</h3>
+          <p>Staged delivery from the EU warehouse, one opening at a time.</p>
+          <dl><dt>Volume</dt><dd>240 pcs</dd><dt>Logo</dt><dd>Deboss</dd></dl>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 6. LEAD TIMES & WAREHOUSES ============ -->
+<section class="logistics">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="eyebrow">Production &amp; delivery</p>
+      <h2>Stocked in two continents</h2>
+      <p>In-stock items ship from the warehouse closest to you; branded runs go into production.</p>
+    </div>
+    <div class="log-grid">
+      <div class="log">
+        <h3>In stock</h3>
+        <div class="n">1–4 days</div>
+        <p>Business days in transit for items already on the shelf.</p>
+      </div>
+      <div class="log">
+        <h3>Cut-off</h3>
+        <div class="n">1:00 PM</div>
+        <p>Order by 1 PM (PST in the US, CET in the EU) and it ships the next day.</p>
+      </div>
+      <div class="log">
+        <h3>Branded run</h3>
+        <div class="n">0–0 weeks<!-- TODO before launch: confirm --></div>
+        <p>From approved mockup to dispatch, depending on volume and material.</p>
+      </div>
+      <div class="log">
+        <h3>Warehouses</h3>
+        <div class="n">US &amp; EU</div>
+        <p>Worldwide delivery, with customs handled on our side.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 7. QUOTE FORM ============ -->
+<section class="quote" id="quote">
+  <div class="wrap quote-grid">
+    <div class="quote-aside">
+      <p class="eyebrow">One step</p>
+      <h2>Get a quote</h2>
+      <p class="lede" style="margin-top:14px">
+        No cart and no payment on this page. Tell us the venue, the categories and the
+        rough volume — we come back with a price per piece and a mockup of your logo.
+      </p>
+      <ul>
+        <li>A written quote, usually within one business day</li>
+        <li>A mockup of your logo on the chosen material</li>
+        <li>A sample piece before the full run, on request</li>
+      </ul>
+    </div>
+
+    <form id="quote-form" novalidate>
+      <div class="form-inner">
+        <div class="field">
+          <label for="venue">Type of venue</label>
+          <select id="venue" name="venue" required>
+            <option value="">Select…</option>
+            <option>Hotel</option>
+            <option>Restaurant</option>
+            <option>Café or bar</option>
+            <option>Hotel or restaurant group</option>
+            <option>Other</option>
+          </select>
         </div>
 
-        <p class="xs muted center" style="margin:var(--s4) 0 0">
-          Prefer to browse first?
-          <a href="https://inkohoreca.com/collections/all">See the full catalogue</a>.
-        </p>
+        <div class="field">
+          <label>What do you need? <span class="hint">— pick as many as apply</span></label>
+          <div class="checks">
+            <label class="check"><input type="checkbox" name="category" value="Check presenters"> Check presenters</label>
+            <label class="check"><input type="checkbox" name="category" value="Menu covers"> Menu covers</label>
+            <label class="check"><input type="checkbox" name="category" value="Folders"> Folders</label>
+            <label class="check"><input type="checkbox" name="category" value="Leather desk accessories"> Leather desk accessories</label>
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="volume">Approximate volume <span class="hint">— pieces in total</span></label>
+          <input type="number" id="volume" name="volume" min="1" placeholder="e.g. 50" required>
+        </div>
+
+        <div class="field">
+          <label for="logo">Your logo or a brand reference <span class="hint">— optional</span></label>
+          <input type="file" id="logo" name="logo" accept="image/*,.pdf,.ai,.eps,.svg">
+          <p class="file-note">PDF, SVG, AI, EPS or a photo. Don’t have a file to hand? Skip it — a link to your site works too.</p>
+        </div>
+
+        <div class="two">
+          <div class="field">
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name" required>
+          </div>
+          <div class="field">
+            <label for="email">Work email</label>
+            <input type="email" id="email" name="email" required>
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="msg">Anything else <span class="hint">— optional</span></label>
+          <textarea id="msg" name="msg" placeholder="Deadline, colour, a reference you like…"></textarea>
+        </div>
+
+        <button type="submit" class="btn btn-primary btn-lg btn-block">Get a quote</button>
+        <p class="form-foot">We reply with a price, not a newsletter.</p>
+      </div>
+
+      <div class="thanks">
+        <h3>Request received</h3>
+        <p>We’ll come back with a price per piece and a logo mockup, usually within one business day.</p>
+      </div>
+    </form>
+  </div>
+</section>
+
+<!-- ============ 8. TESTIMONIALS ============ -->
+<section>
+  <div class="wrap">
+    <div class="section-head">
+      <p class="eyebrow">What venues say</p>
+      <h2>Feedback from the floor<!-- TODO before launch: replace with real reviews --></h2>
+    </div>
+    <div class="quotes">
+      <div class="quote-card">
+        <blockquote>“The deboss came out exactly like the mockup. Two years on the floor and the covers still look new.”</blockquote>
+        <cite>The Grand Room</cite>
+        <span class="place">Vienna, AT</span>
+      </div>
+      <div class="quote-card">
+        <blockquote>“We ordered presenters first, then came back for the whole desk set because the leather matched.”</blockquote>
+        <cite>Harbour House Hotel</cite>
+        <span class="place">Boston, US</span>
+      </div>
+      <div class="quote-card">
+        <blockquote>“Staged delivery across our openings was the part nobody else would do.”</blockquote>
+        <cite>Nordbar Group</cite>
+        <span class="place">Copenhagen, DK</span>
       </div>
     </div>
   </div>
 </section>
 
-
-<!-- 10 · plans, extras, checkout -->
-<section class="sec tint">
-  <div class="wrap" style="max-width:var(--narrow)">
-    <h2 class="center">Choose the <em>run size</em></h2>
-    <p class="lede center">Example priced on the Black Walnut check presenter (R211) at $14.52 a
-      piece. Your quote is built the same way on whatever you choose.</p>
-
-    <div class="plans" style="margin-top:var(--s8)">
-      <label class="plan-row">
-        <span class="radio"></span>
-        <span><span class="t">10 pieces <span class="tag">Save 5%</span></span>
-          <span class="sub">$13.79 per piece</span></span>
-        <span class="pr">$138<s>$145</s></span>
-      </label>
-
-      <label class="plan-row">
-        <span class="radio"></span>
-        <span><span class="t">25 pieces <span class="tag">Save 10%</span></span>
-          <span class="sub">$13.07 per piece</span></span>
-        <span class="pr">$327<s>$363</s></span>
-      </label>
-
-      <label class="plan-row is-on">
-        <span class="radio"></span>
-        <span><span class="t">50 pieces <span class="tag">Save 15%</span>
-          <span class="tag tag--best">Best value</span></span>
-          <span class="sub">$12.34 per piece · 30 tables covered twice over</span></span>
-        <span class="pr">$617<s>$726</s></span>
-        <span class="plan-in">
-          <ul>
-            <li><svg viewBox="0 0 24 24"><path d="M4 12.5l5 5L20 6.5"/></svg>15% off the unit price, plus 10% off the total for passing $500</li>
-            <li><svg viewBox="0 0 24 24"><path d="M4 12.5l5 5L20 6.5"/></svg>Logo mockup and one branded sample included</li>
-            <li><svg viewBox="0 0 24 24"><path d="M4 12.5l5 5L20 6.5"/></svg>Ships from the warehouse on your continent</li>
-            <li><svg viewBox="0 0 24 24"><path d="M4 12.5l5 5L20 6.5"/></svg>Re-orders keep the same tooling — no new setup fee</li>
-          </ul>
-        </span>
-      </label>
+<!-- ============ 9. FAQ ============ -->
+<section class="faq" id="faq">
+  <div class="wrap">
+    <div class="section-head" style="margin-left:auto;margin-right:auto;text-align:center">
+      <h2>Common questions</h2>
     </div>
-
-    <p class="field-label">Add the rest of the set</p>
-    <div class="extras">
-      <div class="extra"><span class="ph"><img src="assets/extra-menu-covers.jpg" alt="" loading="lazy" onerror="this.closest('.ph').classList.add('no-photo')"><svg viewBox="0 0 64 64"><rect width="64" height="64" rx="4" fill="#F3F5F8"/><rect x="16" y="10" width="32" height="44" rx="3" fill="#032A56"/><g transform="translate(32 34)" opacity=".6"><circle r="5" fill="none" stroke="#FFFBF7" stroke-width="1.4"/><path d="M-9 8h18M-6 12h12" stroke="#FFFBF7" stroke-width="1.4" stroke-linecap="round"/></g></svg></span>
-        <div><p class="n">Menu covers</p>
-          <p class="d">Same leather, same logo. From $18.44.</p>
-          <button class="add" type="button">+ Add</button></div></div>
-      <div class="extra"><span class="ph"><img src="assets/extra-folders.jpg" alt="" loading="lazy" onerror="this.closest('.ph').classList.add('no-photo')"><svg viewBox="0 0 64 64"><rect width="64" height="64" rx="4" fill="#F3F5F8"/><rect x="16" y="10" width="32" height="44" rx="3" fill="#213455"/><g transform="translate(32 34)" opacity=".6"><circle r="5" fill="none" stroke="#FFFBF7" stroke-width="1.4"/><path d="M-9 8h18M-6 12h12" stroke="#FFFBF7" stroke-width="1.4" stroke-linecap="round"/></g></svg></span>
-        <div><p class="n">Folders &amp; compendiums</p>
-          <p class="d">Guest directories and welcome packs.</p>
-          <button class="add" type="button">+ Add</button></div></div>
-      <div class="extra"><span class="ph"><img src="assets/extra-desk.jpg" alt="" loading="lazy" onerror="this.closest('.ph').classList.add('no-photo')"><svg viewBox="0 0 64 64"><rect width="64" height="64" rx="4" fill="#F3F5F8"/><rect x="16" y="10" width="32" height="44" rx="3" fill="#0E3E74"/><g transform="translate(32 34)" opacity=".6"><circle r="5" fill="none" stroke="#FFFBF7" stroke-width="1.4"/><path d="M-9 8h18M-6 12h12" stroke="#FFFBF7" stroke-width="1.4" stroke-linecap="round"/></g></svg></span>
-        <div><p class="n">Leather desk accessories</p>
-          <p class="d">Trays, coasters, key and room tags.</p>
-          <button class="add" type="button">+ Add</button></div></div>
-      <div class="extra"><span class="ph"><img src="assets/extra-inserts.jpg" alt="" loading="lazy" onerror="this.closest('.ph').classList.add('no-photo')"><svg viewBox="0 0 64 64"><rect width="64" height="64" rx="4" fill="#F3F5F8"/><rect x="16" y="10" width="32" height="44" rx="3" fill="#032A56"/><g transform="translate(32 34)" opacity=".6"><circle r="5" fill="none" stroke="#FFFBF7" stroke-width="1.4"/><path d="M-9 8h18M-6 12h12" stroke="#FFFBF7" stroke-width="1.4" stroke-linecap="round"/></g></svg></span>
-        <div><p class="n">Extra inserts</p>
-          <p class="d">Spare sheets so menus change without new covers.</p>
-          <button class="add" type="button">+ Add</button></div></div>
-    </div>
-
-    <p class="auto-applied">
-      <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 100 20 10 10 0 000-20zm-1 14l-4-4 1.4-1.4L11 13.2l5.6-5.6L18 9z"/></svg>
-      Volume discounts applied automatically
-    </p>
-
-    <a class="btn btn--block" href="https://inkohoreca.com/#quote">Get my quote — no payment on this page</a>
-
-    <div class="pay">
-      <span>Bank transfer</span><span>Card</span><span>PayPal</span><span>Invoice · NET terms</span>
-    </div>
-    <p class="secure">Quote first, invoice second. Nothing is charged from this page.</p>
-
-    <div class="delivery">
-      <svg viewBox="0 0 24 24"><path d="M3 13h13V6H3z"/><path d="M16 9h3.5l1.5 3v4h-5z"/><circle cx="7" cy="17" r="2"/><circle cx="18" cy="17" r="2"/></svg>
-      <p><b>Stock lines arrive in 1–4 business days</b>
-        Shipped from the US or EU warehouse — order before 1 PM PST / CET and stock items leave the
-        next business day. Branded runs are dated in the quote.</p>
-    </div>
-  </div>
-</section>
-
-<!-- 12 · quality trio -->
-<section class="sec">
-  <div class="wrap center" style="max-width:var(--narrow)">
-    <h2>Made to order, <em>checked by hand</em></h2>
-    <div class="trio">
-      <div class="t">
-        <span class="ic"><svg viewBox="0 0 24 24"><path d="M6 20c0-4 2.7-6 6-6s6 2 6 6"/><circle cx="12" cy="7" r="4"/></svg></span>
-        <h3>100% handcrafted</h3>
-        <p class="sm">Cut, stitched and finished by hand rather than pressed out of a machine line.</p>
-      </div>
-      <div class="t">
-        <span class="ic"><svg viewBox="0 0 24 24"><path d="M12 3l8 4.5v9L12 21l-8-4.5v-9z"/><path d="M8.5 12l2.5 2.5 5-5"/></svg></span>
-        <h3>QA on every piece</h3>
-        <p class="sm">Each piece is inspected before it is packed — not sampled per batch.</p>
-      </div>
-      <div class="t">
-        <span class="ic"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M8 12h8M8 15h5"/></svg></span>
-        <h3>Approved before production</h3>
-        <p class="sm">You sign off a mockup of your logo on the chosen material first.</p>
-      </div>
-    </div>
-
-    <!-- 13 · accordion -->
-    <div class="acc" style="text-align:left">
+    <div class="faq-list">
       <details open>
-        <summary><svg viewBox="0 0 24 24"><path d="M4 7h16v10H4z"/><path d="M8 7V5h8v2"/></svg>Why order the categories together?</summary>
-        <p>Because the effect comes from repetition. Menu covers bought in spring from one supplier
-           and presenters bought in autumn from another will not match, and two good browns that
-           differ read worse than one honest black. Ordering together also puts the whole run into
-           one volume band, which is where the price drops.</p>
+        <summary>How is the logo applied?</summary>
+        <p>Blind debossing, engraving, foil stamping or a metal plate — which one works best
+           depends on the material. Send us the file and we show your logo on the chosen
+           material before anything goes into production. Logo setup is $20 per order.</p>
       </details>
       <details>
-        <summary><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 8v5"/></svg>Materials and sizes</summary>
-        <p>Genuine leather, faux leather, wood, veneered HDF, hardcover, fabric and acrylic. Menu
-           formats cover A4, A5, A3 folded, US Letter and Legal; wine and drinks formats are
-           narrower. The Capri leather alone comes in twenty colours.</p>
+        <summary>What materials can I choose from?</summary>
+        <p>Genuine leather, faux leather, wood, hardcover and fabric, plus acrylic on some
+           menu formats. Every piece is handcrafted and checked before it ships.</p>
       </details>
       <details>
-        <summary><svg viewBox="0 0 24 24"><path d="M5 5h14v14H5z"/><path d="M9 12h6"/></svg>How the logo is applied</summary>
-        <p>Blind debossing, engraving, foil stamping or a metal plate — the material decides which
-           reads best. Setup is $20 per order, charged once however many pieces are in the run, and
-           re-orders reuse the same tooling.</p>
+        <summary>Is there a minimum order?</summary>
+        <p>No minimum for stock items, and you can order a single piece as a sample.
+           Branded runs have a minimum that depends on the material — ask in the form and
+           we’ll confirm it with the quote.<!-- TODO before launch: confirm the real MOQ --></p>
       </details>
       <details>
-        <summary><svg viewBox="0 0 24 24"><path d="M3 13h13V6H3z"/><path d="M16 9h3.5l1.5 3v4h-5z"/></svg>Lead times and shipping</summary>
-        <p>Stock lines: 1–4 business days, shipped from the US or EU warehouse, next-day dispatch on
-           orders placed before 1 PM PST / CET. Branded runs take longer and the quote states the
-           exact date rather than a range.</p>
+        <summary>How long does it take?</summary>
+        <p>In-stock items arrive in 1–4 business days; anything ordered before 1 PM
+           (PST in the US, CET in the EU) ships the next day. Branded production runs longer
+           and the quote states the exact date.</p>
+      </details>
+      <details>
+        <summary>Can I see a sample before ordering the full run?</summary>
+        <p>Yes. We produce a single branded piece first so you can check the emboss, the
+           colour and the feel in the room before committing to the volume.</p>
       </details>
     </div>
   </div>
 </section>
 
-<!-- 14 · reviews + projects -->
-<section class="sec reviews-sec">
+<!-- ============ FINAL CTA ============ -->
+<section class="final">
   <div class="wrap">
-    <div class="rv-top">
-      <p class="stars">★★★★★</p>
-      <p class="lbl">Signed by venue and city — in this trade the room is the reference</p>
-      <h2>Rooms already working in <em>one material</em></h2>
-    </div>
-    <!-- TODO before launch: replace all three reviews and five projects with real ones -->
-    <div class="rv-grid">
-      <div class="rv">
-        <p>“<strong>Exactly like the mockup.</strong> Two years on the floor and the covers still
-           close properly. We used to replace ours twice a year.”</p>
-        <p class="sig">The Grand Room — Vienna, AT</p>
-      </div>
-      <div class="rv">
-        <p>“<strong>We came back for the desk set.</strong> Presenters first, then the trays three
-           weeks later, purely because the leather matched what was already on the tables.”</p>
-        <p class="sig">Harbour House Hotel — Boston, US</p>
-      </div>
-      <div class="rv">
-        <p>“<strong>Staged delivery across four openings.</strong> Nobody else would agree to it.
-           Production ran a week longer than we hoped; the result was worth it.”</p>
-        <p class="sig">Nordbar Group — Copenhagen, DK</p>
-      </div>
-    </div>
-    <div class="cases">
-      <div class="case"><span class="ph"><img src="assets/extra-menu-covers.jpg" alt="Project 1" loading="lazy" onerror="this.closest('.ph').classList.add('no-photo')"><svg viewBox="0 0 300 380" role="img" aria-label="Project 1"><rect width="300" height="380" fill="#0E3E74"/><rect x="60" y="70" width="180" height="230" rx="6" fill="#FFFBF7" fill-opacity=".12"/><g transform="translate(150 185)" opacity=".55"><circle r="14" fill="none" stroke="#FFFBF7" stroke-width="2.6"/><path d="M-24 22h48M-16 30h32" stroke="#FFFBF7" stroke-width="2.6" stroke-linecap="round"/></g></svg></span><span class="cap"><b>Boutique hotel</b>120 pcs · blind deboss</span></div>
-      <div class="case"><span class="ph"><img src="assets/extra-folders.jpg" alt="Project 2" loading="lazy" onerror="this.closest('.ph').classList.add('no-photo')"><svg viewBox="0 0 300 380" role="img" aria-label="Project 2"><rect width="300" height="380" fill="#032A56"/><rect x="60" y="70" width="180" height="230" rx="6" fill="#FFFBF7" fill-opacity=".12"/><g transform="translate(150 185)" opacity=".55"><circle r="14" fill="none" stroke="#FFFBF7" stroke-width="2.6"/><path d="M-24 22h48M-16 30h32" stroke="#FFFBF7" stroke-width="2.6" stroke-linecap="round"/></g></svg></span><span class="cap"><b>Fine dining</b>60 pcs · gold foil</span></div>
-      <div class="case"><span class="ph"><img src="assets/extra-desk.jpg" alt="Project 3" loading="lazy" onerror="this.closest('.ph').classList.add('no-photo')"><svg viewBox="0 0 300 380" role="img" aria-label="Project 3"><rect width="300" height="380" fill="#213455"/><rect x="60" y="70" width="180" height="230" rx="6" fill="#FFFBF7" fill-opacity=".12"/><g transform="translate(150 185)" opacity=".55"><circle r="14" fill="none" stroke="#FFFBF7" stroke-width="2.6"/><path d="M-24 22h48M-16 30h32" stroke="#FFFBF7" stroke-width="2.6" stroke-linecap="round"/></g></svg></span><span class="cap"><b>Hotel group</b>400 pcs · metal plate</span></div>
-      <div class="case"><span class="ph"><img src="assets/extra-inserts.jpg" alt="Project 4" loading="lazy" onerror="this.closest('.ph').classList.add('no-photo')"><svg viewBox="0 0 300 380" role="img" aria-label="Project 4"><rect width="300" height="380" fill="#0E3E74"/><rect x="60" y="70" width="180" height="230" rx="6" fill="#FFFBF7" fill-opacity=".12"/><g transform="translate(150 185)" opacity=".55"><circle r="14" fill="none" stroke="#FFFBF7" stroke-width="2.6"/><path d="M-24 22h48M-16 30h32" stroke="#FFFBF7" stroke-width="2.6" stroke-linecap="round"/></g></svg></span><span class="cap"><b>Cocktail bar</b>40 pcs · engraved</span></div>
-      <div class="case"><span class="ph"><img src="assets/case-1.jpg" alt="Project 5" loading="lazy" onerror="this.closest('.ph').classList.add('no-photo')"><svg viewBox="0 0 300 380" role="img" aria-label="Project 5"><rect width="300" height="380" fill="#032A56"/><rect x="60" y="70" width="180" height="230" rx="6" fill="#FFFBF7" fill-opacity=".12"/><g transform="translate(150 185)" opacity=".55"><circle r="14" fill="none" stroke="#FFFBF7" stroke-width="2.6"/><path d="M-24 22h48M-16 30h32" stroke="#FFFBF7" stroke-width="2.6" stroke-linecap="round"/></g></svg></span><span class="cap"><b>Café chain</b>240 pcs · deboss</span></div>
-    </div>
+    <h2>Tell us what your venue needs</h2>
+    <p>One form, one reply: a price per piece and your logo on the material.</p>
+    <a class="btn btn-primary btn-lg" href="#quote" style="background:#fff;color:var(--ink)">Get a quote</a>
   </div>
 </section>
 
-<!-- 15 · us vs them -->
-<section class="sec">
-  <div class="wrap center" style="max-width:var(--narrow)">
-    <h2>A branded set vs <em>off-the-shelf</em></h2>
-    <p class="lede">No claims we cannot put in writing on the quote.</p>
-    <div class="cmp-scroll"><table class="cmp">
-      <thead>
-        <tr>
-          <th></th>
-          <th class="us">Inko HoReCa</th>
-          <th>Off-the-shelf supply</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>Your logo</td>
-          <td class="us"><svg class="yes" viewBox="0 0 24 24"><path d="M12 2a10 10 0 100 20 10 10 0 000-20zm-1 14l-4-4 1.4-1.4L11 13.2l5.6-5.6L18 9z"/></svg>Debossed, engraved, foiled or on a plate</td>
-          <td><svg class="no" viewBox="0 0 24 24"><path d="M12 2a10 10 0 100 20 10 10 0 000-20zm4 13.6L14.6 17 12 14.4 9.4 17 8 15.6 10.6 13 8 10.4 9.4 9l2.6 2.6L14.6 9 16 10.4 13.4 13z"/></svg>Printed on, or none</td>
-        </tr>
-        <tr>
-          <td>Matching across categories</td>
-          <td class="us"><svg class="yes" viewBox="0 0 24 24"><path d="M12 2a10 10 0 100 20 10 10 0 000-20zm-1 14l-4-4 1.4-1.4L11 13.2l5.6-5.6L18 9z"/></svg>One material and colour for the whole room</td>
-          <td><svg class="no" viewBox="0 0 24 24"><path d="M12 2a10 10 0 100 20 10 10 0 000-20zm4 13.6L14.6 17 12 14.4 9.4 17 8 15.6 10.6 13 8 10.4 9.4 9l2.6 2.6L14.6 9 16 10.4 13.4 13z"/></svg>Whatever is in stock that season</td>
-        </tr>
-        <tr>
-          <td>Price at volume</td>
-          <td class="us"><svg class="yes" viewBox="0 0 24 24"><path d="M12 2a10 10 0 100 20 10 10 0 000-20zm-1 14l-4-4 1.4-1.4L11 13.2l5.6-5.6L18 9z"/></svg>5 / 10 / 15% by run, plus up to 25% by order value</td>
-          <td><svg class="no" viewBox="0 0 24 24"><path d="M12 2a10 10 0 100 20 10 10 0 000-20zm4 13.6L14.6 17 12 14.4 9.4 17 8 15.6 10.6 13 8 10.4 9.4 9l2.6 2.6L14.6 9 16 10.4 13.4 13z"/></svg>Flat list price</td>
-        </tr>
-        <tr>
-          <td>Check before committing</td>
-          <td class="us"><svg class="yes" viewBox="0 0 24 24"><path d="M12 2a10 10 0 100 20 10 10 0 000-20zm-1 14l-4-4 1.4-1.4L11 13.2l5.6-5.6L18 9z"/></svg>Logo mockup, then one branded sample</td>
-          <td><svg class="no" viewBox="0 0 24 24"><path d="M12 2a10 10 0 100 20 10 10 0 000-20zm4 13.6L14.6 17 12 14.4 9.4 17 8 15.6 10.6 13 8 10.4 9.4 9l2.6 2.6L14.6 9 16 10.4 13.4 13z"/></svg>A catalogue photo</td>
-        </tr>
-        <tr>
-          <td>Where it ships from</td>
-          <td class="us"><svg class="yes" viewBox="0 0 24 24"><path d="M12 2a10 10 0 100 20 10 10 0 000-20zm-1 14l-4-4 1.4-1.4L11 13.2l5.6-5.6L18 9z"/></svg>US and EU warehouses, 1–4 days on stock</td>
-          <td><svg class="no" viewBox="0 0 24 24"><path d="M12 2a10 10 0 100 20 10 10 0 000-20zm4 13.6L14.6 17 12 14.4 9.4 17 8 15.6 10.6 13 8 10.4 9.4 9l2.6 2.6L14.6 9 16 10.4 13.4 13z"/></svg>One origin, longer transit</td>
-        </tr>
-      </tbody>
-    </table></div>
-  </div>
-</section>
+</main>
 
-<!-- 16 · dark band -->
-<section class="band">
+<footer class="site-foot">
   <div class="wrap">
-    <h2>Ready to outfit the room in your own brand?</h2>
-    <a class="btn" href="https://inkohoreca.com/#quote">Get my quote</a>
-  </div>
-</section>
-
-<!-- 17 · closing quote -->
-<section class="sec">
-  <div class="wrap closer" style="max-width:var(--narrow)">
-    <div class="card">
-      <blockquote>“The check presenter is the final physical object a guest interacts with. Done
-        well, it closes the dining experience with the same intention it opened with.”</blockquote>
-      <p class="sm" style="margin:0"><strong>Inko HoReCa — production desk</strong><br>
-        <a href="https://inkohoreca.com/blogs/blog/check-presenters-bill-folders">Read the full piece</a></p>
-    </div>
-    <div class="shot">
-      <span class="ph"><img src="assets/case-2.jpg" alt="A finished check presenter" loading="lazy" onerror="this.closest('.ph').classList.add('no-photo')"><svg viewBox="0 0 700 560" role="img" aria-label="A finished check presenter">
-        <rect width="700" height="560" fill="#E7E4DD"/>
-        <rect x="140" y="90" width="420" height="380" rx="8" fill="#0E3E74"/>
-        <rect x="176" y="126" width="348" height="308" rx="4" fill="none" stroke="#FFFBF7" stroke-opacity=".22" stroke-width="3"/>
-        <g transform="translate(350 280) scale(2.2)" opacity=".6">
-          <circle r="9" fill="none" stroke="#FFFBF7" stroke-width="2"/>
-          <path d="M-16 14h32M-11 20h22" stroke="#FFFBF7" stroke-width="2" stroke-linecap="round"/>
-        </g>
-      </svg></span>
-    </div>
-  </div>
-</section>
-
-<footer>
-  <div class="wrap">
-    <p>© 2026 Inko HoReCa — custom menu covers, check presenters and leather accessories for
-      hotels, restaurants and cafés.</p>
-    <p>Sources:
-      <a href="https://pos.toasttab.com/blog/on-the-line/8-tips-for-effective-menu-design">Toast — menu design</a> ·
-      <a href="https://www.terraslate.com/blogs/news/cost-comparison-menu-printing-options">TerraSlate — menu printing costs</a> ·
-      <a href="https://inkohoreca.com/blogs/blog/check-presenters-bill-folders">Inko HoReCa — check presenters</a>
-    </p>
-    <p class="disc">
-      Advertorial. Paid content produced by Inko HoReCa. Prices, lead times and discounts shown are
-      indicative and confirmed in writing with your quote.
-      <!-- TODO before launch: legal review; replace product illustrations with photography -->
-    </p>
+    <span>© 2026 Inko Horeca — hospitality supplies for hotels, restaurants and cafés</span>
+    <span><a href="#top">Back to top</a></span>
   </div>
 </footer>
+
+<script>
+// Demo-only handler. Wire the submit to the real endpoint/CRM before launch.
+document.getElementById('quote-form').addEventListener('submit', function (e) {
+  e.preventDefault();
+  var f = e.currentTarget;
+  if (!f.checkValidity()) { f.reportValidity(); return; }
+  f.classList.add('sent');
+  f.scrollIntoView({ behavior: 'smooth', block: 'center' });
+});
+</script>
 </body>
 </html>
