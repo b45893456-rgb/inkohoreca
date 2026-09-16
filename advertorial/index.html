@@ -465,6 +465,42 @@ details p{margin:0;padding:0 var(--spacing-10) var(--spacing-5) 0}
   font-size:var(--text-xs);color:rgb(var(--off-white) / .6);
 }
 
+
+/* media: real image when the file exists, described placeholder until it does */
+.media-wrap{position:relative}
+.media-wrap img{width:100%;height:auto;display:block;border-radius:var(--rounded)}
+.media-wrap .slot{display:none}
+.media-wrap.is-missing img{display:none}
+.media-wrap.is-missing .slot{display:flex}
+
+/* product grid */
+.products{padding-block:var(--spacing-12)}
+.products h2{text-align:center}
+.products .sub-c{text-align:center;max-width:60ch;margin:var(--spacing-2) auto var(--spacing-8)}
+.p-grid{display:grid;gap:var(--grid-gutter)}
+@media screen and (min-width:700px){.p-grid{grid-template-columns:repeat(3,1fr)}}
+.p-card{
+  border:1px solid rgb(var(--text-primary) / .12);border-radius:var(--rounded);
+  background:rgb(var(--background-primary));display:flex;flex-direction:column;overflow:hidden;
+}
+.p-card .media-wrap{border-bottom:1px solid rgb(var(--text-primary) / .12)}
+.p-card .media-wrap img,.p-card .slot{border-radius:0;aspect-ratio:1/1;object-fit:cover}
+.p-body{padding:var(--spacing-4);display:flex;flex-direction:column;flex:1;gap:var(--spacing-2)}
+.p-sku{font-size:var(--text-xs);letter-spacing:.1em;text-transform:uppercase;font-weight:700;
+  color:rgb(var(--text-primary) / .66)}
+.p-name{font-family:var(--heading-font-family);font-weight:600;
+  letter-spacing:var(--heading-letter-spacing);font-size:var(--text-h6);line-height:var(--lh-h6);
+  color:rgb(var(--accent))}
+.p-foot{margin-top:auto;display:flex;align-items:baseline;justify-content:space-between;gap:var(--spacing-2)}
+.p-price{font-family:var(--heading-font-family);font-weight:600;font-size:var(--text-h6);
+  color:rgb(var(--accent))}
+.p-price s{font-weight:400;font-size:var(--text-sm);color:rgb(var(--text-primary) / .66);margin-right:.4em}
+.p-link{font-size:var(--text-sm);font-weight:600}
+.colours{display:flex;flex-wrap:wrap;gap:var(--spacing-1-5);margin-top:var(--spacing-4)}
+.colours span{font-size:var(--text-xs);border:1px solid rgb(var(--text-primary) / .12);
+  border-radius:var(--rounded-full);padding:2px 10px;color:rgb(var(--text-primary) / .8)}
+.brand-row img{max-height:32px;width:auto;margin-inline:auto;filter:grayscale(1);opacity:.6}
+
 /* dev-only marker, removed at launch */
 .demo{
   display:inline-block;font-size:var(--text-xs);font-weight:700;letter-spacing:.06em;
@@ -518,9 +554,7 @@ details p{margin:0;padding:0 var(--spacing-10) var(--spacing-5) 0}
       </div>
 
       <figure class="figure">
-        <div class="slot" style="aspect-ratio:16/9">
-          <span>Hero photo — set table, menu cover and check presenter in the same leather, logo catching the light</span>
-        </div>
+        <div class="media-wrap"><img src="assets/hero-set.jpg" alt="Set table with a menu cover and check presenter in matching leather" loading="lazy" onerror="this.closest('.media-wrap').classList.add('is-missing')"><div class="slot" style="aspect-ratio:16/9"><span>assets/hero-set.jpg — set table, menu cover and check presenter in the same leather</span></div></div>
         <figcaption>The two objects every guest touches, in the same material and the same logo.</figcaption>
       </figure>
     </div>
@@ -619,9 +653,7 @@ details p{margin:0;padding:0 var(--spacing-10) var(--spacing-5) 0}
         ending is not the dessert. It is the bill.
       </p>
       <figure class="figure">
-        <div class="slot" style="aspect-ratio:3/2">
-          <span>Photo — check presenter on the table at the end of service, logo visible</span>
-        </div>
+        <div class="media-wrap"><img src="assets/check-presenter.jpg" alt="Check presenter on the table at the end of service" loading="lazy" onerror="this.closest('.media-wrap').classList.add('is-missing')"><div class="slot" style="aspect-ratio:3/2"><span>assets/check-presenter.jpg — check presenter at the end of service, logo visible</span></div></div>
         <figcaption>The final object of the visit, and the one closest to the moment the tip is decided.</figcaption>
       </figure>
       <p>
@@ -679,9 +711,7 @@ details p{margin:0;padding:0 var(--spacing-10) var(--spacing-5) 0}
         stock and starts being yours.
       </p>
       <figure class="figure">
-        <div class="slot" style="aspect-ratio:3/2">
-          <span>Photo grid — one logo as blind deboss, gold foil, engraving on wood, metal plate</span>
-        </div>
+        <div class="media-wrap"><img src="assets/logo-treatments.jpg" alt="One logo shown as blind deboss, foil, engraving and metal plate" loading="lazy" onerror="this.closest('.media-wrap').classList.add('is-missing')"><div class="slot" style="aspect-ratio:3/2"><span>assets/logo-treatments.jpg — one logo as deboss, foil, engraving, metal plate</span></div></div>
         <figcaption>One logo, four treatments. The material decides which one reads best.</figcaption>
       </figure>
     </div>
@@ -767,12 +797,98 @@ details p{margin:0;padding:0 var(--spacing-10) var(--spacing-5) 0}
       <div class="brands">
         <p class="lbl">Supplying venues of<span class="demo">real SVG logos + permission</span></p>
         <div class="brand-row">
-          <span class="brandmark">Marriott</span>
-          <span class="brandmark">Hilton</span>
-          <span class="brandmark">Hyatt</span>
-          <span class="brandmark">Radisson</span>
+          <span class="brandmark"><img src="assets/logos/marriott.svg" alt="Marriott" onerror="this.replaceWith(document.createTextNode('Marriott'))"></span>
+          <span class="brandmark"><img src="assets/logos/hilton.svg" alt="Hilton" onerror="this.replaceWith(document.createTextNode('Hilton'))"></span>
+          <span class="brandmark"><img src="assets/logos/hyatt.svg" alt="Hyatt" onerror="this.replaceWith(document.createTextNode('Hyatt'))"></span>
+          <span class="brandmark"><img src="assets/logos/radisson.svg" alt="Radisson" onerror="this.replaceWith(document.createTextNode('Radisson'))"></span>
         </div>
       </div>
+    </div>
+  </section>
+
+
+  <!-- ===================== PRODUCTS ===================== -->
+  <section class="products" id="products">
+    <div class="container">
+      <h2 class="h3">What the set is made of</h2>
+      <p class="sub-c">Six of the pieces venues order most often. Every one of them takes your logo,
+        and the price per piece falls with the run.</p>
+      <div class="p-grid">
+        <article class="p-card">
+          <div class="media-wrap"><img src="assets/p-r211.jpg" alt="Black Walnut Hardcover Check Presenter (R211)" loading="lazy" onerror="this.closest('.media-wrap').classList.add('is-missing')"><div class="slot" style="aspect-ratio:1/1"><span>assets/p-r211.jpg — R211 pack shot</span></div></div>
+          <div class="p-body">
+            <p class="p-sku">R211</p>
+            <p class="p-name">Black Walnut Hardcover Check Presenter</p>
+            <p class="p-foot">
+              <span class="p-price">from $14.52</span>
+              <a class="p-link" href="https://inkohoreca.com/products/wooden-hardcover-bill-holder-r211">View</a>
+            </p>
+          </div>
+        </article>
+        <article class="p-card">
+          <div class="media-wrap"><img src="assets/p-lh02.jpg" alt="Basic Leather Check Presenter, two pockets (LH02)" loading="lazy" onerror="this.closest('.media-wrap').classList.add('is-missing')"><div class="slot" style="aspect-ratio:1/1"><span>assets/p-lh02.jpg — LH02 pack shot</span></div></div>
+          <div class="p-body">
+            <p class="p-sku">LH02</p>
+            <p class="p-name">Basic Leather Check Presenter, two pockets</p>
+            <p class="p-foot">
+              <span class="p-price">from $15.91</span>
+              <a class="p-link" href="https://inkohoreca.com/products/leather-bill-holder-lh02">View</a>
+            </p>
+          </div>
+        </article>
+        <article class="p-card">
+          <div class="media-wrap"><img src="assets/p-r201.jpg" alt="Wooden Bill Holder with Binder (R201)" loading="lazy" onerror="this.closest('.media-wrap').classList.add('is-missing')"><div class="slot" style="aspect-ratio:1/1"><span>assets/p-r201.jpg — R201 pack shot</span></div></div>
+          <div class="p-body">
+            <p class="p-sku">R201</p>
+            <p class="p-name">Wooden Bill Holder with Binder</p>
+            <p class="p-foot">
+              <span class="p-price">from $5.25</span>
+              <a class="p-link" href="https://inkohoreca.com/products/wooden-bill-holder-r201">View</a>
+            </p>
+          </div>
+        </article>
+        <article class="p-card">
+          <div class="media-wrap"><img src="assets/p-lm02a6.jpg" alt="Capri Leather Wine List Cover, screw fixing (LM02A6)" loading="lazy" onerror="this.closest('.media-wrap').classList.add('is-missing')"><div class="slot" style="aspect-ratio:1/1"><span>assets/p-lm02a6.jpg — LM02A6 pack shot</span></div></div>
+          <div class="p-body">
+            <p class="p-sku">LM02A6</p>
+            <p class="p-name">Capri Leather Wine List Cover, screw fixing</p>
+            <p class="p-foot">
+              <span class="p-price">from $18.44</span>
+              <a class="p-link" href="https://inkohoreca.com/products/leather-menu-cover-capri-lm02a6">View</a>
+            </p>
+          </div>
+        </article>
+        <article class="p-card">
+          <div class="media-wrap"><img src="assets/p-fm01a4.jpg" alt="Faux Leather Menu Cover, A4 (FM01A4)" loading="lazy" onerror="this.closest('.media-wrap').classList.add('is-missing')"><div class="slot" style="aspect-ratio:1/1"><span>assets/p-fm01a4.jpg — FM01A4 pack shot</span></div></div>
+          <div class="p-body">
+            <p class="p-sku">FM01A4</p>
+            <p class="p-name">Faux Leather Menu Cover, A4</p>
+            <p class="p-foot">
+              <span class="p-price">from $21.53</span>
+              <a class="p-link" href="https://inkohoreca.com/products/faux-leather-menu-cover-fm01a4">View</a>
+            </p>
+          </div>
+        </article>
+        <article class="p-card">
+          <div class="media-wrap"><img src="assets/p-lm12a2.jpg" alt="Leather Menu Hardcover, US Letter (LM12A2)" loading="lazy" onerror="this.closest('.media-wrap').classList.add('is-missing')"><div class="slot" style="aspect-ratio:1/1"><span>assets/p-lm12a2.jpg — LM12A2 pack shot</span></div></div>
+          <div class="p-body">
+            <p class="p-sku">LM12A2</p>
+            <p class="p-name">Leather Menu Hardcover, US Letter</p>
+            <p class="p-foot">
+              <span class="p-price"><s>$45.00</s> from $39.70</span>
+              <a class="p-link" href="https://inkohoreca.com/products/leather-menu-hardcover-suitable-for-us-letter">View</a>
+            </p>
+          </div>
+        </article>
+      </div>
+      <p class="sub-c" style="margin-top:var(--spacing-8);margin-bottom:0">
+        The Capri leather comes in twenty colours, so the set matches the room rather than the catalogue:
+      </p>
+      <p class="colours" style="justify-content:center"><span>Black</span><span>Brown</span><span>Bordeaux</span><span>Tobacco</span><span>Caramel</span><span>Cappuccino</span><span>Rust</span><span>Beet</span><span>Deep Rose</span><span>Red</span><span>Yellow</span><span>Green</span><span>Blue</span><span>Jeans</span><span>Amparo Blue</span><span>Lavender</span><span>Sweet Lilac</span><span>French Grey</span><span>Light Grey</span><span>White</span></p>
+      <p class="offer-foot">
+        <a href="https://inkohoreca.com/collections/all">See all collections</a> ·
+        <a href="https://inkohoreca.com/collections/products-in-stock">In stock now</a>
+      </p>
     </div>
   </section>
 

@@ -1,0 +1,50 @@
+{
+  "_source": "Public product/collection pages of inkohoreca.com, read via search index on 2026-09-16. inkohoreca.com is blocked by this environment's egress policy, so prices were not read from the live page — verify before launch.",
+  "currency": "USD",
+  "rules": {
+    "logo_setup": 20,
+    "order_value_discounts": [
+      { "over": 500, "off": 0.10 },
+      { "over": 1000, "off": 0.15 },
+      { "over": 1800, "off": 0.25 }
+    ],
+    "stock_transit_days": "1-4",
+    "cutoff": "1 PM PST (US) / CET (EU) — ships next business day",
+    "warehouses": ["US", "EU"]
+  },
+  "check_presenters": [
+    { "sku": "R201", "name": "Wooden Bill Holder with Binder", "from": 5.25, "material": "wood", "url": "https://inkohoreca.com/products/wooden-bill-holder-r201" },
+    { "sku": "R202", "name": "Wooden Bill Holder with Rectangular Leather Pocket", "from": 6.08, "material": "wood + leather", "url": "https://inkohoreca.com/products/wooden-bill-holder-r202" },
+    { "sku": "R211", "name": "Black Walnut Hardcover Check Presenter", "from": 14.52, "material": "black walnut", "url": "https://inkohoreca.com/products/wooden-hardcover-bill-holder-r211" },
+    { "sku": "LH02", "name": "Basic Leather Check Presenter, two vertical pockets", "from": 15.91, "material": "genuine leather", "url": "https://inkohoreca.com/products/leather-bill-holder-lh02" },
+    { "sku": "R209", "name": "Wooden Bill Holder with Radiant Pocket (Ontario)", "from": null, "material": "wood", "url": "https://inkohoreca.com/products/wooden-bill-holder-r209" },
+    { "sku": "HDF-OAK", "name": "Veneered HDF Check Presenter with Brass Binder, Light Oak", "from": null, "material": "veneered HDF", "url": "https://inkohoreca.com/products/hdf-check-presenter-binder-light-oak" }
+  ],
+  "menu_covers": [
+    { "sku": "LM02A6", "name": "Capri Basic Leather Wine List Cover, screw fixing", "from": 18.44, "material": "leather", "url": "https://inkohoreca.com/products/leather-menu-cover-capri-lm02a6" },
+    { "sku": "FM01A4", "name": "Faux Leather Menu Cover, A4", "from": 21.53, "material": "faux leather", "url": "https://inkohoreca.com/products/faux-leather-menu-cover-fm01a4" },
+    { "sku": "FM01A6", "name": "Faux Leather Wine List Menu Cover", "from": 27.36, "material": "faux leather", "url": "https://inkohoreca.com/products/faux-leather-menu-cover-fm01a6" },
+    { "sku": "LM12A2", "name": "Leather Menu Hardcover, US Letter", "from": 39.70, "was": 45.00, "material": "leather hardcover", "url": "https://inkohoreca.com/products/leather-menu-hardcover-suitable-for-us-letter" },
+    { "sku": "LM09A4", "name": "Hardcover Leather Menu Cover with Elastic Band, A3 folded", "from": null, "material": "leather hardcover", "url": "https://inkohoreca.com/products/hardcover-leather-cover-lm09a4" }
+  ],
+  "capri_colours": ["Black","Brown","Bordeaux","Tobacco","Caramel","Cappuccino","Rust","Beet","Deep Rose","Red","Yellow","Green","Blue","Jeans","Amparo Blue","Lavender","Sweet Lilac","French Grey","Light Grey","White"],
+  "collections": {
+    "all": "https://inkohoreca.com/collections/all",
+    "check_presenters": "https://inkohoreca.com/collections/check-presenters",
+    "leather_check_presenters": "https://inkohoreca.com/collections/leather-check-presenters",
+    "wooden_check_presenters": "https://inkohoreca.com/collections/wooden-check-presenters",
+    "menu_covers": "https://inkohoreca.com/collections/menu-covers",
+    "leather_menu_covers": "https://inkohoreca.com/collections/leather-menu-covers",
+    "hardcover": "https://inkohoreca.com/collections/hardcover",
+    "wine_menu_covers": "https://inkohoreca.com/collections/wine-menu-covers",
+    "drinks_menu_covers": "https://inkohoreca.com/collections/drinks-menu-covers",
+    "fabric_menu_covers": "https://inkohoreca.com/collections/fabric-menu-covers",
+    "in_stock": "https://inkohoreca.com/collections/products-in-stock",
+    "sets": "https://inkohoreca.com/collections/sets"
+  },
+  "missing": {
+    "prices": ["folders category", "leather desk accessories category", "R209", "HDF-OAK", "LM09A4"],
+    "photos": "all — see assets/MANIFEST.md",
+    "brand_logos": "Marriott / Hilton / Hyatt / Radisson SVGs + written permission to display them"
+  }
+}

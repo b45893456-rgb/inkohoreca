@@ -282,6 +282,23 @@ details p{padding:0 40px 22px 0;margin:0;color:var(--ink-soft);font-size:.97rem}
 .site-foot a{color:rgba(255,251,247,.86);text-decoration:none}
 .site-foot a:hover{color:#fff}
 
+
+.media-wrap{position:relative}
+.media-wrap img{width:100%;height:auto;display:block}
+.media-wrap .slot{display:none}
+.media-wrap.is-missing img{display:none}
+.media-wrap.is-missing .slot{display:flex}
+.p-grid{display:grid;gap:22px;margin-top:26px}
+@media(min-width:640px){.p-grid{grid-template-columns:repeat(3,1fr)}}
+.p-card{border:1px solid var(--line);background:var(--paper);display:flex;flex-direction:column}
+.p-card .media-wrap img,.p-card .slot{aspect-ratio:1/1;object-fit:cover;border:0;border-bottom:1px solid var(--line)}
+.p-body{padding:16px;display:flex;flex-direction:column;gap:6px;flex:1}
+.p-sku{font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;font-weight:700;color:var(--muted)}
+.p-name{font-family:var(--serif);font-weight:600;font-size:1.02rem;line-height:1.3;color:var(--ink)}
+.p-foot{margin-top:auto;display:flex;align-items:baseline;justify-content:space-between;gap:10px}
+.p-price{font-family:var(--serif);font-weight:600;color:var(--ink)}
+.p-price s{font-weight:400;font-size:.85rem;color:var(--muted);margin-right:.4em}
+
 /* demo marker */
 .demo{
   display:inline-block;font-size:.64rem;letter-spacing:.09em;text-transform:uppercase;
@@ -332,9 +349,7 @@ details p{padding:0 40px 22px 0;margin:0;color:var(--ink-soft);font-size:.97rem}
     </div>
 
     <div class="custom-card">
-      <div class="slot" style="aspect-ratio:4/3.2">
-        <span>Photo: check presenter with a debossed logo, shot close on the emboss</span>
-      </div>
+      <div class="media-wrap"><img src="assets/hero-set.jpg" alt="Check presenter with a debossed logo" loading="lazy" onerror="this.closest('.media-wrap').classList.add('is-missing')"><div class="slot" style="aspect-ratio:4/3.2"><span>assets/hero-set.jpg — close on the emboss</span></div></div>
       <div class="custom-opts">
         <div class="opt">
           <div class="k">Material</div>
@@ -342,13 +357,13 @@ details p{padding:0 40px 22px 0;margin:0;color:var(--ink-soft);font-size:.97rem}
         </div>
         <div class="opt">
           <div class="k">Colour</div>
-          <div class="v">12 options<span class="demo">demo</span></div>
+          <div class="v">20 Capri colours</div>
           <div class="swatches">
-            <i class="sw" style="background:#1B1613"></i>
-            <i class="sw" style="background:#5A3F2B"></i>
-            <i class="sw" style="background:#8C2F39"></i>
-            <i class="sw" style="background:#2F4A3C"></i>
-            <i class="sw" style="background:#C9BFAE"></i>
+            <i class="sw" style="background:#1B1613" title="Black"></i>
+            <i class="sw" style="background:#5A3F2B" title="Tobacco"></i>
+            <i class="sw" style="background:#8C2F39" title="Bordeaux"></i>
+            <i class="sw" style="background:#2F4A3C" title="Green"></i>
+            <i class="sw" style="background:#C9BFAE" title="Cappuccino"></i>
           </div>
         </div>
         <div class="opt">
@@ -365,10 +380,10 @@ details p{padding:0 40px 22px 0;margin:0;color:var(--ink-soft);font-size:.97rem}
   <div class="wrap">
     <p class="logos-label">Supplying venues of<span class="demo">replace with real SVG logos</span></p>
     <div class="logos-row">
-      <div class="brandmark">Marriott</div>
-      <div class="brandmark">Hilton</div>
-      <div class="brandmark">Hyatt</div>
-      <div class="brandmark">Radisson</div>
+      <div class="brandmark"><img src="assets/logos/marriott.svg" alt="Marriott" style="max-height:30px;width:auto;margin:0 auto;opacity:.6" onerror="this.replaceWith(document.createTextNode('Marriott'))"></div>
+      <div class="brandmark"><img src="assets/logos/hilton.svg" alt="Hilton" style="max-height:30px;width:auto;margin:0 auto;opacity:.6" onerror="this.replaceWith(document.createTextNode('Hilton'))"></div>
+      <div class="brandmark"><img src="assets/logos/hyatt.svg" alt="Hyatt" style="max-height:30px;width:auto;margin:0 auto;opacity:.6" onerror="this.replaceWith(document.createTextNode('Hyatt'))"></div>
+      <div class="brandmark"><img src="assets/logos/radisson.svg" alt="Radisson" style="max-height:30px;width:auto;margin:0 auto;opacity:.6" onerror="this.replaceWith(document.createTextNode('Radisson'))"></div>
     </div>
   </div>
 </section>
@@ -385,7 +400,7 @@ details p{padding:0 40px 22px 0;margin:0;color:var(--ink-soft);font-size:.97rem}
 
     <div class="cat-grid">
       <article class="cat">
-        <div class="slot" style="aspect-ratio:4/3"><span>Photo: check presenter, leather + wood</span></div>
+        <div class="media-wrap"><img src="assets/cat-check-presenters.jpg" alt="Check presenters" loading="lazy" onerror="this.closest('.media-wrap').classList.add('is-missing')"><div class="slot" style="aspect-ratio:4/3"><span>assets/cat-check-presenters.jpg — check presenter, leather + wood</span></div></div>
         <div class="cat-body">
           <h3>Check presenters</h3>
           <p>Wood, genuine leather or faux leather, with a card pocket, pen loop or clip.</p>
@@ -398,7 +413,7 @@ details p{padding:0 40px 22px 0;margin:0;color:var(--ink-soft);font-size:.97rem}
       </article>
 
       <article class="cat">
-        <div class="slot" style="aspect-ratio:4/3"><span>Photo: open menu cover, screw-post binding</span></div>
+        <div class="media-wrap"><img src="assets/cat-menu-covers.jpg" alt="Menu covers" loading="lazy" onerror="this.closest('.media-wrap').classList.add('is-missing')"><div class="slot" style="aspect-ratio:4/3"><span>assets/cat-menu-covers.jpg — open menu cover, screw-post binding</span></div></div>
         <div class="cat-body">
           <h3>Menu covers</h3>
           <p>Leather, hardcover, fabric or acrylic — food, drinks and wine formats.</p>
@@ -411,28 +426,58 @@ details p{padding:0 40px 22px 0;margin:0;color:var(--ink-soft);font-size:.97rem}
       </article>
 
       <article class="cat">
-        <div class="slot" style="aspect-ratio:4/3"><span>Photo: folder / guest compendium</span></div>
+        <div class="media-wrap"><img src="assets/cat-folders.jpg" alt="Folders" loading="lazy" onerror="this.closest('.media-wrap').classList.add('is-missing')"><div class="slot" style="aspect-ratio:4/3"><span>assets/cat-folders.jpg — folder / guest compendium</span></div></div>
         <div class="cat-body">
           <h3>Folders</h3>
           <p>Guest compendiums, welcome packs, in-room directories and conference folders.</p>
           <div class="custom-note">Customisation: logo plus room number or section tabs.</div>
           <div class="cat-foot">
-            <span class="price-from">from <b>$00</b><span class="demo">price</span></span>
+            <span class="price-from">priced per project<span class="demo">add price</span></span>
             <a class="cat-link" href="#quote">Get a quote</a>
           </div>
         </div>
       </article>
 
       <article class="cat">
-        <div class="slot" style="aspect-ratio:4/3"><span>Photo: desk set — tray, coasters, key tags</span></div>
+        <div class="media-wrap"><img src="assets/cat-desk.jpg" alt="Leather desk accessories" loading="lazy" onerror="this.closest('.media-wrap').classList.add('is-missing')"><div class="slot" style="aspect-ratio:4/3"><span>assets/cat-desk.jpg — desk set — tray, coasters, key tags</span></div></div>
         <div class="cat-body">
           <h3>Leather desk accessories</h3>
           <p>Trays, coasters, key tags, room-number tags and reception desk sets.</p>
           <div class="custom-note">Customisation: matching leather and logo across the whole desk set.</div>
           <div class="cat-foot">
-            <span class="price-from">from <b>$00</b><span class="demo">price</span></span>
+            <span class="price-from">priced per project<span class="demo">add price</span></span>
             <a class="cat-link" href="#quote">Get a quote</a>
           </div>
+        </div>
+      </article>
+    </div>
+    <p class="eyebrow" style="margin-top:44px">Best sellers</p>
+    <div class="p-grid">
+      <article class="p-card">
+        <div class="media-wrap"><img src="assets/p-r211.jpg" alt="Black Walnut Hardcover Check Presenter (R211)" loading="lazy" onerror="this.closest('.media-wrap').classList.add('is-missing')"><div class="slot" style="aspect-ratio:1/1"><span>assets/p-r211.jpg — R211 pack shot</span></div></div>
+        <div class="p-body">
+          <p class="p-sku">R211</p>
+          <p class="p-name">Black Walnut Hardcover Check Presenter</p>
+          <p class="p-foot"><span class="p-price">from $14.52</span>
+            <a class="cat-link" href="https://inkohoreca.com/products/wooden-hardcover-bill-holder-r211">View</a></p>
+        </div>
+      </article>
+      <article class="p-card">
+        <div class="media-wrap"><img src="assets/p-lm02a6.jpg" alt="Capri Leather Wine List Cover (LM02A6)" loading="lazy" onerror="this.closest('.media-wrap').classList.add('is-missing')"><div class="slot" style="aspect-ratio:1/1"><span>assets/p-lm02a6.jpg — LM02A6 pack shot</span></div></div>
+        <div class="p-body">
+          <p class="p-sku">LM02A6</p>
+          <p class="p-name">Capri Leather Wine List Cover</p>
+          <p class="p-foot"><span class="p-price">from $18.44</span>
+            <a class="cat-link" href="https://inkohoreca.com/products/leather-menu-cover-capri-lm02a6">View</a></p>
+        </div>
+      </article>
+      <article class="p-card">
+        <div class="media-wrap"><img src="assets/p-lm12a2.jpg" alt="Leather Menu Hardcover, US Letter (LM12A2)" loading="lazy" onerror="this.closest('.media-wrap').classList.add('is-missing')"><div class="slot" style="aspect-ratio:1/1"><span>assets/p-lm12a2.jpg — LM12A2 pack shot</span></div></div>
+        <div class="p-body">
+          <p class="p-sku">LM12A2</p>
+          <p class="p-name">Leather Menu Hardcover, US Letter</p>
+          <p class="p-foot"><span class="p-price"><s>$45.00</s> from $39.70</span>
+            <a class="cat-link" href="https://inkohoreca.com/products/leather-menu-hardcover-suitable-for-us-letter">View</a></p>
         </div>
       </article>
     </div>
@@ -495,7 +540,7 @@ details p{padding:0 40px 22px 0;margin:0;color:var(--ink-soft);font-size:.97rem}
 
     <div class="case-grid">
       <article class="case">
-        <div class="slot" style="aspect-ratio:3/2"><span>Case photo 1</span></div>
+        <div class="media-wrap"><img src="assets/case-1.jpg" alt="Case photo 1" loading="lazy" onerror="this.closest('.media-wrap').classList.add('is-missing')"><div class="slot" style="aspect-ratio:3/2"><span>assets/case-1.jpg</span></div></div>
         <div class="case-body">
           <p class="tag">Boutique hotel</p>
           <h3>Guest compendiums and key tags in one leather</h3>
@@ -504,7 +549,7 @@ details p{padding:0 40px 22px 0;margin:0;color:var(--ink-soft);font-size:.97rem}
         </div>
       </article>
       <article class="case">
-        <div class="slot" style="aspect-ratio:3/2"><span>Case photo 2</span></div>
+        <div class="media-wrap"><img src="assets/case-2.jpg" alt="Case photo 2" loading="lazy" onerror="this.closest('.media-wrap').classList.add('is-missing')"><div class="slot" style="aspect-ratio:3/2"><span>assets/case-2.jpg</span></div></div>
         <div class="case-body">
           <p class="tag">Fine dining</p>
           <h3>Menu covers and check presenters, matched</h3>
@@ -513,7 +558,7 @@ details p{padding:0 40px 22px 0;margin:0;color:var(--ink-soft);font-size:.97rem}
         </div>
       </article>
       <article class="case">
-        <div class="slot" style="aspect-ratio:3/2"><span>Case photo 3</span></div>
+        <div class="media-wrap"><img src="assets/case-3.jpg" alt="Case photo 3" loading="lazy" onerror="this.closest('.media-wrap').classList.add('is-missing')"><div class="slot" style="aspect-ratio:3/2"><span>assets/case-3.jpg</span></div></div>
         <div class="case-body">
           <p class="tag">Hotel group</p>
           <h3>One set, four properties</h3>
@@ -522,7 +567,7 @@ details p{padding:0 40px 22px 0;margin:0;color:var(--ink-soft);font-size:.97rem}
         </div>
       </article>
       <article class="case">
-        <div class="slot" style="aspect-ratio:3/2"><span>Case photo 4</span></div>
+        <div class="media-wrap"><img src="assets/case-4.jpg" alt="Case photo 4" loading="lazy" onerror="this.closest('.media-wrap').classList.add('is-missing')"><div class="slot" style="aspect-ratio:3/2"><span>assets/case-4.jpg</span></div></div>
         <div class="case-body">
           <p class="tag">Cocktail bar</p>
           <h3>Drinks covers that survive a wet bar</h3>
@@ -531,7 +576,7 @@ details p{padding:0 40px 22px 0;margin:0;color:var(--ink-soft);font-size:.97rem}
         </div>
       </article>
       <article class="case">
-        <div class="slot" style="aspect-ratio:3/2"><span>Case photo 5</span></div>
+        <div class="media-wrap"><img src="assets/case-5.jpg" alt="Case photo 5" loading="lazy" onerror="this.closest('.media-wrap').classList.add('is-missing')"><div class="slot" style="aspect-ratio:3/2"><span>assets/case-5.jpg</span></div></div>
         <div class="case-body">
           <p class="tag">Resort</p>
           <h3>Walnut presenters for the terrace restaurant</h3>
@@ -540,7 +585,7 @@ details p{padding:0 40px 22px 0;margin:0;color:var(--ink-soft);font-size:.97rem}
         </div>
       </article>
       <article class="case">
-        <div class="slot" style="aspect-ratio:3/2"><span>Case photo 6</span></div>
+        <div class="media-wrap"><img src="assets/case-6.jpg" alt="Case photo 6" loading="lazy" onerror="this.closest('.media-wrap').classList.add('is-missing')"><div class="slot" style="aspect-ratio:3/2"><span>assets/case-6.jpg</span></div></div>
         <div class="case-body">
           <p class="tag">Café chain</p>
           <h3>Rollout across 12 locations</h3>
