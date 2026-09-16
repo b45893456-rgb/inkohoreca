@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<!--
+  Advertorial — Inko HoReCa
+  Step 5 of the listicle framework. Editorial layout: article column, byline,
+  no CTA button before the Star Offer, exactly one CTA at the end.
+  Palette and type roles from Brand & UI Guideline v1.0; display face and the
+  pill/rounded treatment follow the reference the client approved.
+-->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Your guests decide what your food is worth in five seconds</title>
+<meta name="description" content="Three to five seconds is the whole window a guest spends forming an impression of your menu. Why rooms that cost a fortune still read as unfinished — and what operators do about it.">
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,400;1,9..144,600&family=Jost:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#0E3E74; --navy-deep:#032A56; --ink:#262626; --body:#3F3F3F; --mute:#8A8A8A;
+  --line:#E6E3DE; --sand:#EFEBE4; --cloud:#F5F7FB; --amber:#D9941A; --white:#fff;
+  --display:"Fraunces",Georgia,serif; --sans:"Jost",-apple-system,"Segoe UI",sans-serif;
+  --col:680px; --gut:20px;
+}
+@media(min-width:768px){:root{--gut:32px}}
+*{box-sizing:border-box}
+html,body{max-width:100%;overflow-x:hidden}
+body{margin:0;background:var(--white);color:var(--body);font-family:var(--sans);
+  font-size:19px;line-height:1.72;-webkit-font-smoothing:antialiased}
+img{max-width:100%;display:block}
+a{color:var(--navy)}
+.col{max-width:var(--col);margin-inline:auto;padding-inline:var(--gut)}
+.wide{max-width:1040px;margin-inline:auto;padding-inline:var(--gut)}
+h1,h2{margin:0;font-family:var(--display);color:var(--ink);font-weight:600;letter-spacing:-.015em}
+h1{font-size:clamp(2.1rem,5.6vw,3.4rem);line-height:1.08}
+h2{font-size:clamp(1.5rem,3.4vw,2rem);line-height:1.15;margin:56px 0 18px}
+h1 em,h2 em{font-style:italic;color:var(--navy)}
+p{margin:0 0 1.15em}
+strong{color:var(--ink);font-weight:600}
+
+/* masthead — deliberately quiet, this is a publication bar, not a nav */
+.masthead{border-bottom:1px solid var(--line)}
+.masthead .wide{display:flex;align-items:center;justify-content:space-between;height:64px;gap:16px}
+.pub{font-family:var(--display);font-size:1.2rem;font-weight:700;color:var(--ink);text-decoration:none}
+.pub span{color:var(--navy)}
+.desk{font-size:.82rem;letter-spacing:.14em;text-transform:uppercase;color:var(--mute)}
+
+.head{padding-top:clamp(36px,5vw,64px)}
+.kicker{font-size:.78rem;letter-spacing:.16em;text-transform:uppercase;color:var(--navy);
+  font-weight:600;margin:0 0 16px}
+.dek{font-family:var(--display);font-size:clamp(1.15rem,2.2vw,1.45rem);line-height:1.45;
+  color:var(--body);margin:20px 0 0;font-weight:400}
+.byline{display:flex;align-items:center;gap:13px;margin:30px 0 0;padding:18px 0;
+  border-top:1px solid var(--line);border-bottom:1px solid var(--line);font-size:.93rem}
+.avatar{width:42px;height:42px;flex:none;border-radius:999px;background:var(--cloud);
+  display:flex;align-items:center;justify-content:center;font-family:var(--display);
+  font-weight:700;color:var(--navy);font-size:.85rem}
+.byline b{color:var(--ink);font-weight:600}
+.byline .meta{color:var(--mute)}
+
+figure{margin:30px 0 34px}
+figure img{width:100%;border-radius:10px;background:var(--cloud)}
+figcaption{font-size:.85rem;color:var(--mute);margin-top:10px;line-height:1.5}
+.trustline{font-size:.88rem;color:var(--mute);margin:0 0 8px}
+
+.lead:first-letter{float:left;font-family:var(--display);font-size:3.4rem;line-height:.84;
+  font-weight:600;margin:.06em .1em 0 0;color:var(--navy)}
+.pull{font-family:var(--display);font-size:clamp(1.35rem,3vw,1.7rem);line-height:1.34;
+  color:var(--ink);font-weight:600;margin:38px 0;padding-left:22px;border-left:3px solid var(--navy)}
+.pull em{font-style:italic;color:var(--navy)}
+
+/* credibility — a panel, not a banner */
+.panel{background:var(--cloud);border-radius:12px;padding:28px 26px;margin:38px 0}
+.panel h3{margin:0 0 14px;font-family:var(--display);font-size:1.2rem;color:var(--ink);font-weight:600}
+.panel ul{margin:0;padding-left:20px}
+.panel li{margin-bottom:8px;font-size:1rem}
+.demo{display:block;margin-top:16px;padding:12px 14px;border-radius:8px;
+  background:#FBF0DA;color:#6B4A0B;font-size:.88rem;line-height:1.5}
+
+/* social trust */
+.cards{display:grid;gap:18px;margin:26px 0 0}
+@media(min-width:680px){.cards{grid-template-columns:repeat(3,minmax(0,1fr))}}
+.card{border-top:2px solid var(--ink);padding-top:16px}
+.card p{font-family:var(--display);font-size:1.02rem;line-height:1.5;color:var(--ink)}
+.card cite{font-style:normal;font-size:.88rem;font-weight:600;color:var(--ink);display:block}
+.card .where{font-size:.85rem;color:var(--mute)}
+table{width:100%;border-collapse:collapse;margin:26px 0 0;font-size:.95rem}
+th,td{text-align:left;padding:13px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+thead th{font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;color:var(--mute);font-weight:600}
+td:first-child{font-weight:600;color:var(--ink)}
+.tbl-scroll{overflow-x:auto}
+
+/* star offer — the one place allowed to look like an offer */
+.offer{background:var(--sand);margin-top:64px;padding:clamp(40px,6vw,72px) 0}
+.offer .box{background:var(--white);border-radius:14px;padding:clamp(26px,4vw,44px)}
+.offer h2{margin-top:0}
+.pricepair{display:grid;gap:18px;margin:26px 0}
+@media(min-width:620px){.pricepair{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.pack{border:1px solid var(--line);border-radius:12px;padding:20px;text-align:center}
+.pack.best{border:2px solid var(--navy)}
+.pack img{border-radius:8px;margin-bottom:14px;aspect-ratio:1/1;object-fit:cover;width:100%;background:var(--cloud)}
+.pack .n{font-family:var(--display);font-weight:600;font-size:1.1rem;color:var(--ink)}
+.pack .p{font-family:var(--display);font-size:1.9rem;font-weight:700;color:var(--navy);margin:6px 0 2px}
+.pack .d{font-size:.9rem;color:var(--mute)}
+.flag{display:inline-block;background:var(--amber);color:#000;font-size:.7rem;font-weight:600;
+  letter-spacing:.08em;text-transform:uppercase;padding:3px 10px;border-radius:999px;margin-bottom:10px}
+.cta{display:block;width:100%;text-align:center;background:var(--navy);color:#fff;
+  font-family:var(--sans);font-size:1.08rem;font-weight:600;padding:19px 34px;border-radius:999px;
+  text-decoration:none;margin-top:10px}
+@media(pointer:fine){.cta:hover{opacity:.9}}
+.undercta{text-align:center;font-size:.9rem;color:var(--mute);margin:14px 0 0}
+.range{font-size:.97rem;margin-top:22px;padding-top:20px;border-top:1px solid var(--line)}
+
+footer{padding:44px 0 60px;font-size:.87rem;color:var(--mute)}
+footer a{color:var(--mute)}
+footer .rule{border-top:1px solid var(--line);padding-top:20px}
+@media(prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+
+<div class="masthead">
+  <div class="wide">
+    <a class="pub" href="https://inkohoreca.com/">Inko<span>HoReCa</span></a>
+    <span class="desk">Hospitality Desk</span>
+  </div>
+</div>
+
+<article>
+  <header class="head">
+    <div class="col">
+      <p class="kicker">Front of house</p>
+      <h1>Your guests decide what your food is worth in <em>five seconds</em> — holding the one thing in the room that never went through a designer</h1>
+      <p class="dek">Every surface was chosen twice. The lighting was argued over. Then the menus
+        were ordered in the last week before opening, from a catalogue, in whatever was in stock.
+        Here is what that costs you.</p>
+
+      <div class="byline">
+        <span class="avatar">IH</span>
+        <span>
+          <b>Inko HoReCa · Hospitality Desk</b><br>
+          <span class="meta">7 min read · September 2026</span>
+        </span>
+      </div>
+
+      <figure>
+        <img src="https://cdn.shopify.com/s/files/1/0690/1406/1371/files/hardcover-leather-menu-holder-with-screws-and-corner-fixings-suitable-for-custom-sheets-lm10a6folder-9779347.webp?v=1762648601" alt="A leather menu cover with screw and corner fixings on a table">
+        <figcaption>The object a guest holds longer than they look at anything else in the room.</figcaption>
+      </figure>
+
+      <p class="trustline">Inko HoReCa supplies hotels, restaurants and cafés across the US and EU —
+        250+ pieces in the catalogue, 177 of them made to your brand.</p>
+    </div>
+  </header>
+
+  <div class="col">
+    <p class="lead">Three to five seconds. That is the entire window a guest spends forming an
+      impression of your menu before reading a single word of it. Not the dish descriptions.
+      The object.</p>
+
+    <p>And the conclusion they draw is not about typography. Research on menu design is blunt about
+      it: <strong>when guests perceive the menu as thoughtful and polished, they assume the same level
+      of care applies to your food and service.</strong> The reverse is just as automatic. A curled
+      insert and a glossy plastic seam are read as a statement about the kitchen — by someone who has
+      not met your kitchen yet.</p>
+
+    <p>This is why two rooms serving near-identical plates can charge very differently. Branding is
+      what decides whether a guest sees a $9 meal or an $18 experience. Consistency across what a
+      guest sees and touches has been linked to revenue lifts of <strong>up to 23%</strong>.</p>
+
+    <h2>So why does this keep happening to rooms that <em>clearly cost money?</em></h2>
+
+    <p>Because of one quiet assumption: that menus, check folders and table pieces are
+      <em>supplies</em>. They go on the same order as napkins and till roll. Bought late, bought from
+      a catalogue, bought in whatever finish was in stock — by which time the designer has gone
+      home.</p>
+
+    <p class="pull">Everything else in the room was designed. And then the single object the guest
+      physically <em>holds</em> was ordered from a list.</p>
+
+    <figure>
+      <img src="https://cdn.shopify.com/s/files/1/0690/1406/1371/files/custom-luxe-leather-menu-cover-with-massive-embossingfolder-117483.webp?v=1747803650" alt="A leather menu cover with a debossed logo">
+      <figcaption>Fine dining quietly abandoned lamination — not for durability, but for the glossy
+        finish and the plastic edge seam.</figcaption>
+    </figure>
+
+    <p>Those two details are doing more pricing work than most operators realise. The gap is not your
+      room. Your room is fine. The gap is the last 5% — the part of the brand that leaves the wall
+      and lands in someone's hands.</p>
+
+    <p><em>If you would rather feel the materials than read about them, there is a sample box at the
+      end of this piece.</em></p>
+
+    <h2>“Custom” is where most owners <em>stop reading</em></h2>
+
+    <p>It sounds like a six-week project, a designer, a minimum order and a deposit before you see
+      anything. That reputation was earned honestly — it is how this category used to work.</p>
+
+    <p>It is not how it works now. On Inko's catalogue, personalisation is not a project.
+      <strong>It is an option you choose, like a size.</strong></p>
+
+    <div class="panel">
+      <h3>What is actually configurable before anything is made</h3>
+      <ul>
+        <li><strong>Debossing</strong> — Blind, Gold, Copper, Black or Silver</li>
+        <li><strong>Engraving</strong> — six colours</li>
+        <li><strong>Materials</strong> — genuine leather, faux leather, wood, fabric, hardcover, acrylic</li>
+        <li><strong>Build</strong> — paper weight 130 / 200 / 300 gsm, 1 to 12 sheets in the menu</li>
+        <li>Some pieces carry <strong>up to 250 configurations</strong> before anything is made to order</li>
+      </ul>
+      <p style="margin:14px 0 0">177 pieces in the catalogue are made to your brand. Not adapted to
+        it — <strong>made</strong> to it.</p>
+      <span class="demo"><strong>ДЕМО — замінити перед запуском.</strong> Production lead time for a
+        branded run: [N] business days from approved artwork to dispatch. Minimum order: [MOQ].</span>
+    </div>
+
+    <h2>What venues say</h2>
+    <p class="demo" style="display:block"><strong>ДЕМО — замінити перед запуском.</strong> Три
+      реальні відгуки, підпис — назва закладу і місто.</p>
+    <div class="cards">
+      <div class="card">
+        <p>“[Відгук 1 — що змінилось, а не «сподобалось».]”</p>
+        <cite>[Заклад]</cite><span class="where">[Місто]</span>
+      </div>
+      <div class="card">
+        <p>“[Відгук 2.]”</p>
+        <cite>[Заклад]</cite><span class="where">[Місто]</span>
+      </div>
+      <div class="card">
+        <p>“[Відгук 3.]”</p>
+        <cite>[Заклад]</cite><span class="where">[Місто]</span>
+      </div>
+    </div>
+
+    <div class="tbl-scroll">
+      <table>
+        <thead><tr><th></th><th>A catalogue order</th><th>A branded set</th></tr></thead>
+        <tbody>
+          <tr><td>Your logo</td><td>printed on, or absent</td><td>debossed, engraved or foiled into the material</td></tr>
+          <tr><td>Across categories</td><td>whatever was in stock that season</td><td>one material and finish across the room</td></tr>
+          <tr><td>Before you commit</td><td>a photograph</td><td>the material in your hand</td></tr>
+          <tr><td>When it wears</td><td>replaced</td><td>re-ordered in the same spec</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- ===== STAR OFFER — the only block allowed to look like an offer ===== -->
+  <section class="offer">
+    <div class="col">
+      <div class="box">
+        <h2 style="margin-top:0">Before you order anything, order the thing that <em>ends the argument</em></h2>
+        <p>The objection nobody says out loud is <em>“I won't know how it looks until it arrives.”</em>
+          So start there.</p>
+
+        <div class="pricepair">
+          <div class="pack">
+            <img src="https://cdn.shopify.com/s/files/1/0690/1406/1371/files/leather-small-sample-box-5750490.webp?v=1760726501" alt="Leather Small Sample Box">
+            <div class="n">The Sample Box</div>
+            <div class="p">$20.60</div>
+            <div class="d">Leather, Faux Leather, Fabric or Wooden. A folder finished the way your run
+              would be, samples of every material, and a piece of Inko merchandise.</div>
+          </div>
+          <div class="pack best">
+            <span class="flag">Full range</span>
+            <img src="https://cdn.shopify.com/s/files/1/0690/1406/1371/files/large-sample-box-4214216.webp?v=1760726500" alt="Large Sample Box">
+            <div class="n">The Large Sample Box</div>
+            <div class="p">$41.20</div>
+            <div class="d">Genuine leather, wooden finishes, fabric swatches, faux leather and premium
+              samples of the menu covers themselves.</div>
+          </div>
+        </div>
+
+        <p>Put it on a table in your own light, next to your own plates. That is a test no catalogue
+          photograph passes or fails honestly.</p>
+
+        <p>If you are opening, rebranding or reprinting the menu this season — order the box before
+          you sign off the room, not after.</p>
+
+        <a class="cta" href="https://inkohoreca.com/products/large-sample-box">Order the sample box →</a>
+        <p class="undercta">250+ pieces in the catalogue · 177 made to your brand · Ships from the US &amp; EU</p>
+
+        <p class="range">Then the rest is ordinary: menu covers from <strong>$10.82</strong>, waiter
+          notebooks from <strong>$15.40</strong>, table and QR stands from <strong>$8.14</strong>,
+          leather desk sets from <strong>$7.83</strong>.</p>
+        <span class="demo"><strong>ДЕМО — замінити перед запуском.</strong> Гарантія / повернення —
+          точне формулювання зі сторінки.</span>
+      </div>
+    </div>
+  </section>
+</article>
+
+<footer>
+  <div class="col rule">
+    <p>Sources referenced: menu design research (Toast), restaurant branding and price perception
+      (ezCater, Tablein), menu material comparison (TerraSlate), check presenters and the final
+      impression (Inko HoReCa).</p>
+    <p>© 2026 Inko HoReCa · <a href="https://inkohoreca.com/">inkohoreca.com</a></p>
+    <!-- Sponsored / Advertisement label is NOT added by default — see the note in chat.
+         To enable, uncomment:
+    <p style="font-weight:600;color:#262626">Advertisement — paid content by Inko HoReCa.</p>
+    -->
+  </div>
+</footer>
+</body>
+</html>
