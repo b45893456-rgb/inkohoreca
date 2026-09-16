@@ -480,6 +480,12 @@ details p{margin:0;padding:0 var(--spacing-10) var(--spacing-5) 0}
 
 
 .art{width:100%;height:auto;display:block;border-radius:var(--rounded)}
+.ph{position:relative;display:block}
+.ph>img{width:100%;height:auto;display:block;border-radius:var(--rounded)}
+.ph>svg{display:none}
+.ph.no-photo>img{display:none}
+.ph.no-photo>svg{display:block}
+.p-card .ph>img{border-radius:0;aspect-ratio:1/1;object-fit:cover}
 .p-card .art{border-radius:0}
 .wordmark{width:100%;max-width:200px;height:auto;margin-inline:auto;display:block}
 .media-wrap{position:relative}
@@ -534,7 +540,7 @@ details p{margin:0;padding:0 var(--spacing-10) var(--spacing-5) 0}
       </div>
 
       <figure class="figure">
-        <div class="media-wrap"><svg class="art" viewBox="0 0 1600 900" role="img" aria-label="A set table with a menu cover and a check presenter in matching leather">
+        <div class="media-wrap"><span class="ph"><img src="assets/hero-set.jpg" alt="A set table with a menu cover and a check presenter in matching leather" loading="lazy" onerror="this.closest('.ph').classList.add('no-photo')"><svg class="art" viewBox="0 0 1600 900" role="img" aria-label="A set table with a menu cover and a check presenter in matching leather">
 <rect width="1600" height="900" fill="#F3F5F8"/>
 <rect y="560" width="1600" height="340" fill="#E7E4DD"/>
 <path d="M0 560h1600" stroke="#333" stroke-opacity=".12"/>
@@ -561,7 +567,7 @@ details p{margin:0;padding:0 var(--spacing-10) var(--spacing-5) 0}
 </g>
 <ellipse cx="880" cy="680" rx="150" ry="42" fill="#FFFFFF"/>
 <ellipse cx="880" cy="680" rx="98" ry="27" fill="none" stroke="#333" stroke-opacity=".12" stroke-width="2"/>
-</svg></div>
+</svg></span></div>
         <figcaption>The two objects every guest touches, in the same material and the same logo.</figcaption>
       </figure>
     </div>
@@ -660,7 +666,7 @@ details p{margin:0;padding:0 var(--spacing-10) var(--spacing-5) 0}
         ending is not the dessert. It is the bill.
       </p>
       <figure class="figure">
-        <div class="media-wrap"><svg class="art" viewBox="0 0 1200 800" role="img" aria-label="A check presenter on the table at the end of service, the logo visible">
+        <div class="media-wrap"><span class="ph"><img src="assets/check-presenter.jpg" alt="A check presenter on the table at the end of service, the logo visible" loading="lazy" onerror="this.closest('.ph').classList.add('no-photo')"><svg class="art" viewBox="0 0 1200 800" role="img" aria-label="A check presenter on the table at the end of service, the logo visible">
 <rect width="1200" height="800" fill="#E7E4DD"/>
 <g transform="translate(210 180)">
   <rect width="780" height="470" rx="10" fill="#0E3E74"/>
@@ -671,7 +677,7 @@ details p{margin:0;padding:0 var(--spacing-10) var(--spacing-5) 0}
 <g transform="rotate(-6 640 560)" stroke="#0E3E74" stroke-opacity=".3" stroke-width="6" stroke-linecap="round">
   <path d="M680 600h230M680 630h190M680 660h150M680 700h100"/>
 </g>
-</svg></div>
+</svg></span></div>
         <figcaption>The final object of the visit, and the one closest to the moment the tip is decided.</figcaption>
       </figure>
       <p>
@@ -729,7 +735,7 @@ details p{margin:0;padding:0 var(--spacing-10) var(--spacing-5) 0}
         stock and starts being yours.
       </p>
       <figure class="figure">
-        <div class="media-wrap"><svg class="art" viewBox="0 0 1200 800" role="img" aria-label="One logo shown as a blind deboss, foil, engraving and a metal plate">
+        <div class="media-wrap"><span class="ph"><img src="assets/logo-treatments.jpg" alt="One logo shown as a blind deboss, foil, engraving and a metal plate" loading="lazy" onerror="this.closest('.ph').classList.add('no-photo')"><svg class="art" viewBox="0 0 1200 800" role="img" aria-label="One logo shown as a blind deboss, foil, engraving and a metal plate">
 <rect width="1200" height="800" fill="#F3F5F8"/><g transform="translate(30 40)">
   <rect width="540" height="340" rx="8" fill="#0E3E74"/><g transform="translate(270 150) scale(2.4)"><g opacity=".38"><circle r="9" fill="none" stroke="#FFFBF7" stroke-width="2"/><path d="M-16 14h32M-11 20h22" stroke="#FFFBF7" stroke-width="2" stroke-linecap="round"/></g></g>
   <text x="270" y="300" text-anchor="middle" fill="#FFFBF7" fill-opacity=".8"
@@ -742,7 +748,7 @@ details p{margin:0;padding:0 var(--spacing-10) var(--spacing-5) 0}
     font-family="Jost, sans-serif" font-size="30" letter-spacing="2">Engraving</text></g><g transform="translate(630 420)">
   <rect width="540" height="340" rx="8" fill="#0E3E74"/><rect x="160" y="110" width="220" height="90" rx="4" fill="#E7E4DD"/><g transform="translate(270 155) scale(1.6)"><g><circle r="9" fill="none" stroke="#0E3E74" stroke-width="2"/><path d="M-16 14h32M-11 20h22" stroke="#0E3E74" stroke-width="2" stroke-linecap="round"/></g></g>
   <text x="270" y="300" text-anchor="middle" fill="#FFFBF7" fill-opacity=".8"
-    font-family="Jost, sans-serif" font-size="30" letter-spacing="2">Metal plate</text></g></svg></div>
+    font-family="Jost, sans-serif" font-size="30" letter-spacing="2">Metal plate</text></g></svg></span></div>
         <figcaption>One logo, four treatments. The material decides which one reads best.</figcaption>
       </figure>
     </div>
@@ -837,7 +843,7 @@ details p{margin:0;padding:0 var(--spacing-10) var(--spacing-5) 0}
         and the price per piece falls with the run.</p>
       <div class="p-grid">
         <article class="p-card">
-          <div class="media-wrap"><svg class="art" viewBox="0 0 400 400" role="img" aria-label="Product illustration"><rect width="400" height="400" fill="#F3F5F8"/><rect x="96" y="70" width="208" height="270" rx="6" fill="#0E3E74"/><rect x="96" y="70" width="22" height="270" fill="#032A56"/><g transform="translate(200 210) scale(1.15)"><g opacity=".55"><circle cx="0" cy="0" r="9" fill="none" stroke="#FFFBF7" stroke-width="2"/><path d="M-16 14h32M-11 20h22" stroke="#FFFBF7" stroke-width="2" stroke-linecap="round"/></g></g></svg></div>
+          <div class="media-wrap"><span class="ph"><img src="assets/p-r211.jpg" alt="Product illustration" loading="lazy" onerror="this.closest('.ph').classList.add('no-photo')"><svg class="art" viewBox="0 0 400 400" role="img" aria-label="Product illustration"><rect width="400" height="400" fill="#F3F5F8"/><rect x="96" y="70" width="208" height="270" rx="6" fill="#0E3E74"/><rect x="96" y="70" width="22" height="270" fill="#032A56"/><g transform="translate(200 210) scale(1.15)"><g opacity=".55"><circle cx="0" cy="0" r="9" fill="none" stroke="#FFFBF7" stroke-width="2"/><path d="M-16 14h32M-11 20h22" stroke="#FFFBF7" stroke-width="2" stroke-linecap="round"/></g></g></svg></span></div>
           <div class="p-body">
             <p class="p-sku">R211</p>
             <p class="p-name">Black Walnut Hardcover Check Presenter</p>
@@ -848,7 +854,7 @@ details p{margin:0;padding:0 var(--spacing-10) var(--spacing-5) 0}
           </div>
         </article>
         <article class="p-card">
-          <div class="media-wrap"><svg class="art" viewBox="0 0 400 400" role="img" aria-label="Product illustration"><rect width="400" height="400" fill="#F3F5F8"/><rect x="86" y="78" width="228" height="250" rx="12" fill="#0E3E74"/><path d="M110 210h80v90h-80zM210 210h80v90h-80z" fill="#032A56"/><g transform="translate(200 210) scale(1.15)"><g opacity=".55"><circle cx="0" cy="0" r="9" fill="none" stroke="#FFFBF7" stroke-width="2"/><path d="M-16 14h32M-11 20h22" stroke="#FFFBF7" stroke-width="2" stroke-linecap="round"/></g></g></svg></div>
+          <div class="media-wrap"><span class="ph"><img src="assets/p-lh02.jpg" alt="Product illustration" loading="lazy" onerror="this.closest('.ph').classList.add('no-photo')"><svg class="art" viewBox="0 0 400 400" role="img" aria-label="Product illustration"><rect width="400" height="400" fill="#F3F5F8"/><rect x="86" y="78" width="228" height="250" rx="12" fill="#0E3E74"/><path d="M110 210h80v90h-80zM210 210h80v90h-80z" fill="#032A56"/><g transform="translate(200 210) scale(1.15)"><g opacity=".55"><circle cx="0" cy="0" r="9" fill="none" stroke="#FFFBF7" stroke-width="2"/><path d="M-16 14h32M-11 20h22" stroke="#FFFBF7" stroke-width="2" stroke-linecap="round"/></g></g></svg></span></div>
           <div class="p-body">
             <p class="p-sku">LH02</p>
             <p class="p-name">Basic Leather Check Presenter, two pockets</p>
@@ -859,7 +865,7 @@ details p{margin:0;padding:0 var(--spacing-10) var(--spacing-5) 0}
           </div>
         </article>
         <article class="p-card">
-          <div class="media-wrap"><svg class="art" viewBox="0 0 400 400" role="img" aria-label="Product illustration"><rect width="400" height="400" fill="#F3F5F8"/><rect x="96" y="82" width="208" height="256" rx="6" fill="#0E3E74"/><rect x="140" y="62" width="120" height="30" rx="6" fill="#E7E4DD"/><g transform="translate(200 210) scale(1.15)"><g opacity=".55"><circle cx="0" cy="0" r="9" fill="none" stroke="#FFFBF7" stroke-width="2"/><path d="M-16 14h32M-11 20h22" stroke="#FFFBF7" stroke-width="2" stroke-linecap="round"/></g></g></svg></div>
+          <div class="media-wrap"><span class="ph"><img src="assets/p-r201.jpg" alt="Product illustration" loading="lazy" onerror="this.closest('.ph').classList.add('no-photo')"><svg class="art" viewBox="0 0 400 400" role="img" aria-label="Product illustration"><rect width="400" height="400" fill="#F3F5F8"/><rect x="96" y="82" width="208" height="256" rx="6" fill="#0E3E74"/><rect x="140" y="62" width="120" height="30" rx="6" fill="#E7E4DD"/><g transform="translate(200 210) scale(1.15)"><g opacity=".55"><circle cx="0" cy="0" r="9" fill="none" stroke="#FFFBF7" stroke-width="2"/><path d="M-16 14h32M-11 20h22" stroke="#FFFBF7" stroke-width="2" stroke-linecap="round"/></g></g></svg></span></div>
           <div class="p-body">
             <p class="p-sku">R201</p>
             <p class="p-name">Wooden Bill Holder with Binder</p>
@@ -870,7 +876,7 @@ details p{margin:0;padding:0 var(--spacing-10) var(--spacing-5) 0}
           </div>
         </article>
         <article class="p-card">
-          <div class="media-wrap"><svg class="art" viewBox="0 0 400 400" role="img" aria-label="Product illustration"><rect width="400" height="400" fill="#F3F5F8"/><rect x="126" y="56" width="148" height="296" rx="6" fill="#0E3E74"/><circle cx="150" cy="110" r="7" fill="#E7E4DD"/><circle cx="150" cy="204" r="7" fill="#E7E4DD"/><circle cx="150" cy="298" r="7" fill="#E7E4DD"/><g transform="translate(200 210) scale(1.15)"><g opacity=".55"><circle cx="0" cy="0" r="9" fill="none" stroke="#FFFBF7" stroke-width="2"/><path d="M-16 14h32M-11 20h22" stroke="#FFFBF7" stroke-width="2" stroke-linecap="round"/></g></g></svg></div>
+          <div class="media-wrap"><span class="ph"><img src="assets/p-lm02a6.jpg" alt="Product illustration" loading="lazy" onerror="this.closest('.ph').classList.add('no-photo')"><svg class="art" viewBox="0 0 400 400" role="img" aria-label="Product illustration"><rect width="400" height="400" fill="#F3F5F8"/><rect x="126" y="56" width="148" height="296" rx="6" fill="#0E3E74"/><circle cx="150" cy="110" r="7" fill="#E7E4DD"/><circle cx="150" cy="204" r="7" fill="#E7E4DD"/><circle cx="150" cy="298" r="7" fill="#E7E4DD"/><g transform="translate(200 210) scale(1.15)"><g opacity=".55"><circle cx="0" cy="0" r="9" fill="none" stroke="#FFFBF7" stroke-width="2"/><path d="M-16 14h32M-11 20h22" stroke="#FFFBF7" stroke-width="2" stroke-linecap="round"/></g></g></svg></span></div>
           <div class="p-body">
             <p class="p-sku">LM02A6</p>
             <p class="p-name">Capri Leather Wine List Cover, screw fixing</p>
@@ -881,7 +887,7 @@ details p{margin:0;padding:0 var(--spacing-10) var(--spacing-5) 0}
           </div>
         </article>
         <article class="p-card">
-          <div class="media-wrap"><svg class="art" viewBox="0 0 400 400" role="img" aria-label="Product illustration"><rect width="400" height="400" fill="#F3F5F8"/><rect x="92" y="66" width="216" height="278" rx="6" fill="#032A56"/><rect x="112" y="86" width="176" height="238" rx="4" fill="none" stroke="#FFFBF7" stroke-opacity=".22" stroke-width="3"/><g transform="translate(200 210) scale(1.15)"><g opacity=".55"><circle cx="0" cy="0" r="9" fill="none" stroke="#FFFBF7" stroke-width="2"/><path d="M-16 14h32M-11 20h22" stroke="#FFFBF7" stroke-width="2" stroke-linecap="round"/></g></g></svg></div>
+          <div class="media-wrap"><span class="ph"><img src="assets/p-fm01a4.jpg" alt="Product illustration" loading="lazy" onerror="this.closest('.ph').classList.add('no-photo')"><svg class="art" viewBox="0 0 400 400" role="img" aria-label="Product illustration"><rect width="400" height="400" fill="#F3F5F8"/><rect x="92" y="66" width="216" height="278" rx="6" fill="#032A56"/><rect x="112" y="86" width="176" height="238" rx="4" fill="none" stroke="#FFFBF7" stroke-opacity=".22" stroke-width="3"/><g transform="translate(200 210) scale(1.15)"><g opacity=".55"><circle cx="0" cy="0" r="9" fill="none" stroke="#FFFBF7" stroke-width="2"/><path d="M-16 14h32M-11 20h22" stroke="#FFFBF7" stroke-width="2" stroke-linecap="round"/></g></g></svg></span></div>
           <div class="p-body">
             <p class="p-sku">FM01A4</p>
             <p class="p-name">Faux Leather Menu Cover, A4</p>
@@ -892,7 +898,7 @@ details p{margin:0;padding:0 var(--spacing-10) var(--spacing-5) 0}
           </div>
         </article>
         <article class="p-card">
-          <div class="media-wrap"><svg class="art" viewBox="0 0 400 400" role="img" aria-label="Product illustration"><rect width="400" height="400" fill="#F3F5F8"/><rect x="86" y="74" width="228" height="262" rx="8" fill="#0E3E74"/><path d="M290 74v262" stroke="#E7E4DD" stroke-width="8"/><g transform="translate(200 210) scale(1.15)"><g opacity=".55"><circle cx="0" cy="0" r="9" fill="none" stroke="#FFFBF7" stroke-width="2"/><path d="M-16 14h32M-11 20h22" stroke="#FFFBF7" stroke-width="2" stroke-linecap="round"/></g></g></svg></div>
+          <div class="media-wrap"><span class="ph"><img src="assets/p-lm12a2.jpg" alt="Product illustration" loading="lazy" onerror="this.closest('.ph').classList.add('no-photo')"><svg class="art" viewBox="0 0 400 400" role="img" aria-label="Product illustration"><rect width="400" height="400" fill="#F3F5F8"/><rect x="86" y="74" width="228" height="262" rx="8" fill="#0E3E74"/><path d="M290 74v262" stroke="#E7E4DD" stroke-width="8"/><g transform="translate(200 210) scale(1.15)"><g opacity=".55"><circle cx="0" cy="0" r="9" fill="none" stroke="#FFFBF7" stroke-width="2"/><path d="M-16 14h32M-11 20h22" stroke="#FFFBF7" stroke-width="2" stroke-linecap="round"/></g></g></svg></span></div>
           <div class="p-body">
             <p class="p-sku">LM12A2</p>
             <p class="p-name">Leather Menu Hardcover, US Letter</p>
