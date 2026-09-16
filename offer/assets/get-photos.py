@@ -1,22 +1,27 @@
 #!/usr/bin/env python3
 """
-Pull the real Inko HoReCa product photos into this folder.
+Pull the real Inko HoReCa imagery into this folder.
 
 Run it on a machine that can reach inkohoreca.com:
 
     python3 get-photos.py
 
-It reads the shop's own public product feed, downloads the main image of each
-product and saves it under the exact file name index.html already looks for.
+What it does, in order:
+  1. reads the shop's public product feed and saves each product's main photo
+     under the exact file name index.html already looks for;
+  2. scans the shop home page for the hotel-brand logos and saves them to
+     logos/ (marriott.svg, hilton.svg, hyatt.svg, radisson.svg);
+  3. saves the remaining large home-page images to candidates/ so you can pick
+     a lifestyle shot for the hero.
+
 Nothing in the HTML needs editing — refresh the page and the drawings are
 replaced by the photographs.
 """
-import json, os, sys, urllib.request
+import json, os, re, sys, urllib.parse, urllib.request
 
 SHOP = "https://inkohoreca.com"
 UA = {"User-Agent": "Mozilla/5.0 (asset fetcher)"}
 
-# page slot  ->  product handle on the shop
 WANT = {
     "hero.jpg":              "wooden-hardcover-bill-holder-r211",
     "set.jpg":               "leather-menu-cover-capri-lm02a6",
@@ -34,17 +39,37 @@ WANT = {
     "case-5.jpg":            "leather-bill-holder-lh02",
 }
 
-def get(url):
-    return urllib.request.urlopen(urllib.request.Request(url, headers=UA), timeout=30).read()
+BRANDS = ["marriott", "hilton", "hyatt", "radisson"]
 
-def catalogue():
-    """handle -> list of image urls, from the shop's public feed"""
+
+def get(url, timeout=30):
+    return urllib.request.urlopen(
+        urllib.request.Request(url, headers=UA), timeout=timeout).read()
+
+
+def abs_url(u):
+    if u.startswith("//"):
+        return "https:" + u
+    if u.startswith("/"):
+        return SHOP + u
+    return u
+
+
+def save(url, path):
+    data = get(abs_url(url))
+    os.makedirs(os.path.dirname(path) or ".", exist_ok=True)
+    open(path, "wb").write(data)
+    return len(data)
+
+
+# ---------------------------------------------------------------- products
+def products():
     out, page = {}, 1
     while page <= 10:
         try:
             data = json.loads(get(f"{SHOP}/products.json?limit=250&page={page}"))
         except Exception as e:
-            print(f"  ! could not read the product feed: {e}")
+            print(f"  ! product feed unavailable: {e}")
             break
         items = data.get("products", [])
         if not items:
@@ -54,35 +79,101 @@ def catalogue():
         page += 1
     return out
 
-def main():
-    print("Reading the product feed…")
-    cat = catalogue()
-    if not cat:
-        sys.exit("No products found. Are you online and is the shop reachable?")
-    print(f"  {len(cat)} products found.\n")
 
+def step_products():
+    print("1. Product photos")
+    cat = products()
+    if not cat:
+        print("   no products read — skipping\n")
+        return
+    print(f"   {len(cat)} products in the feed")
     spare = [h for h in cat if cat[h]]
-    ok = miss = 0
+    ok = 0
     for filename, handle in WANT.items():
         urls = cat.get(handle) or (cat.get(spare[0]) if spare else None)
         if not urls:
-            print(f"  – {filename}: no image found for '{handle}'")
-            miss += 1
+            print(f"   – {filename}: nothing for '{handle}'")
             continue
-        src = urls[0]
-        if src.startswith("//"):
-            src = "https:" + src
         try:
-            open(filename, "wb").write(get(src))
-            print(f"  ✓ {filename}  ←  {handle}")
+            save(urls[0], filename)
+            print(f"   ✓ {filename}  ←  {handle}")
             ok += 1
         except Exception as e:
-            print(f"  – {filename}: download failed ({e})")
-            miss += 1
+            print(f"   – {filename}: {e}")
+    print(f"   {ok}/{len(WANT)} saved\n")
 
-    print(f"\nDone. {ok} saved, {miss} missing.")
-    print("Open index.html — the photographs are in place.")
-    print("\nStill to add by hand: logos/marriott.svg, hilton.svg, hyatt.svg, radisson.svg")
+
+# ------------------------------------------------------------------- logos
+def home_images():
+    """every image URL referenced by the home page, in document order"""
+    try:
+        html = get(SHOP).decode("utf-8", "replace")
+    except Exception as e:
+        print(f"   ! home page unavailable: {e}")
+        return []
+    urls = re.findall(r'(?:src|data-src|srcset|content)="([^"]+?\.(?:png|jpe?g|svg|webp)[^"]*)"', html)
+    urls += re.findall(r"url\((?:'|\")?([^'\")]+?\.(?:png|jpe?g|svg|webp)[^'\")]*)", html)
+    seen, out = set(), []
+    for u in urls:
+        u = u.split()[0].strip()
+        if u not in seen:
+            seen.add(u)
+            out.append(u)
+    return out
+
+
+def step_logos(imgs):
+    print("2. Hotel brand logos")
+    if not imgs:
+        print("   no home-page images found — skipping\n")
+        return
+    found = 0
+    for brand in BRANDS:
+        hit = next((u for u in imgs if brand in u.lower()), None)
+        if not hit:
+            print(f"   – {brand}: not found on the home page by name")
+            continue
+        ext = ".svg" if ".svg" in hit.lower() else ".png"
+        try:
+            save(hit, f"logos/{brand}{ext}")
+            print(f"   ✓ logos/{brand}{ext}")
+            found += 1
+        except Exception as e:
+            print(f"   – {brand}: {e}")
+    if found < len(BRANDS):
+        print("   Logos the shop names differently end up in candidates/ below —")
+        print("   rename the right ones to logos/marriott.svg etc.")
+    print()
+
+
+# -------------------------------------------------------------- candidates
+def step_candidates(imgs):
+    print("3. Other home-page images → candidates/")
+    if not imgs:
+        print("   nothing to collect\n")
+        return
+    n = 0
+    for u in imgs:
+        if any(b in u.lower() for b in BRANDS):
+            continue
+        name = os.path.basename(urllib.parse.urlparse(abs_url(u)).path) or f"img{n}.jpg"
+        try:
+            size = save(u, f"candidates/{name}")
+            if size < 8000:                      # icons and sprites, not photographs
+                os.remove(f"candidates/{name}")
+                continue
+            n += 1
+        except Exception:
+            continue
+        if n >= 40:
+            break
+    print(f"   {n} images saved. Pick a lifestyle shot and copy it over hero.jpg.\n")
+
 
 if __name__ == "__main__":
-    main()
+    print(f"Fetching imagery from {SHOP}\n")
+    step_products()
+    imgs = home_images()
+    step_logos(imgs)
+    step_candidates(imgs)
+    print("Done. Open index.html.")

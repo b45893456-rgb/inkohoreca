@@ -318,7 +318,9 @@ em{font-style:italic;font-weight:600;color:rgb(var(--accent))}
 @media screen and (min-width:700px){.partners{grid-template-columns:repeat(4,1fr)}}
 .partner{text-align:center;font-weight:600;letter-spacing:.1em;text-transform:uppercase;
   color:rgb(var(--text) / .45);font-size:var(--text-sm)}
-.partner img{max-height:34px;width:auto;margin-inline:auto;filter:grayscale(1);opacity:.6}
+.partner img{max-height:44px;width:auto;margin-inline:auto;filter:grayscale(1);opacity:.62}
+.partners-sec{border-bottom:1px solid rgb(var(--text) / .12)}
+@media screen and (min-width:700px){.partners{gap:var(--s10)}}
 
 /* ---------- footer ---------- */
 footer{background:rgb(var(--accent));color:rgb(var(--offwhite) / .8);padding-block:var(--s16);
@@ -403,7 +405,7 @@ footer .disc{margin-top:var(--s5);padding-top:var(--s4);border-top:1px solid rgb
 </section>
 
 
-<section class="sec" style="padding-block:var(--s10)">
+<section class="sec partners-sec" style="padding-block:var(--s12)">
   <div class="wrap">
     <p class="center sm muted" style="letter-spacing:.1em;text-transform:uppercase;font-weight:700">
       Supplying venues of</p>
@@ -413,7 +415,6 @@ footer .disc{margin-top:var(--s5);padding-top:var(--s4);border-top:1px solid rgb
       <span class="partner"><img src="assets/logos/hyatt.svg" alt="Hyatt" onerror="this.replaceWith(document.createTextNode('Hyatt'))"></span>
       <span class="partner"><img src="assets/logos/radisson.svg" alt="Radisson" onerror="this.replaceWith(document.createTextNode('Radisson'))"></span>
     </div>
-    <!-- TODO before launch: real SVG logos + written permission to display these marks -->
   </div>
 </section>
 
